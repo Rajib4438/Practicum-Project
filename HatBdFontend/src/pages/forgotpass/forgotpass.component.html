@@ -1,0 +1,59 @@
+<div class="container vh-100 d-flex justify-content-center align-items-center">
+  <div class="row w-100">
+    <div class="col-md-4 mx-auto">
+
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-4">
+
+          <!-- Title -->
+          <h3 class="text-center mb-2 fw-bold">Forgot Password</h3>
+          <p class="text-center text-muted mb-4">
+            Enter your registered email
+          </p>
+
+          <!-- Email -->
+          <div class="mb-3">
+            <label class="form-label fw-semibold">Email</label>
+            <input
+              type="email"
+              class="form-control form-control-lg"
+              placeholder="Enter email"
+              [(ngModel)]="email"
+              name="email"
+            />
+          </div>
+
+          <!-- Message -->
+          <div *ngIf="errorMessage"
+               class="alert py-2"
+               [ngClass]="errorMessage ? 'alert-danger' : 'alert-success'">
+            {{ errorMessage }}
+          </div>
+
+          <!-- Button -->
+          <div class="d-grid mt-3">
+            <button
+              class="btn btn-primary btn-lg"
+              (click)="sendResetLink()">
+              Send Reset Link
+            </button>
+          </div>
+
+          <!-- Back to login -->
+          <div class="text-center mt-3">
+            <a routerLink="/login" class="text-decoration-none">
+              ← Back to Login
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <p class="text-center mt-3 text-muted">
+        © 2025 YourAppName
+      </p>
+
+    </div>
+  </div>
+</div>

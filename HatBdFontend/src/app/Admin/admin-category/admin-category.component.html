@@ -1,0 +1,53 @@
+<div class="category-page">
+
+  <!-- Header -->
+  <div class="page-header">
+    <h2>Category Management</h2>
+  </div>
+
+  <!-- Form -->
+  <div class="form-card">
+    <input
+      type="text"
+      placeholder="Category Name"
+      [(ngModel)]="categoryName"
+    />
+
+    <button class="btn-primary" (click)="saveCategory()">
+      {{ editId ? 'Update Category' : 'Add Category' }}
+    </button>
+
+    <button *ngIf="editId" class="btn-cancel" (click)="resetForm()">
+      Cancel
+    </button>
+  </div>
+
+  <!-- Table -->
+  <div class="table-card">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Created By</th>
+          <th>Created At</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of categories; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.createdby }}</td>
+          <td>{{ item.createdat | date:'short' }}</td>
+          <td>
+            <button class="btn-edit" (click)="editCategory(item)">Edit</button>
+            <button class="btn-delete" (click)="deleteCategory(item.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

@@ -1,0 +1,46 @@
+<div class="sub-category-list-page">
+
+  <!-- Header -->
+  <div class="page-header">
+    <h2>Sub Category List</h2>
+  </div>
+
+  <!-- Table -->
+  <div class="table-card">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Sub Category Name</th>
+          <th>Category Id</th>
+          <th>Status</th>
+          <th>Created By</th>
+          <th>Created At</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of subCategories; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.categoryid }}</td>
+          <td>
+            <span
+              class="status"
+              [class.active]="item.isactive"
+              [class.inactive]="!item.isactive">
+              {{ getStatus(item.isactive) }}
+            </span>
+          </td>
+          <td>{{ item.createdby }}</td>
+          <td>{{ item.createdat | date:'short' }}</td>
+        </tr>
+
+        <tr *ngIf="subCategories.length === 0">
+          <td colspan="6" class="no-data">No data found</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

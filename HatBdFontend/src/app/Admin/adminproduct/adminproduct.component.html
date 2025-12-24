@@ -1,0 +1,79 @@
+<div class="product-page">
+
+  <!-- Header -->
+  <div class="page-header">
+    <h2>Product Management</h2>
+  </div>
+
+  <!-- Form -->
+  <div class="form-card">
+    <input placeholder="Product Name" [(ngModel)]="name" />
+    <input placeholder="Brand" [(ngModel)]="brand" />
+    <input placeholder="Description" [(ngModel)]="description" />
+
+    <input type="number" placeholder="Price" [(ngModel)]="price" />
+    <input type="number" placeholder="Stock Quantity" [(ngModel)]="stockquantity" />
+    <input placeholder="Status" [(ngModel)]="status" />
+
+    <!-- Category Dropdown -->
+    <select [(ngModel)]="categoryid" (change)="loadSubCategories(categoryid!)">
+      <option value="">Select Category</option>
+      <option *ngFor="let c of categories" [value]="c.id">
+        {{ c.name }}
+      </option>
+    </select>
+
+    <!-- SubCategory Dropdown -->
+    <select [(ngModel)]="subcategoryid">
+      <option value="">Select Sub Category</option>
+      <option *ngFor="let sc of subCategories" [value]="sc.id">
+        {{ sc.name }}
+      </option>
+    </select>
+
+    <button class="btn-primary" (click)="saveProduct()">
+      {{ id ? 'Update Product' : 'Add Product' }}
+    </button>
+
+    <button *ngIf="id" class="btn-cancel" (click)="resetForm()">Cancel</button>
+  </div>
+
+  <!-- Table -->
+  <div class="table-card">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>SubCategory</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let p of products; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ p.name }}</td>
+          <td>{{ p.categoryName }}</td>
+          <td>{{ p.subCategoryName }}</td>
+          <td>{{ p.price }}</td>
+          <td>{{ p.stockQuantity }}</td>
+          <td>{{ p.status }}</td>
+          <td>
+            <button class="btn-edit" (click)="editProduct(p)">Edit</button>
+            <button class="btn-delete" (click)="deleteProduct(p.id)">Delete</button>
+          </td>
+        </tr>
+
+        <tr *ngIf="products.length === 0">
+          <td colspan="8" class="no-data">No Products Found</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

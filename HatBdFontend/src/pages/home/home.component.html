@@ -1,0 +1,70 @@
+<div class="slider-container">
+  <div class="slider" [style.transform]="'translateX(-' + slideIndex * 100 + '%)'">
+    @for (img of bannerImages; track img) {
+    <div class="slide"><img [src]="img" alt="Banner"></div>
+    }
+  </div>
+  <button class="slider-btn prev-btn" (click)="prevSlide()"><i class="fas fa-chevron-left"></i></button>
+  <button class="slider-btn next-btn" (click)="nextSlide()"><i class="fas fa-chevron-right"></i></button>
+</div>
+
+<div class="section-container">
+  <div class="section-title">
+    <h3>Top Categories</h3>
+    <button class="view-all">See All <i class="fas fa-arrow-right"></i></button>
+  </div>
+  <div class="categories-grid">
+    <div class="cat-card">
+      <div class="cat-icon-box"><i class="fas fa-mobile-alt"></i></div>
+      <p>Electronics</p>
+    </div>
+    <div class="cat-card">
+      <div class="cat-icon-box"><i class="fas fa-tshirt"></i></div>
+      <p>Fashion</p>
+    </div>
+    <div class="cat-card">
+      <div class="cat-icon-box"><i class="fas fa-laptop"></i></div>
+      <p>Computing</p>
+    </div>
+    <div class="cat-card">
+      <div class="cat-icon-box"><i class="fas fa-home"></i></div>
+      <p>Home Decor</p>
+    </div>
+    <div class="cat-card">
+      <div class="cat-icon-box"><i class="fas fa-heartbeat"></i></div>
+      <p>Health</p>
+    </div>
+    <div class="cat-card">
+      <div class="cat-icon-box"><i class="fas fa-baby"></i></div>
+      <p>Baby Care</p>
+    </div>
+  </div>
+</div>
+
+<div class="section-container">
+  <div class="section-title">
+    <h3>Featured Products</h3>
+  </div>
+  <div class="product-list-landscape">
+    @for (p of [1,2,3,4,5,6]; track p) {
+    <div class="product-card-landscape">
+      <div class="product-img-box">
+        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300" alt="Product">
+      </div>
+      <div class="product-info-box">
+        <span class="badge">Trending</span>
+        <h4 class="product-title">High Quality Wireless Headphone v{{p}}</h4>
+        <div class="rating">
+          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+          <span>(45)</span>
+        </div>
+        <p class="description">অসাধারণ সাউন্ড কোয়ালিটি এবং আরামদায়ক ইয়ারপ্যাড সহ আধুনিক হেডফোন।</p>
+        <div class="price-action">
+          <span class="sale-price">৳ 2,450</span>
+          <button class="add-cart-btn-sm"><i class="fas fa-cart-plus"></i> Add</button>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>

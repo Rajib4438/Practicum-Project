@@ -1,0 +1,67 @@
+<div class="category-page">
+
+  <!-- Header -->
+  <div class="page-header">
+    <h2>Sub Category Management</h2>
+  </div>
+
+  <!-- Form -->
+  <div class="form-card">
+    <input
+      type="text"
+      placeholder="Sub Category Name"
+      [(ngModel)]="name"
+    />
+
+    <!-- CATEGORY DROPDOWN -->
+    <select [(ngModel)]="categoryid">
+      <option value="">Select Category</option>
+      <option *ngFor="let c of categories" [value]="c.id">
+        {{ c.name }}
+      </option>
+    </select>
+
+    <button class="btn-primary" (click)="saveSubCategory()">
+      {{ editId ? 'Update Sub Category' : 'Add Sub Category' }}
+    </button>
+
+    <button *ngIf="editId" class="btn-cancel" (click)="resetForm()">
+      Cancel
+    </button>
+  </div>
+
+  <!-- Table -->
+  <div class="table-card">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Sub Category</th>
+          <th>Category</th>
+          <th>Created By</th>
+          <th>Created At</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let item of subCategories; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.categoryName || item.categoryid }}</td>
+          <td>{{ item.createdby }}</td>
+          <td>{{ item.createdat | date:'short' }}</td>
+          <td>
+            <button class="btn-edit" (click)="editSubCategory(item)">Edit</button>
+            <button class="btn-delete" (click)="deleteSubCategory(item.id)">Delete</button>
+          </td>
+        </tr>
+
+        <tr *ngIf="subCategories.length === 0">
+          <td colspan="6" class="no-data">No Data Found</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

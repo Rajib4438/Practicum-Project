@@ -1,0 +1,42 @@
+<div class="container">
+
+  <h2 class="title">Admin Panel – User List</h2>
+
+  <!-- Save New User Button -->
+  <button class="save-btn" type="button">
+    Save New User
+  </button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Password</th>
+        <th>Phone</th>
+        <th>Address</th>
+        <th>User Type</th>
+        <th>Gender</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.password }}</td>
+        <td>{{ user.phone }}</td>
+        <td>{{ user.address }}</td>
+        <td>{{ user.userType }}</td>
+        <td>{{ user.gender }}</td>
+      </tr>
+
+      <tr *ngIf="users.length === 0">
+        <td colspan="8" class="no-data">No users found</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
