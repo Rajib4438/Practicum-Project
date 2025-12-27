@@ -83,3 +83,5 @@ C:\Practicum-Project\HatBD_Backend\HatBD_Backend\bin\Debug\net8.0\BCrypt.Net-Nex
 C:\Practicum-Project\HatBD_Backend\HatBD_Backend\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
 C:\Practicum-Project\HatBD_Backend\HatBD_Backend\bin\Debug\net8.0\MailKit.dll
 C:\Practicum-Project\HatBD_Backend\HatBD_Backend\bin\Debug\net8.0\MimeKit.dll
+C:\Practicum-Project\HatBD_Backend\HatBD_Backend\bin\Debug\net8.0\HatBD_Backend.staticwebassets.runtime.json
+C:\Practicum-Project\HatBD_Backend\HatBD_Backend\obj\Debug\net8.0\HatBD_Backend.sourcelink.json

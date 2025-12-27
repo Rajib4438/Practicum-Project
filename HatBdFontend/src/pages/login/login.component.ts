@@ -35,6 +35,15 @@ export class Login {
           localStorage.setItem('userToken', response.token);
           // আপনার API যদি response.userName না পাঠায়, তবে ইনপুট ফিল্ডের নাম সেভ হবে
           localStorage.setItem('userName', response.userName || this.data.userName); 
+          debugger
+          if (response.registerAs == 'Admin') {
+            this.router.navigate(['/layout']).then(() => {
+              window.location.reload(); 
+            });
+            return;
+
+          }
+
           
           // সফল হলে সরাসরি হোম পেজে রিডাইরেক্ট [cite: 50, 119]
           this.router.navigate(['/']).then(() => {

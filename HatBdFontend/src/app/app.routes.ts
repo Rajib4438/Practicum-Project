@@ -13,6 +13,7 @@ import { AdminUserListComponent } from "./Admin/admin-user-list/admin-user.compo
 import { AdminSubCategoryComponent } from "./Admin/admin-sub-catagory/admin-sub-catagory.component";
 import { AdminSubCategoryListComponent } from "./Admin/sub-category-list/sub-category-list.component";
 import { AdminProductComponent } from "./Admin/adminproduct/adminproduct.component";
+import { Userform } from "./Admin/admin-user-form/admin-user-form.component";
 
 export const routes: Routes = [
   { path: '',
@@ -46,6 +47,9 @@ export const routes: Routes = [
     component:AdminDashboardComponent
   },{
     path:'user',component:AdminUserListComponent
+  },
+  {
+    path:'user-form',component:Userform
   },
   // {
   //   path:'subcategory',component:AdminSubCategoryListComponent
