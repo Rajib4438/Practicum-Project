@@ -1,0 +1,49 @@
+<div class="product-page">
+
+  <h2 class="title">Products</h2>
+
+  <div class="product-grid">
+
+    <div class="product-card" *ngFor="let p of products">
+
+      <img
+        [src]="getImageUrl(p.imageLocation)"
+        alt="Product Image"
+        class="product-img"
+      />
+
+      <h3 class="product-name">{{ p.name }}</h3>
+
+      <p class="brand">{{ p.brand }}</p>
+
+      <p class="price">৳ {{ p.price }}</p>
+
+      <p class="category">
+        {{ p.categoryName }} / {{ p.subCategoryName }}
+      </p>
+
+      <p class="stock">
+        Stock: {{ p.stockquantity }}
+      </p>
+
+      <span class="created">
+        Created By: {{ p.createdby }}
+      </span>
+
+      <!-- ADD TO CART -->
+      <button
+        class="btn-cart"
+        (click)="addToCart(p)"
+        [disabled]="p.stockquantity === 0">
+        Add to Cart
+      </button>
+
+    </div>
+
+  </div>
+
+  <p *ngIf="products.length === 0" class="no-data">
+    No products found
+  </p>
+
+</div>

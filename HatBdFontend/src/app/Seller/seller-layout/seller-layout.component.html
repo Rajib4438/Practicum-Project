@@ -1,0 +1,77 @@
+<div class="seller-wrapper">
+
+  <!-- ================= Sidebar ================= -->
+  <aside class="sidebar" aria-label="Seller navigation">
+    <div class="brand">
+      <h2>HatBD</h2>
+      <span>Seller Panel</span>
+    </div>
+
+    <nav class="menu">
+      <a
+        routerLink="/seller/dashboard"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        Dashboard
+      </a>
+
+      <a
+        routerLink="/seller/products"
+        routerLinkActive="active"
+      >
+        My Products
+      </a>
+<!-- 
+      <a
+        routerLink="/seller/add-product"
+        routerLinkActive="active"
+      >
+        Add / Select Product
+      </a> -->
+
+      <a
+        routerLink="/seller/orders"
+        routerLinkActive="active"
+      >
+        Orders
+      </a>
+
+      <a
+        routerLink="/seller/payments"
+        routerLinkActive="active"
+      >
+        Payments
+      </a>
+    </nav>
+  </aside>
+
+  <!-- ================= Main ================= -->
+  <div class="main">
+
+    <!-- Top Navbar -->
+    <header class="navbar" role="banner">
+      <div class="navbar-left">
+        <span class="page-title">Seller Dashboard</span>
+      </div>
+
+      <div class="navbar-right">
+        <span class="seller-name">Seller</span>
+        <button
+          type="button"
+          class="logout-btn"
+          aria-label="Logout"
+        >
+          Logout
+        </button>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <main class="content" role="main">
+      <router-outlet></router-outlet>
+    </main>
+
+  </div>
+
+</div>

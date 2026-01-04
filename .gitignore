@@ -1,0 +1,52 @@
+# ================================
+# .NET / ASP.NET Core
+# ================================
+
+## Build results
+bin/
+obj/
+out/
+
+## Visual Studio files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Rider / VS Code
+.idea/
+.vscode/
+*.code-workspace
+
+## ASP.NET Core
+appsettings.Development.json
+appsettings.Local.json
+
+## Logs
+*.log
+
+## User-specific files
+*.rsuser
+*.userprefs
+
+## Test results
+TestResults/
+
+## NuGet
+*.nupkg
+packages/
+.nuget/
+
+## OS generated files
+.DS_Store
+Thumbs.db
+
+## Secrets
+secrets.json
+*.pfx
+*.cer
+*.key
+
+## Publish output
+publish/

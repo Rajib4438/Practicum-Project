@@ -1,43 +1,81 @@
 <div class="container">
 
-  <h2 class="title">Admin Panel – User List</h2>
+  <h2 class="title">Admin Panel – User Management</h2>
 
-  <!-- Save New User Button -->
-  <button
-    class="save-btn"
-    type="button"
-    (click)="goToAddUser()">
-    Save New User
-  </button>
+  <!-- SEARCH + ADD -->
+  <div class="top-bar">
+    <input
+      type="text"
+      class="search-input"
+      placeholder="Search by name, email or phone..."
+      [(ngModel)]="searchText"
+      (input)="searchUser()"
+    />
+
+    <button class="save-btn" (click)="goToAddUser()">
+      + Add User
+    </button>
+  </div>
 
   <table>
     <thead>
       <tr>
         <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Password</th>
+        <!-- <th>Registered At</th> -->
+        <th>Full Name</th>
+        <th>Username</th>
         <th>Phone</th>
-        <th>Address</th>
-        <th>User Type</th>
-        <th>Gender</th>
+        <th>Email</th>
+        <!-- <th>Role</th> -->
+        <th>Approved</th>
+        <th>Action</th>
       </tr>
     </thead>
 
     <tbody>
-      <tr *ngFor="let user of users">
+      <tr *ngFor="let user of filteredUsers">
         <td>{{ user.id }}</td>
-        <td>{{ user.name }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.password }}</td>
+
+        <!-- REGISTER DATE -->
+        <td>{{ user.createdAt | date:'short' }}</td>
+
+        <td>{{ user.fullName }}</td>
+        <td>{{ user.userName }}</td>
         <td>{{ user.phone }}</td>
-        <td>{{ user.address }}</td>
-        <td>{{ user.userType }}</td>
-        <td>{{ user.gender }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.RegisterAs }}</td>
+
+        <td>
+          <span *ngIf="user.isApproved" class="approved">Yes</span>
+          <span *ngIf="!user.isApproved" class="pending">No</span>
+        </td>
+
+        <td class="action-btns">
+          <button
+            class="btn-edit"
+            (click)="editUser(user.id)">
+            Edit
+          </button>
+
+          <button
+            *ngIf="user.registerAs === 'Seller' && !user.isApproved"
+            class="btn-approve"
+            (click)="approveUser(user.id)">
+            Approve
+          </button>
+
+          <button
+            class="btn-delete"
+            (click)="deleteUser(user.id)">
+            Delete
+          </button>
+        </td>
       </tr>
 
-      <tr *ngIf="users.length === 0">
-        <td colspan="8" class="no-data">No users found</td>
+      <tr *ngIf="filteredUsers.length === 0">
+        <td colspan="9" class="no-data">
+          No users found
+        </td>
       </tr>
     </tbody>
   </table>

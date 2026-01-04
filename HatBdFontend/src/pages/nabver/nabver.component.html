@@ -26,12 +26,20 @@
 
 
       @if (isLoggedIn()) {
-      <span class="user-info-text" style="margin-left: 10px; font-weight: 600; color: #333;">
-        <i class="fas fa-user-circle"></i> {{ getUserName() }}
-      </span>
+      <div class="user-dropdown">
+        <span class="user-info-text">
+          <i class="fas fa-user-circle"></i> {{ getUserName() }}
+          <i class="fas fa-caret-down" style="margin-left: 5px;"></i>
+        </span>
+
+        <div class="dropdown-menu">
+          <a routerLink="/Profile">Profile</a>
+        </div>
+      </div>
+
       <div class="action-item cart-btn-custom" (click)="goToCart()" style="cursor: pointer;">
         <div class="cart-icon-wrapper" style="position: relative; display: inline-block;">
-          <i class="fas fa-shopping-cart" style="font-size: 1.5rem; color: #333;"></i>
+          <a href="/navbar/Cart"><i class="fas fa-shopping-cart" style="font-size: 1.5rem; color: #333;"></i></a>
 
           <span class="cart-badge">
             {{ cartCount() }}

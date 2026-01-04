@@ -4,13 +4,11 @@
   gap: 20px;
 }
 
-/* Header */
 .page-header h2 {
   font-size: 22px;
   font-weight: 600;
 }
 
-/* Form */
 .form-card {
   background: #fff;
   padding: 20px;
@@ -28,9 +26,7 @@
   border: 1px solid #e5e7eb;
 }
 
-/* Buttons */
 .btn-primary {
-  grid-column: span 1;
   background: #2563eb;
   color: #fff;
   border: none;
@@ -46,7 +42,6 @@
   border-radius: 8px;
 }
 
-/* Table */
 .table-card {
   background: #fff;
   padding: 20px;
@@ -60,7 +55,6 @@ table {
 }
 
 th {
-  text-align: left;
   font-size: 13px;
   color: #64748b;
   border-bottom: 1px solid #e5e7eb;
@@ -73,12 +67,19 @@ td {
   border-bottom: 1px solid #f1f5f9;
 }
 
+.product-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
 .no-data {
   text-align: center;
   color: #94a3b8;
 }
 
-/* Action buttons */
 .btn-edit {
   background: #f59e0b;
   color: #fff;

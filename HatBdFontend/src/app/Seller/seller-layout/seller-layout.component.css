@@ -1,0 +1,114 @@
+/* ===== Root ===== */
+.seller-wrapper {
+  display: flex;
+  height: 100vh;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  background: #f1f5f9;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  width: 270px;
+  background: linear-gradient(180deg, #020617, #064e3b);
+  color: #e5e7eb;
+  padding: 24px 20px;
+  box-shadow: 4px 0 12px rgba(0,0,0,0.15);
+}
+
+.brand {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.brand h2 {
+  margin: 0;
+  font-size: 26px;
+  color: #fff;
+}
+
+.brand span {
+  font-size: 12px;
+  color: #a7f3d0;
+  letter-spacing: 1px;
+}
+
+.menu a {
+  display: block;
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  color: #d1fae5;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.25s ease;
+}
+
+.menu a:hover {
+  background: rgba(16, 185, 129, 0.15);
+  color: #fff;
+  transform: translateX(4px);
+}
+
+.menu a.active {
+  background: linear-gradient(90deg, #10b981, #059669);
+  color: #fff;
+  font-weight: 500;
+}
+
+/* ===== Main ===== */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+  height: 64px;
+  background: #ffffff;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e5e7eb;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.page-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #064e3b;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.seller-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #334155;
+}
+
+.logout-btn {
+  border: none;
+  background: #ef4444;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+}
+
+/* ===== Content ===== */
+.content {
+  padding: 30px;
+  overflow-y: auto;
+}

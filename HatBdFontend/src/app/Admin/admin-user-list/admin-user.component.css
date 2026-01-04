@@ -1,60 +1,89 @@
 .container {
   padding: 20px;
   background: #f9f9f9;
-  position: relative; /* Required for absolute positioning of button */
 }
 
 .title {
   text-align: center;
   margin-bottom: 20px;
-  color: #333;
+  color: #1f2937;
 }
 
+/* TOP BAR */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.search-input {
+  width: 320px;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+}
+
+/* TABLE */
 table {
   width: 100%;
   border-collapse: collapse;
-  background: white;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
 }
 
 th, td {
   padding: 12px;
   text-align: center;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #e5e7eb;
 }
 
 th {
-  background-color: #2c3e50;
-  color: white;
+  background: #0f172a;
+  color: #fff;
   font-weight: 600;
+  font-size: 14px;
 }
 
 tr:hover {
-  background-color: #f1f1f1;
+  background: #f1f5f9;
 }
 
 .no-data {
   text-align: center;
-  font-style: italic;
-  color: #777;
+  color: #6b7280;
 }
 
-/* ---------- Save New User Button ---------- */
-
+/* ADD BUTTON */
 .save-btn {
-  position: absolute;
-  top: 10px;      /* slightly above */
-  right: 20px;    /* right corner */
   padding: 10px 18px;
-  border: none;
   border-radius: 6px;
-  cursor: pointer;
+  border: none;
   font-weight: 600;
-  color: white;
-
-  background: linear-gradient(135deg, #8e004f, #6a0dad); /* Deep magenta → purple */
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(135deg, #8e004f, #6a0dad);
 }
 
-.save-btn:hover {
-  opacity: 0.9;
+/* ACTION BUTTONS */
+.action-btns {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.btn-edit {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+}
+
+.btn-delete {
+  background: #dc2626;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
 }

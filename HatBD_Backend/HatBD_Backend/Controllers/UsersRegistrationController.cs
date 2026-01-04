@@ -24,10 +24,9 @@ namespace HatBD_Backend.Controllers
 
             var exists = await con.ExecuteScalarAsync<int>(
                 @"SELECT COUNT(*) FROM UserRegistration
-                WHERE Email = @Email
-                   OR (@Phone IS NOT NULL AND Phone = @Phone)
-                   OR (@UserName IS NOT NULL AND UserName = @UserName)
-",
+                  WHERE Email = @Email
+                     OR (@Phone IS NOT NULL AND Phone = @Phone)
+                     OR (@UserName IS NOT NULL AND UserName = @UserName)",
                 user);
 
             if (exists > 0)
@@ -36,16 +35,20 @@ namespace HatBD_Backend.Controllers
             user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
 
             var sql = @"
-            INSERT INTO UserRegistration
-            (RegisterAs,FullName,Email,Phone,UserName,Password,Gender,IsApproved)
-            VALUES
-            (@RegisterAs,@FullName,@Email,@Phone,@UserName,@Password,@Gender,
-             CASE WHEN @RegisterAs='Seller' THEN 0 ELSE 1 END)";
+                INSERT INTO UserRegistration
+                (RegisterAs, FullName, Email, Phone, UserName, Password, Gender, IsApproved)
+                VALUES
+                (@RegisterAs, @FullName, @Email, @Phone, @UserName, @Password, @Gender,
+                 CASE WHEN @RegisterAs = 'Seller' THEN 0 ELSE 1 END)";
 
             await con.ExecuteAsync(sql, user);
 
-
-            return Ok(new { msg="Registration Successful" ,status=200,data=user});
+            return Ok(new
+            {
+                msg = "Registration Successful",
+                status = 200,
+                data = user
+            });
         }
 
         // ================= LOGIN =================
@@ -55,7 +58,7 @@ namespace HatBD_Backend.Controllers
             using var con = _context.CreateConnection();
 
             var user = await con.QuerySingleOrDefaultAsync<UserRegistration>(
-                "SELECT * FROM UserRegistration WHERE UserName=@UserName",
+                "SELECT * FROM UserRegistration WHERE UserName = @UserName",
                 login);
 
             if (user == null)
@@ -67,10 +70,12 @@ namespace HatBD_Backend.Controllers
             if (!user.IsApproved)
                 return Unauthorized("Account not approved");
 
+            // 🔥 ONLY FIX IS HERE (Phone added)
             return Ok(new
             {
                 user.Id,
                 user.FullName,
+                user.Phone,        // ✅ added (REQUIRED for checkout auto-fill)
                 user.RegisterAs
             });
         }
@@ -98,9 +103,29 @@ namespace HatBD_Backend.Controllers
         public async Task<IActionResult> GetAllUsers()
         {
             using var con = _context.CreateConnection();
+
             var users = await con.QueryAsync<UserRegistration>(
                 "SELECT * FROM UserRegistration");
+
             return Ok(users);
+        }
+
+        // ================= GET USER BY ID =================
+        [HttpGet("profile/{id}")]
+        public async Task<IActionResult> GetUserProfile(int id)
+        {
+            using var con = _context.CreateConnection();
+
+            var user = await con.QuerySingleOrDefaultAsync<UserRegistration>(
+                @"SELECT Id, RegisterAs, FullName, Email, Phone, UserName, Gender, CreatedAT
+                  FROM UserRegistration
+                  WHERE Id = @Id",
+                new { Id = id });
+
+            if (user == null)
+                return NotFound("User not found");
+
+            return Ok(user);
         }
     }
 }

@@ -41,30 +41,52 @@
   </div>
 </div>
 
-<div class="section-container">
-  <div class="section-title">
-    <h3>Featured Products</h3>
-  </div>
-  <div class="product-list-landscape">
-    @for (p of [1,2,3,4,5,6]; track p) {
-    <div class="product-card-landscape">
-      <div class="product-img-box">
-        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300" alt="Product">
-      </div>
-      <div class="product-info-box">
-        <span class="badge">Trending</span>
-        <h4 class="product-title">High Quality Wireless Headphone v{{p}}</h4>
-        <div class="rating">
-          <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-          <span>(45)</span>
-        </div>
-        <p class="description">অসাধারণ সাউন্ড কোয়ালিটি এবং আরামদায়ক ইয়ারপ্যাড সহ আধুনিক হেডফোন।</p>
-        <div class="price-action">
-          <span class="sale-price">৳ 2,450</span>
-          <button class="add-cart-btn-sm"><i class="fas fa-cart-plus"></i> Add</button>
-        </div>
-      </div>
+<div class="product-page">
+
+  <h2 class="title">Products</h2>
+
+  <div class="product-grid">
+
+    <div class="product-card" *ngFor="let p of products">
+
+      <img
+        [src]="getImageUrl(p.imageLocation)"
+        alt="Product Image"
+        class="product-img"
+      />
+
+      <h3 class="product-name">{{ p.name }}</h3>
+
+      <p class="brand">{{ p.brand }}</p>
+
+      <p class="price">৳ {{ p.price }}</p>
+
+      <p class="category">
+        {{ p.categoryName }} / {{ p.subCategoryName }}
+      </p>
+
+      <p class="stock">
+        Stock: {{ p.stockquantity }}
+      </p>
+
+      <span class="created">
+        Created By: {{ p.createdby }}
+      </span>
+
+      <!-- ADD TO CART -->
+      <button
+        class="btn-cart"
+        (click)="addToCart(p)"
+        [disabled]="p.stockquantity === 0">
+        Add to Cart
+      </button>
+
     </div>
-    }
+
   </div>
+
+  <p *ngIf="products.length === 0" class="no-data">
+    No products found
+  </p>
+
 </div>

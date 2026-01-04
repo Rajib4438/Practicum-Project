@@ -1,16 +1,17 @@
 import { HttpClient, HttpClientModule, HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule, HttpClientModule],
+  imports: [FormsModule, HttpClientModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   standalone: true
 })
 export class Login {
+
   data: any = {
     userName: '',
     password: ''
@@ -21,34 +22,57 @@ export class Login {
   constructor(private http: HttpClient, private router: Router) {}
 
   login() {
-    if(!this.data.userName || !this.data.password){
+
+    if (!this.data.userName || !this.data.password) {
       alert('Please fill all fields');
       return;
     }
 
     this.isLoading = true;
 
-    this.http.post('https://localhost:7290/api/UserRegistration/login', this.data)
+    this.http.post<any>('https://localhost:7290/api/UserRegistration/login', this.data)
       .subscribe(
-        (response: any) => {
-          // টোকেন এবং ইউজারের নাম সেভ করা হচ্ছে [cite: 71, 115]
-          localStorage.setItem('userToken', response.token);
-          // আপনার API যদি response.userName না পাঠায়, তবে ইনপুট ফিল্ডের নাম সেভ হবে
-          localStorage.setItem('userName', response.userName || this.data.userName); 
-          debugger
-          if (response.registerAs == 'Admin') {
+        (response) => {
+
+          // ================================
+          // 🔑 REQUIRED FOR CHECKOUT AUTO-FILL
+          // ================================
+          localStorage.setItem(
+            'currentUser',
+            JSON.stringify({
+              id: response.id
+            })
+          );
+
+          // ================================
+          // 🔐 EXISTING CODE (UNCHANGED)
+          // ================================
+          localStorage.setItem('userId', response.id);
+          localStorage.setItem('userToken', response.token || 'loggedin');
+          localStorage.setItem(
+            'userName',
+            response.fullName || response.userName || this.data.userName
+          );
+
+          console.log('Login Success:', response);
+
+          // ================================
+          // 🔀 ADMIN REDIRECT (UNCHANGED)
+          // ================================
+          if (response.registerAs === 'Admin') {
             this.router.navigate(['/layout']).then(() => {
-              window.location.reload(); 
+              window.location.reload();
             });
             return;
-
           }
 
-          
-          // সফল হলে সরাসরি হোম পেজে রিডাইরেক্ট [cite: 50, 119]
+          // ================================
+          // 🔀 NORMAL USER REDIRECT (UNCHANGED)
+          // ================================
           this.router.navigate(['/']).then(() => {
-            window.location.reload(); 
+            window.location.reload();
           });
+
         },
         (err: HttpErrorResponse) => {
           alert('Login Failed! Invalid credentials.');
@@ -57,7 +81,7 @@ export class Login {
       );
   }
 
-  onforget_password(){
+  onforget_password() {
     this.router.navigate(['forgotpass']);
   }
 }

@@ -1,0 +1,78 @@
+<div class="checkout-wrapper">
+
+  <h2>Checkout</h2>
+
+
+  <!-- 🧾 Customer Information -->
+  <div class="box">
+    <h3>Customer Information</h3>
+
+    <label for="name">Full Name *</label>
+    <input
+      id="name"
+      type="text"
+      placeholder="Enter your name"
+      [(ngModel)]="customer.fullName"
+      name="name"
+      autocomplete="name"
+    />
+
+    <label for="phone">Phone Number *</label>
+    <input
+      id="phone"
+      type="text"
+      placeholder="01XXXXXXXXX"
+      [(ngModel)]="customer.phone"
+      name="phone"
+      autocomplete="tel"
+    />
+
+    <label for="address">Address *</label>
+    <textarea
+      id="address"
+      placeholder="Enter delivery address"
+      [(ngModel)]="customer.address"
+      name="address">
+    </textarea>
+  </div>
+
+  <!-- 💳 Payment Method -->
+  <div class="box">
+    <h3>Payment Method</h3>
+
+    <select
+      [(ngModel)]="customer.paymentMethod"
+      name="paymentMethod">
+      <option value="Cash">Cash on Delivery</option>
+      <option value="Bkash">Bkash</option>
+      <option value="Nagad">Nagad</option>
+    </select>
+  </div>
+
+  <!-- 🛒 Order Summary -->
+  <div class="box">
+    <h3>Order Summary</h3>
+
+    <div
+      class="item-row"
+      *ngFor="let item of cartItems(); let i = index">
+      <span>{{ i + 1 }}. {{ item.name }}</span>
+      <span>{{ item.price }} ৳</span>
+    </div>
+
+    <hr />
+
+    <div class="total">
+      Total: <strong>{{ totalPrice() }} ৳</strong>
+    </div>
+  </div>
+
+  <!-- ✅ Place Order -->
+  <button
+    class="order-btn"
+    (click)="placeOrder()"
+    [disabled]="!isLoggedIn">
+    Place Order
+  </button>
+
+</div>

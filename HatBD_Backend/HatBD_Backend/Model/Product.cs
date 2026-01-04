@@ -22,6 +22,9 @@ namespace HatBD.Models
 
         public string? status { get; set; }
 
+        public string? ImageName {  get; set; }
+        public IFormFile? Image { get; set; }
+
         public string? createdby { get; set; }
 
         public DateTime? createdat { get; set; }
@@ -37,10 +40,12 @@ namespace HatBD.Models
         public int categoryid { get; set; }
 
         public int subcategoryid { get; set; }
+        public string? ImageLocation { get; set; }
 
         // ===== Extra (JOIN result) =====
         public string? categoryName { get; set; }
 
         public string? subCategoryName { get; set; }
+        public bool isApprove { get; set; }
     }
 }

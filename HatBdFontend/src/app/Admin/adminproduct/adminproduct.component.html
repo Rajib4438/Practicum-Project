@@ -1,6 +1,5 @@
 <div class="product-page">
 
-  <!-- Header -->
   <div class="page-header">
     <h2>Product Management</h2>
   </div>
@@ -15,7 +14,6 @@
     <input type="number" placeholder="Stock Quantity" [(ngModel)]="stockquantity" />
     <input placeholder="Status" [(ngModel)]="status" />
 
-    <!-- Category Dropdown -->
     <select [(ngModel)]="categoryid" (change)="loadSubCategories(categoryid!)">
       <option value="">Select Category</option>
       <option *ngFor="let c of categories" [value]="c.id">
@@ -23,13 +21,14 @@
       </option>
     </select>
 
-    <!-- SubCategory Dropdown -->
     <select [(ngModel)]="subcategoryid">
       <option value="">Select Sub Category</option>
       <option *ngFor="let sc of subCategories" [value]="sc.id">
         {{ sc.name }}
       </option>
     </select>
+
+    <input type="file" (change)="onFileSelected($event)" accept="image/*" />
 
     <button class="btn-primary" (click)="saveProduct()">
       {{ id ? 'Update Product' : 'Add Product' }}
@@ -44,12 +43,14 @@
       <thead>
         <tr>
           <th>#</th>
+          <th>Image</th>
           <th>Name</th>
           <th>Category</th>
           <th>SubCategory</th>
           <th>Price</th>
           <th>Stock</th>
           <th>Status</th>
+          <th>Created By</th>
           <th>Action</th>
         </tr>
       </thead>
@@ -57,23 +58,79 @@
       <tbody>
         <tr *ngFor="let p of products; let i = index">
           <td>{{ i + 1 }}</td>
+
+          <!-- ✅ IMAGE SHOW -->
+          <td>
+            <img [src]="getImageUrl(p.imageLocation)" alt="product" class="product-img" />
+          </td>
+
           <td>{{ p.name }}</td>
           <td>{{ p.categoryName }}</td>
           <td>{{ p.subCategoryName }}</td>
           <td>{{ p.price }}</td>
-          <td>{{ p.stockQuantity }}</td>
+          <td>{{ p.stockquantity }}</td>
           <td>{{ p.status }}</td>
+          <td>{{ p.createdby }}</td>
+
           <td>
-            <button class="btn-edit" (click)="editProduct(p)">Edit</button>
-            <button class="btn-delete" (click)="deleteProduct(p.id)">Delete</button>
+            <!-- <button class="btn-delete" (click)="deleteProduct(p.id)">Reject</button> -->
+            <!-- Button trigger modal -->
+            <button
+  type="button"
+  class="btn btn-danger"
+  data-bs-toggle="modal"
+  data-bs-target="#exampleModal"
+  (click)="openRejectModal(p.id)">
+  Reject
+</button>
+
+            <ng-container *ngIf="p.status !== 'Active'">
+              <button class="btn btn-primary btn-sm ms-2" (click)="approvedProduct(p.id)"
+                *ngIf="!p.isApprove">Approved</button>
+            </ng-container>
           </td>
         </tr>
 
         <tr *ngIf="products.length === 0">
-          <td colspan="8" class="no-data">No Products Found</td>
+          <td colspan="10" class="no-data">No Products Found</td>
         </tr>
       </tbody>
     </table>
   </div>
 
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+<textarea
+  class="form-control"
+  rows="4"
+  placeholder="Enter rejection reason..."
+  [(ngModel)]="rejectionReason">
+</textarea>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+        <button
+  type="button"
+  class="btn btn-primary"
+  (click)="updateRejectionReason()">
+  Save changes
+</button>
+
+      </div>
+    </div>
+  </div>
 </div>
