@@ -13,7 +13,9 @@ import { FormsModule } from '@angular/forms';
 export class AdminOrderComponent implements OnInit {
 
   orders: any[] = [];
+  filteredOrders: any[] = [];
   loading: boolean = false;
+  searchQuery: string = '';
 
   private API_URL = 'https://localhost:7290/api/Order';
 
@@ -23,13 +25,14 @@ export class AdminOrderComponent implements OnInit {
     this.loadOrders();
   }
 
-  // ================= LOAD ORDERS (ADMIN) =================
+  // ================= LOAD ORDERS =================
   loadOrders(): void {
     this.loading = true;
-
     this.http.get<any[]>(`${this.API_URL}/admin`).subscribe({
       next: (res) => {
-        this.orders = res;
+        // Ensure orderItems exist
+        this.orders = res.map(o => ({ ...o, orderItems: o.orderItems || [] }));
+        this.filteredOrders = [...this.orders];
         this.loading = false;
       },
       error: () => {
@@ -39,36 +42,45 @@ export class AdminOrderComponent implements OnInit {
     });
   }
 
-  // ================= UPDATE ORDER STATUS (FIXED) =================
+  // ================= SEARCH ORDERS =================
+  searchOrders(): void {
+    const q = this.searchQuery.trim().toLowerCase();
+    if (!q) {
+      this.filteredOrders = [...this.orders];
+      return;
+    }
+
+    this.filteredOrders = this.orders.filter(order =>
+      order.id.toString().includes(q) || // Search by Order ID
+      order.orderItems?.some((item: { productid: { toString: () => string | string[]; }; productname: string; }) =>
+        (item.productid?.toString().includes(q)) ||
+        (item.productname?.toLowerCase().includes(q))
+      )
+    );
+  }
+
+  // ================= UPDATE ORDER STATUS =================
   updateStatus(orderId: number, status: string): void {
-    this.http.put(
-      `${this.API_URL}/${orderId}/status`,
-      { status }   // ✅ OBJECT পাঠানো হচ্ছে
-    ).subscribe({
+    this.http.put(`${this.API_URL}/${orderId}/status`, { status }).subscribe({
       next: () => {
         alert('Order status updated');
-        this.loadOrders(); // refresh list
+        this.loadOrders();
       },
-      error: () => {
-        alert('Failed to update order status');
-      }
+      error: () => alert('Failed to update order status')
     });
   }
 
   // ================= DELETE ORDER =================
   deleteOrder(orderId: number): void {
-    if (!confirm('Are you sure you want to delete this order?')) {
-      return;
-    }
+    if (!confirm('Are you sure you want to delete this order?')) return;
 
     this.http.delete(`${this.API_URL}/${orderId}`).subscribe({
       next: () => {
         alert('Order deleted');
         this.loadOrders();
       },
-      error: () => {
-        alert('Failed to delete order');
-      }
+      error: () => alert('Failed to delete order')
     });
   }
+
 }

@@ -2,6 +2,16 @@
 
   <h2>Order Management</h2>
 
+  <!-- SEARCH BAR -->
+  <div class="search-bar">
+    <input
+      type="text"
+      placeholder="Search by Order ID, Product ID or Product Name"
+      [(ngModel)]="searchQuery"
+      (input)="searchOrders()"
+    />
+  </div>
+
   <div *ngIf="loading" class="loading">
     Loading orders...
   </div>
@@ -10,30 +20,29 @@
     <thead>
       <tr>
         <th>#</th>
+        <th>Order ID</th>
         <th>Customer</th>
         <th>Phone</th>
         <th>Payment</th>
         <th>Total</th>
         <th>Status</th>
         <th>Created</th>
+        <th>Products</th> <!-- NEW: Product IDs -->
         <th>Action</th>
       </tr>
     </thead>
 
     <tbody>
-      <tr *ngFor="let order of orders; let i = index">
+      <tr *ngFor="let order of filteredOrders; let i = index">
         <td>{{ i + 1 }}</td>
+        <td>{{ order.id }}</td> <!-- Order ID Column -->
         <td>{{ order.name }}</td>
         <td>{{ order.phonenumber }}</td>
         <td>{{ order.paymentmethod || 'N/A' }}</td>
         <td>{{ order.totalprice }} ৳</td>
 
-        <!-- ✅ STATUS UPDATE (STRICT MODE SAFE) -->
         <td>
-          <select
-            #statusSelect
-            [value]="order.status"
-            (change)="updateStatus(order.id, statusSelect.value)">
+          <select #statusSelect [value]="order.status" (change)="updateStatus(order.id, statusSelect.value)">
             <option value="Pending">Pending</option>
             <option value="Confirmed">Confirmed</option>
             <option value="Cancelled">Cancelled</option>
@@ -42,12 +51,15 @@
 
         <td>{{ order.createdat | date:'short' }}</td>
 
+        <!-- PRODUCTS COLUMN -->
         <td>
-          <button
-            class="delete-btn"
-            (click)="deleteOrder(order.id)">
-            Delete
-          </button>
+          <span *ngFor="let item of order.orderItems; let last = last">
+            {{ item.productid }} - {{ item.productname }}{{ last ? '' : ', ' }}
+          </span>
+        </td>
+
+        <td>
+          <button class="delete-btn" (click)="deleteOrder(order.id)">Delete</button>
         </td>
       </tr>
     </tbody>
