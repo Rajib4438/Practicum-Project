@@ -7,16 +7,20 @@
       "RelativeMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|solutionrelative:hatbd_backend\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|c:\\practicum-project\\hatbd_backend\\hatbd_backend\\model\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|solutionrelative:hatbd_backend\\model\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|c:\\practicum-project\\hatbd_backend\\hatbd_backend\\dtos\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|solutionrelative:hatbd_backend\\dtos\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|c:\\practicum-project\\hatbd_backend\\hatbd_backend\\controllers\\usersregistrationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|solutionrelative:hatbd_backend\\controllers\\usersregistrationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|c:\\practicum-project\\hatbd_backend\\hatbd_backend\\controllers\\orderitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|solutionrelative:hatbd_backend\\controllers\\orderitemcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|c:\\practicum-project\\hatbd_backend\\hatbd_backend\\model\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|solutionrelative:hatbd_backend\\model\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|c:\\practicum-project\\hatbd_backend\\hatbd_backend\\controllers\\subcategorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -33,12 +37,20 @@
           "SelectedChildIndex": 4,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Order.cs",
+              "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\DTOS\\Order.cs",
+              "RelativeDocumentMoniker": "HatBD_Backend\\DTOS\\Order.cs",
+              "ToolTip": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\DTOS\\Order.cs",
+              "RelativeToolTip": "HatBD_Backend\\DTOS\\Order.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAQwBMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-04T06:45:10.612Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "UsersRegistrationController.cs",
               "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Controllers\\UsersRegistrationController.cs",
               "RelativeDocumentMoniker": "HatBD_Backend\\Controllers\\UsersRegistrationController.cs",
@@ -46,12 +58,11 @@
               "RelativeToolTip": "HatBD_Backend\\Controllers\\UsersRegistrationController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAE4AAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-04T05:46:43.019Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-04T05:46:43.019Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "OrderItemController.cs",
               "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Controllers\\OrderItemController.cs",
               "RelativeDocumentMoniker": "HatBD_Backend\\Controllers\\OrderItemController.cs",
@@ -59,12 +70,11 @@
               "RelativeToolTip": "HatBD_Backend\\Controllers\\OrderItemController.cs",
               "ViewState": "AgIAADcAAAAAAAAAAAAUwD8AAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-03T12:19:19.695Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-03T12:19:19.695Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "SubCategoryController.cs",
               "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Controllers\\SubCategoryController.cs",
               "RelativeDocumentMoniker": "HatBD_Backend\\Controllers\\SubCategoryController.cs",
@@ -72,8 +82,7 @@
               "RelativeToolTip": "HatBD_Backend\\Controllers\\SubCategoryController.cs",
               "ViewState": "AgIAAEAAAAAAAAAAAAAkwEsAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-03T06:54:24.945Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-03T06:54:24.945Z"
             },
             {
               "$type": "Document",
@@ -83,22 +92,26 @@
               "RelativeDocumentMoniker": "HatBD_Backend\\Controllers\\OrderController.cs",
               "ToolTip": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Controllers\\OrderController.cs",
               "RelativeToolTip": "HatBD_Backend\\Controllers\\OrderController.cs",
-              "ViewState": "AgIAAEYAAABANDMzMzMtwFoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADsAAAAAAAAAAAAswHIAAAA8AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-02T19:09:59.935Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Order.cs",
               "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Model\\Order.cs",
               "RelativeDocumentMoniker": "HatBD_Backend\\Model\\Order.cs",
               "ToolTip": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Model\\Order.cs",
               "RelativeToolTip": "HatBD_Backend\\Model\\Order.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-02T19:08:47.234Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
             }
           ]
         }

@@ -1,7 +1,7 @@
 <div class="slider-container">
   <div class="slider" [style.transform]="'translateX(-' + slideIndex * 100 + '%)'">
     @for (img of bannerImages; track img) {
-    <div class="slide"><img [src]="img" alt="Banner"></div>
+      <div class="slide"><img [src]="img" alt="Banner"></div>
     }
   </div>
   <button class="slider-btn prev-btn" (click)="prevSlide()"><i class="fas fa-chevron-left"></i></button>

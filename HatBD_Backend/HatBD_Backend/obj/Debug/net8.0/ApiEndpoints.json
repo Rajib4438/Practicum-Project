@@ -134,8 +134,8 @@
         "IsRequired": true
       },
       {
-        "Name": "status",
-        "Type": "System.String",
+        "Name": "dto",
+        "Type": "HatBD_Backend.Model.Order",
         "IsRequired": true
       }
     ],

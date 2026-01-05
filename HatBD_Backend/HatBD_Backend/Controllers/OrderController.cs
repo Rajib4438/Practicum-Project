@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using HatBD_Backend.Context;
 using HatBD_Backend.DTOs;
+using HatBD_Backend.Model;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 
@@ -92,18 +93,22 @@ namespace HatBD_Backend.Controllers
 
         /* ========== UPDATE ORDER STATUS (ADMIN) ========== */
         [HttpPut("{id:int}/status")]
-        public async Task<IActionResult> UpdateOrderStatus(int id, [FromBody] string status)
+        public async Task<IActionResult> UpdateOrderStatus(
+    int id,
+    [FromBody] Order dto)
         {
             using var con = _context.CreateConnection();
 
             await con.ExecuteAsync(
                 "SP_order",
-                new { flag = 3, id, status },
+                new { flag = 3, id, status = dto.Status },
                 commandType: CommandType.StoredProcedure
             );
 
             return Ok("Order status updated");
         }
+
+
 
         /* ========== DELETE ORDER ========== */
         [HttpDelete("{id:int}")]

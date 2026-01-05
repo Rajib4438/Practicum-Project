@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CartService } from '../../app/Services/app.service';
-// import { CartService } from '../Services/app.service'; 
 
 @Component({
   selector: 'app-home',
@@ -99,9 +98,18 @@ export class HomeComponent implements OnInit, OnDestroy {
     return 'https://localhost:7290/' + imageLocation;
   }
 
-  // ✅ FIXED
+  // ✅ LOGIN CHECK
+  isLoggedIn(): boolean {
+    return !!localStorage.getItem('userToken'); 
+    // token এর নাম তোমার project অনুযায়ী ঠিক করো
+  }
+
+  // ✅ ADD TO CART FIXED
   addToCart(product: any): void {
-     this.cartService.addToCart(product);
-    
+    if (!this.isLoggedIn()) {
+      alert('Please login to add product to cart');
+      return;
+    }
+    this.cartService.addToCart(product);
   }
 }

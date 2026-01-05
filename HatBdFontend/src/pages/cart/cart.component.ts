@@ -38,6 +38,6 @@ export class CartComponent {
       return;
     }
 
-    this.router.navigate(['/navbar/checkout']);
+    this.router.navigate(['/checkout']);
   }
 }
