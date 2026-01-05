@@ -14,26 +14,31 @@ import { CartService } from '../../app/Services/app.service';
 })
 export class CheckoutComponent implements OnInit {
 
-  // 🔐 Login status
+  // ================= BASIC =================
   isLoggedIn = false;
 
-  // 🛒 Cart items
   cartItems = computed(() => this.cartService.getCartItems()());
 
-  // 💰 Total price
   totalPrice = computed(() =>
     this.cartItems().reduce((sum, item) => sum + (item.price || 0), 0)
   );
 
-  // 🧾 Customer info (AUTO FILL হবে)
   customer = {
     fullName: '',
     phone: '',
-    address: '',
-    paymentMethod: 'Cash'
+    address: ''
   };
 
-  // 🌐 APIs
+  // ================= PAYMENT =================
+  showPayment = false;
+  paymentMethod = '';
+  mobileNumber = '';
+  paymentCode = '';
+  askForCode = false;
+  processingPayment = false;
+  paymentSuccess = false;
+
+  // ================= API =================
   private ORDER_API = 'https://localhost:7290/api/Order';
   private ORDER_ITEM_API = 'https://localhost:7290/api/OrderItem';
   private USER_API = 'https://localhost:7290/api/UserRegistration/all';
@@ -45,62 +50,35 @@ export class CheckoutComponent implements OnInit {
     private cdr: ChangeDetectorRef
   ) {}
 
-  // ===============================
-  // 🔄 PAGE LOAD হলে USER AUTO FILL
-  // ===============================
+  // ================= INIT =================
   ngOnInit(): void {
-  console.log('Checkout ngOnInit called');
+    const user = this.getCurrentUser();
+    if (!user) return;
 
-  const currentUser = this.getCurrentUser();
-  console.log('Current user from localStorage:', currentUser);
+    this.isLoggedIn = true;
 
-  if (!currentUser) {
-    this.isLoggedIn = false;
-    return;
+    this.http.get<any[]>(this.USER_API).subscribe({
+      next: users => {
+        const u = users.find(x => x.id === user.id);
+        if (u) {
+          this.customer.fullName = u.fullName || '';
+          this.customer.phone = u.phone || '';
+        }
+      }
+    });
   }
 
-  this.isLoggedIn = true;
-
-  this.http.get<any[]>(this.USER_API).subscribe({
-    next: (users) => {
-      console.log('Fetched users:', users);
-
-      const matchedUser = users.find(u => u.id === currentUser.id);
-      console.log('Matched user:', matchedUser);
-
-      if (matchedUser) {
-        this.customer.fullName = matchedUser.fullName || '';
-        this.customer.phone = matchedUser.phone || '';
-      }
-        this.cdr.detectChanges();
-    },
-    error: (err) => {
-      console.error('Failed to load user info', err);
-    }
-  });
-}
-
-
-  // ===============================
-  // 🔐 GET CURRENT USER FROM localStorage
-  // ===============================
-  getCurrentUser(): any | null {
+  getCurrentUser(): any {
     try {
-      const userData = localStorage.getItem('currentUser');
-      return userData ? JSON.parse(userData) : null;
+      return JSON.parse(localStorage.getItem('currentUser') || '');
     } catch {
       return null;
     }
   }
 
-  // ===============================
-  // 🛒 PLACE ORDER
-  // ===============================
+  // ================= PLACE ORDER (NO DB SAVE) =================
   placeOrder(): void {
-
-    const user = this.getCurrentUser();
-
-    if (!user) {
+    if (!this.isLoggedIn) {
       alert('Please login first');
       this.router.navigate(['/login']);
       return;
@@ -111,50 +89,82 @@ export class CheckoutComponent implements OnInit {
       return;
     }
 
-    // 1️⃣ CREATE ORDER
-    const orderPayload = {
-      userId: user.id,
-      name: this.customer.fullName,
-      phoneNumber: this.customer.phone,
-      address: this.customer.address,
-      paymentMethod: this.customer.paymentMethod,
-      status: 'Pending',
-      totalPrice: this.totalPrice(),
-      totalDiscount: 0
-    };
+    // ❗ ONLY SHOW PAYMENT
+    this.showPayment = true;
+  }
 
-    this.http.post<any>(this.ORDER_API, orderPayload).subscribe({
-      next: (res) => {
-        const orderId = res?.orderId || res?.OrderId;
+  // ================= PAYMENT FLOW =================
+  resetPaymentStep() {
+    this.askForCode = false;
+    this.paymentCode = '';
+  }
 
-        if (!orderId) {
-          alert('Order ID not returned');
-          return;
-        }
+  onSendPayment() {
+    if (!this.paymentMethod || !this.mobileNumber) {
+      alert('Enter payment details');
+      return;
+    }
 
-        // 2️⃣ CREATE ORDER ITEMS
-        const orderItemsPayload = this.cartItems().map(item => ({
-          orderId: orderId,
-          productId: item.id,
-          productName: item.name,
-          price: item.price,
-          quantity: 1
-        }));
+    if (!this.askForCode) {
+      this.askForCode = true;
+      return;
+    }
 
-        this.http.post(this.ORDER_ITEM_API, orderItemsPayload).subscribe({
-          next: () => {
-            alert('Order placed successfully!');
-            this.cartService.clearCart();
-            this.router.navigate(['/order-success', orderId]);
-          },
-          error: () => {
-            alert('Order placed Successfully.');
+    this.makePayment();
+  }
+
+  // ================= REAL SAVE AFTER PAYMENT =================
+  makePayment() {
+    const user = this.getCurrentUser();
+    if (!user) return;
+
+    this.processingPayment = true;
+
+    setTimeout(() => {
+      this.processingPayment = false;
+      this.paymentSuccess = true;
+
+      // 🔥 ORDER SAVE
+      const orderPayload = {
+        userId: user.id,
+        name: this.customer.fullName,
+        phoneNumber: this.customer.phone,
+        address: this.customer.address,
+        paymentMethod: this.paymentMethod,
+        status: 'Paid',
+        totalPrice: this.totalPrice(),
+        totalDiscount: 0
+      };
+
+      this.http.post<any>(this.ORDER_API, orderPayload).subscribe({
+        next: res => {
+          const orderId = res?.orderId || res?.OrderId;
+          if (!orderId) {
+            alert('Order ID error');
+            return;
           }
-        });
-      },
-      error: () => {
-        alert('Failed to place order');
-      }
-    });
+
+          // 🔥 ORDER ITEMS SAVE
+          const items = this.cartItems().map(item => ({
+            orderId,
+            productId: item.id,
+            productName: item.name,
+            price: item.price,
+            quantity: 1
+          }));
+
+          this.http.post(this.ORDER_ITEM_API, items).subscribe({
+            next: () => {
+              alert(`Payment via ${this.paymentMethod} successful`);
+              this.cartService.clearCart();
+              this.router.navigate(['/home']);
+            },
+            error: () => alert('Payment Successful')
+          });
+        },
+        error: () => alert('Order save failed')
+      });
+
+    }, 1500);
   }
 }
