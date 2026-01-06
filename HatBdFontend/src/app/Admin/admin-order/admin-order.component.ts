@@ -79,7 +79,7 @@ export class AdminOrderComponent implements OnInit {
         alert('Order deleted');
         this.loadOrders();
       },
-      error: () => alert('Failed to delete order')
+      error: () => alert(' delete order')
     });
   }
 

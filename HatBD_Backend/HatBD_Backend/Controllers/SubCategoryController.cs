@@ -1,8 +1,8 @@
 ﻿using Dapper;
 using HatBD.Models;
+using HatBD_Backend.Context;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
-using Microsoft.Data.SqlClient;
 
 namespace HatBD.Controllers
 {
@@ -10,18 +10,11 @@ namespace HatBD.Controllers
     [ApiController]
     public class SubCategoryController : ControllerBase
     {
-        private readonly IConfiguration _configuration;
+        private readonly DapperContext _context;
 
-        public SubCategoryController(IConfiguration configuration)
+        public SubCategoryController(DapperContext context)
         {
-            _configuration = configuration;
-        }
-
-        private IDbConnection CreateConnection()
-        {
-            return new SqlConnection(
-                _configuration.GetConnectionString("DefaultConnection")
-            );
+            _context = context;
         }
 
         // =========================
@@ -31,18 +24,25 @@ namespace HatBD.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            using var connection = CreateConnection();
+            try
+            {
+                using var connection = _context.CreateConnection();
 
-            var param = new DynamicParameters();
-            param.Add("@flag", 1);
+                var param = new DynamicParameters();
+                param.Add("@flag", 1);
 
-            var data = await connection.QueryAsync<SubCategory>(
-                "SP_subcategory",
-                param,
-                commandType: CommandType.StoredProcedure
-            );
+                var data = await connection.QueryAsync<SubCategory>(
+                    "SP_subcategory",
+                    param,
+                    commandType: CommandType.StoredProcedure
+                );
 
-            return Ok(data);
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = ex.Message });
+            }
         }
 
         // =========================
@@ -52,19 +52,26 @@ namespace HatBD.Controllers
         [HttpGet("by-category/{categoryid}")]
         public async Task<IActionResult> GetByCategory(int categoryid)
         {
-            using var connection = CreateConnection();
+            try
+            {
+                using var connection = _context.CreateConnection();
 
-            var param = new DynamicParameters();
-            param.Add("@flag", 2);
-            param.Add("@categoryid", categoryid);
+                var param = new DynamicParameters();
+                param.Add("@flag", 2);
+                param.Add("@categoryid", categoryid);
 
-            var data = await connection.QueryAsync<SubCategory>(
-                "SP_subcategory",
-                param,
-                commandType: CommandType.StoredProcedure
-            );
+                var data = await connection.QueryAsync<SubCategory>(
+                    "SP_subcategory",
+                    param,
+                    commandType: CommandType.StoredProcedure
+                );
 
-            return Ok(data);
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = ex.Message });
+            }
         }
 
         // =========================
@@ -72,23 +79,30 @@ namespace HatBD.Controllers
         // flag = 3
         // =========================
         [HttpPost]
-        public async Task<IActionResult> Create(SubCategory model)
+        public async Task<IActionResult> Create([FromBody] SubCategory model)
         {
-            using var connection = CreateConnection();
+            try
+            {
+                using var connection = _context.CreateConnection();
 
-            var param = new DynamicParameters();
-            param.Add("@flag", 3);
-            param.Add("@name", model.name);
-            param.Add("@createdby", model.createdby);
-            param.Add("@categoryid", model.categoryid);
+                var param = new DynamicParameters();
+                param.Add("@flag", 3);
+                param.Add("@name", model.name);
+                param.Add("@createdby", model.createdby);
+                param.Add("@categoryid", model.categoryid);
 
-            var id = await connection.ExecuteScalarAsync<int>(
-                "SP_subcategory",
-                param,
-                commandType: CommandType.StoredProcedure
-            );
+                var id = await connection.ExecuteScalarAsync<int>(
+                    "SP_subcategory",
+                    param,
+                    commandType: CommandType.StoredProcedure
+                );
 
-            return Ok(new { id });
+                return Ok(new { id });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = ex.Message });
+            }
         }
 
         // =========================
@@ -96,26 +110,33 @@ namespace HatBD.Controllers
         // flag = 4
         // =========================
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, SubCategory model)
+        public async Task<IActionResult> Update(int id, [FromBody] SubCategory model)
         {
-            using var connection = CreateConnection();
+            try
+            {
+                using var connection = _context.CreateConnection();
 
-            var param = new DynamicParameters();
-            param.Add("@flag", 4);
-            param.Add("@id", id);
-            param.Add("@name", model.name);
-            param.Add("@updatedby", model.updatedby);
-            param.Add("@isactive", model.isactive);
-            param.Add("@isdelete", model.isdelete);
-            param.Add("@categoryid", model.categoryid);
+                var param = new DynamicParameters();
+                param.Add("@flag", 4);
+                param.Add("@id", id);
+                param.Add("@name", model.name);
+                param.Add("@updatedby", model.updatedby);
+                param.Add("@isactive", model.isactive);
+                param.Add("@isdelete", model.isdelete);
+                param.Add("@categoryid", model.categoryid);
 
-            var result = await connection.QueryFirstOrDefaultAsync(
-                "SP_subcategory",
-                param,
-                commandType: CommandType.StoredProcedure
-            );
+                var result = await connection.QueryFirstOrDefaultAsync(
+                    "SP_subcategory",
+                    param,
+                    commandType: CommandType.StoredProcedure
+                );
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = ex.Message });
+            }
         }
 
         // =========================
@@ -125,19 +146,26 @@ namespace HatBD.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            using var connection = CreateConnection();
+            try
+            {
+                using var connection = _context.CreateConnection();
 
-            var param = new DynamicParameters();
-            param.Add("@flag", 5);
-            param.Add("@id", id);
+                var param = new DynamicParameters();
+                param.Add("@flag", 5);
+                param.Add("@id", id);
 
-            var result = await connection.QueryFirstOrDefaultAsync(
-                "SP_subcategory",
-                param,
-                commandType: CommandType.StoredProcedure
-            );
+                var result = await connection.QueryFirstOrDefaultAsync(
+                    "SP_subcategory",
+                    param,
+                    commandType: CommandType.StoredProcedure
+                );
 
-            return Ok(result);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = ex.Message });
+            }
         }
 
         // =========================
@@ -147,19 +175,26 @@ namespace HatBD.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            using var connection = CreateConnection();
+            try
+            {
+                using var connection = _context.CreateConnection();
 
-            var param = new DynamicParameters();
-            param.Add("@flag", 6);
-            param.Add("@id", id);
+                var param = new DynamicParameters();
+                param.Add("@flag", 6);
+                param.Add("@id", id);
 
-            var data = await connection.QueryFirstOrDefaultAsync<SubCategory>(
-                "SP_subcategory",
-                param,
-                commandType: CommandType.StoredProcedure
-            );
+                var data = await connection.QueryFirstOrDefaultAsync<SubCategory>(
+                    "SP_subcategory",
+                    param,
+                    commandType: CommandType.StoredProcedure
+                );
 
-            return Ok(data);
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = ex.Message });
+            }
         }
     }
 }

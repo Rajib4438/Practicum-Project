@@ -1,38 +1,45 @@
 <div class="cart-page">
-
   <h2 class="cart-title">🛒 My Cart</h2>
 
   <!-- Empty Cart -->
-  <div class="empty-cart" *ngIf="cartItems().length === 0">
+  <div class="empty-cart" *ngIf="!cartItems || cartItems.length === 0">
     <p>Your cart is empty</p>
   </div>
 
   <!-- Cart Items -->
-  <div class="cart-container" *ngIf="cartItems().length > 0">
-
-    <div class="cart-item" *ngFor="let item of cartItems(); let i = index">
+  <div class="cart-container" *ngIf="cartItems && cartItems.length > 0">
+    <div class="cart-item" *ngFor="let item of cartItems; let i = index">
       <div class="item-info">
-        <h4>{{ item.name }}</h4>
-        <p class="price">{{ item.price }} ৳</p>
+        <!-- Product Image with fallback -->
+        <img [src]="item.imageLocation || 'assets/default-product.png'" 
+             alt="{{ item.productName || 'Product' }}" 
+             class="item-image"/>
+
+        <div class="item-text">
+          <!-- Product Name -->
+          <h4>{{ item.productName || 'Unnamed Product' }}</h4>
+
+          <!-- Price × Quantity -->
+          <p class="price">
+            {{ item.price || 0 }} ৳ × 
+            <button (click)="onQtyAdd(item)" >+</button>
+            <span>{{item.quantity}}</span>
+            <button (click)="onQtyMinus(item)">-</button>
+          </p>
+        </div>
       </div>
 
-      <button class="remove-btn" (click)="removeItem(i)">
-        Remove
-      </button>
+      <!-- Remove Button -->
+      <button class="remove-btn" (click)="removeItem(i)">Remove</button>
     </div>
 
-    <!-- Summary -->
+    <!-- Cart Summary -->
     <div class="cart-summary">
-      <h3>Total: {{ totalPrice() }} ৳</h3>
-
+      <h3>Total: {{ totalPrice || 0 }} ৳</h3>
       <div class="cart-actions">
         <button class="clear-btn" (click)="clearCart()">Clear Cart</button>
-        <!-- ✅ BUTTON UPDATED -->
-        <button class="order-btn" (click)="proceedToOrder()">
-          Proceed to Order
-        </button>
+        <button class="order-btn" (click)="proceedToOrder()">Proceed to Order</button>
       </div>
     </div>
   </div>
-
 </div>
