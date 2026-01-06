@@ -29,11 +29,12 @@ export class CartComponent {
 
     this.http.get(`https://localhost:7290/api/cart/${userId}`).subscribe({
       next: (res: any) => {
+        debugger;
         // SP theke asha data mapping
         this.cartItems = res.map((item: any) => ({
           cartId: item.cartId,
           productId: item.productId,
-          imageLocation: item.imageLocation,
+          imageLocation: item.ImageLocation,
           productName: item.productName,
           price: item.price,
           quantity: item.quantity
@@ -102,15 +103,32 @@ export class CartComponent {
     this.router.navigate(['/checkout']);
   }
   onQtyAdd(item:any){
-    this.http.get(`https://localhost:7290/api/Product/${item.productId}`).subscribe({
+    this.http.get(`https://localhost:7290/api/cart/increment/${item.cartId}`).subscribe({
       next: (res: any) => {
         if(item.quantity < res.availableQuantity){
           alert('Quantity increased');  
         } else {
           alert('No more stock available');
         }
+    this.loadCartItems();
+
+      }})
   }
   onQtyMinus(item:any){
-    alert('Quantity decreased');
+    this.http.get(`https://localhost:7290/api/cart/decrement/${item.cartId}`).subscribe({
+      next: (res: any) => {
+        if(item.quantity < res.availableQuantity){
+          alert('Quantity increased');  
+        } else {
+          alert('No more stock available');
+        }
+    this.loadCartItems();
+
+      }})
+  }
+
+  getImage(imageLocation: string) {
+    debugger;
+    return imageLocation ? `https://localhost:7290/${imageLocation}` : null;
   }
 }

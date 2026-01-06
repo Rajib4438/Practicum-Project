@@ -69,6 +69,38 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "HatBD_Backend.Controllers.CartController",
+    "Method": "DecrementCart",
+    "RelativePath": "api/cart/decrement/{cartId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cartId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HatBD_Backend.Controllers.CartController",
+    "Method": "IncrementCart",
+    "RelativePath": "api/cart/increment/{cartId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cartId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "ElegantBoutiqueHouse.Controllers.CategoryController",
     "Method": "GetAll",
     "RelativePath": "api/Category",

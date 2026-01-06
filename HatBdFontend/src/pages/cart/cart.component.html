@@ -11,7 +11,7 @@
     <div class="cart-item" *ngFor="let item of cartItems; let i = index">
       <div class="item-info">
         <!-- Product Image with fallback -->
-        <img [src]="item.imageLocation || 'assets/default-product.png'" 
+        <img [src]="getImage(item.imageLocation) || 'assets/default-product.png'" 
              alt="{{ item.productName || 'Product' }}" 
              class="item-image"/>
 

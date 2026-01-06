@@ -45,6 +45,7 @@ export class NavbarComponent {
   }
 
   goToCart(): void {
+    debugger;
     this.router.navigate(['/cart']);
   }
 }

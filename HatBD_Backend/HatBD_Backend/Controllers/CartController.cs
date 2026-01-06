@@ -121,5 +121,53 @@ namespace HatBD_Backend.Controllers
                 return StatusCode(500, new { error = ex.Message });
             }
         }
+
+        // ============================
+        // PUT: INCREMENT CART ITEM
+        // ============================
+        [HttpGet("increment/{cartId}")]
+        public IActionResult IncrementCart(int cartId)
+        {
+            try
+            {
+                using var connection = _context.CreateConnection();
+
+                connection.Execute(
+                    "sp_Cart_Increment",
+                    new { CartId = cartId },
+                    commandType: CommandType.StoredProcedure
+                );
+
+                return Ok(new { message = "Cart item incremented successfully" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = ex.Message });
+            }
+        }
+
+        // ============================
+        // PUT: DECREMENT CART ITEM
+        // ============================
+        [HttpGet("decrement/{cartId}")]
+        public IActionResult DecrementCart(int cartId)
+        {
+            try
+            {
+                using var connection = _context.CreateConnection();
+
+                connection.Execute(
+                    "sp_Cart_Decrement",
+                    new { CartId = cartId },
+                    commandType: CommandType.StoredProcedure
+                );
+
+                return Ok(new { message = "Cart item decremented successfully" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { error = ex.Message });
+            }
+        }
     }
 }

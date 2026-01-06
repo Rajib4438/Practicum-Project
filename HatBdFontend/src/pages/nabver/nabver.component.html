@@ -37,13 +37,13 @@
         </div>
       </div>
 
-      <div class="action-item cart-btn-custom" (click)="goToCart()" style="cursor: pointer;">
+      <div class="action-item cart-btn-custom"  style="cursor: pointer;">
         <div class="cart-icon-wrapper" style="position: relative; display: inline-block;">
-          <a href="/navbar/Cart"><i class="fas fa-shopping-cart" style="font-size: 1.5rem; color: #333;"></i></a>
+          <a ><i (click)="goToCart()" class="fas fa-shopping-cart" style="font-size: 1.5rem; color: #333;"></i></a>
 
-          <span class="cart-badge">
+          <!-- <span class="cart-badge">
             {{ cartCount() }}
-          </span>
+          </span> -->
         </div>
       </div>
       <button class="login-btn-header" (click)="logout()" style="margin-left: 10px;">Log Out</button>
