@@ -82,8 +82,7 @@
               "RelativeToolTip": "HatBD_Backend\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-06T07:40:55.473Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-06T07:40:55.473Z"
             },
             {
               "$type": "Document",
@@ -95,8 +94,7 @@
               "RelativeToolTip": "HatBD_Backend\\Controllers\\UserController.cs",
               "ViewState": "AgIAAEcAAAAAAAAAAAAUwGMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-06T07:08:42.903Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-06T07:08:42.903Z"
             },
             {
               "$type": "Document",
@@ -108,8 +106,7 @@
               "RelativeToolTip": "HatBD_Backend\\Controllers\\CategoryController.cs",
               "ViewState": "AgIAAG0AAAAAAAAAAAAUwIkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-06T07:04:36.988Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-06T07:04:36.988Z"
             },
             {
               "$type": "Document",
@@ -121,8 +118,7 @@
               "RelativeToolTip": "HatBD_Backend\\Context\\DapperContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-06T06:58:45.377Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-06T06:58:45.377Z"
             },
             {
               "$type": "Document",
@@ -130,9 +126,9 @@
               "Title": "CartController.cs",
               "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Controllers\\CartController.cs",
               "RelativeDocumentMoniker": "HatBD_Backend\\Controllers\\CartController.cs",
-              "ToolTip": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Controllers\\CartController.cs*",
-              "RelativeToolTip": "HatBD_Backend\\Controllers\\CartController.cs*",
-              "ViewState": "AgIAAIsAAAAAAAAAAAAEwJcAAAAbAAAAAAAAAA==",
+              "ToolTip": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Controllers\\CartController.cs",
+              "RelativeToolTip": "HatBD_Backend\\Controllers\\CartController.cs",
+              "ViewState": "AgIAAIsAAAAAAAAAAAAEwJsAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-06T06:45:17.466Z",
               "EditorCaption": ""
@@ -147,8 +143,7 @@
               "RelativeToolTip": "HatBD_Backend\\Controllers\\ProductController.cs",
               "ViewState": "AgIAAAwBAAAAAAAAAAAIwB0BAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-06T05:37:56.393Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-06T05:37:56.393Z"
             },
             {
               "$type": "Document",
@@ -160,8 +155,7 @@
               "RelativeToolTip": "HatBD_Backend\\DTOS\\Order.cs",
               "ViewState": "AgIAAAIAAAAAAAAAAAAzwAgAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-04T06:45:10.612Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-04T06:45:10.612Z"
             },
             {
               "$type": "Document",
@@ -173,8 +167,7 @@
               "RelativeToolTip": "HatBD_Backend\\Controllers\\OrderController.cs",
               "ViewState": "AgIAAFcAAAAAAAAAAAAowF8AAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-02T19:09:59.935Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-02T19:09:59.935Z"
             },
             {
               "$type": "Document",
@@ -199,8 +192,7 @@
               "RelativeToolTip": "HatBD_Backend\\Model\\Cart.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-06T06:46:46.804Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-06T06:46:46.804Z"
             },
             {
               "$type": "Document",
@@ -212,8 +204,7 @@
               "RelativeToolTip": "HatBD_Backend\\Controllers\\UsersRegistrationController.cs",
               "ViewState": "AgIAACQAAAAAAAAAAAAYwE4AAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-04T05:46:43.019Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-04T05:46:43.019Z"
             },
             {
               "$type": "Document",
@@ -225,8 +216,7 @@
               "RelativeToolTip": "HatBD_Backend\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-01-06T06:57:53.354Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-06T06:57:53.354Z"
             },
             {
               "$type": "Document",
@@ -238,8 +228,7 @@
               "RelativeToolTip": "HatBD_Backend\\Controllers\\SubCategoryController.cs",
               "ViewState": "AgIAACoAAAAAAAAAAAAYwAEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-03T06:54:24.945Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-03T06:54:24.945Z"
             },
             {
               "$type": "Document",
