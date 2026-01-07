@@ -1,42 +1,31 @@
 import { ChangeDetectorRef, Component, computed, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import jsPDF from 'jspdf';
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [CommonModule, FormsModule, HttpClientModule],
+  imports: [CommonModule, FormsModule, HttpClientModule, RouterModule],
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
 
-  // ================= BASIC =================
   isLoggedIn = false;
+  invoiceOrderId: number | null = null;
 
-  // 🔥 API থেকে আসা cart items রাখার জন্য signal
   private _cartItems = signal<any[]>([]);
-
-  // 🔥 HTML এ ব্যবহার করার computed cart
   cartItems = computed(() => this._cartItems());
 
-  // 🔥 Total price (quantity × price)
   totalPrice = computed(() =>
-    this.cartItems().reduce(
-      (sum, item) => sum + (item.price * item.quantity),
-      0
-    )
+    this.cartItems().reduce((sum, item) => sum + (item.price * item.quantity), 0)
   );
 
-  customer = {
-    fullName: '',
-    phone: '',
-    address: ''
-  };
+  customer = { fullName: '', phone: '', address: '' };
 
-  // ================= PAYMENT =================
   showPayment = false;
   paymentMethod = '';
   mobileNumber = '';
@@ -45,7 +34,6 @@ export class CheckoutComponent implements OnInit {
   processingPayment = false;
   paymentSuccess = false;
 
-  // ================= API =================
   private CART_API = 'https://localhost:7290/api/cart';
   private ORDER_API = 'https://localhost:7290/api/Order';
   private ORDER_ITEM_API = 'https://localhost:7290/api/OrderItem';
@@ -57,17 +45,14 @@ export class CheckoutComponent implements OnInit {
     private cdr: ChangeDetectorRef
   ) {}
 
-  // ================= INIT =================
   ngOnInit(): void {
     const user = this.getCurrentUser();
     if (!user) return;
 
     this.isLoggedIn = true;
 
-    // 🔥 1️⃣ LOAD CART FROM DATABASE (API)
     this.http.get<any[]>(`${this.CART_API}/${user.id}`).subscribe({
       next: data => {
-        // cart page এর structure follow করে mapping
         this._cartItems.set(
           data.map(item => ({
             cartId: item.cartId,
@@ -82,7 +67,6 @@ export class CheckoutComponent implements OnInit {
       error: err => console.error('Cart load failed', err)
     });
 
-    // 🔥 2️⃣ LOAD USER INFO
     this.http.get<any[]>(this.USER_API).subscribe({
       next: users => {
         const u = users.find(x => x.id === user.id);
@@ -94,7 +78,6 @@ export class CheckoutComponent implements OnInit {
     });
   }
 
-  // ================= CURRENT USER =================
   getCurrentUser(): any {
     try {
       return JSON.parse(localStorage.getItem('currentUser') || '');
@@ -103,7 +86,6 @@ export class CheckoutComponent implements OnInit {
     }
   }
 
-  // ================= PLACE ORDER =================
   placeOrder(): void {
     if (!this.isLoggedIn) {
       alert('Please login first');
@@ -116,11 +98,9 @@ export class CheckoutComponent implements OnInit {
       return;
     }
 
-    // শুধু payment section show করবে
     this.showPayment = true;
   }
 
-  // ================= PAYMENT FLOW =================
   resetPaymentStep() {
     this.askForCode = false;
     this.paymentCode = '';
@@ -140,7 +120,6 @@ export class CheckoutComponent implements OnInit {
     this.makePayment();
   }
 
-  // ================= SAVE ORDER AFTER PAYMENT =================
   makePayment() {
     const user = this.getCurrentUser();
     if (!user) return;
@@ -151,7 +130,6 @@ export class CheckoutComponent implements OnInit {
       this.processingPayment = false;
       this.paymentSuccess = true;
 
-      // 🔥 ORDER SAVE
       const orderPayload = {
         userId: user.id,
         name: this.customer.fullName,
@@ -166,13 +144,16 @@ export class CheckoutComponent implements OnInit {
 
       this.http.post<any>(this.ORDER_API, orderPayload).subscribe({
         next: res => {
+
           const orderId = res?.orderId || res?.OrderId;
           if (!orderId) {
             alert('Order ID error');
             return;
           }
 
-          // 🔥 ORDER ITEMS SAVE (cart follow করে)
+          // ✅ FIX: invoiceOrderId SET করা হলো
+          this.invoiceOrderId = orderId;
+
           const items = this.cartItems().map(item => ({
             orderId,
             ProductId: item.productId,
@@ -184,7 +165,6 @@ export class CheckoutComponent implements OnInit {
           this.http.post(this.ORDER_ITEM_API, items).subscribe({
             next: () => {
               alert(`Payment via ${this.paymentMethod} successful`);
-              this.router.navigate(['/home']);
             },
             error: () => alert('Payment Successful')
           });
@@ -193,5 +173,37 @@ export class CheckoutComponent implements OnInit {
       });
 
     }, 1500);
+  }
+
+  // ================= INVOICE PDF =================
+  downloadInvoice(orderId: number | string) {
+    const doc = new jsPDF();
+
+    doc.setFontSize(18);
+    doc.text('INVOICE', 105, 15, { align: 'center' });
+
+    doc.setFontSize(12);
+    doc.text(`Invoice No: ${orderId}`, 14, 30);
+    doc.text(`Customer Name: ${this.customer.fullName}`, 14, 38);
+    doc.text(`Phone: ${this.customer.phone}`, 14, 46);
+    doc.text(`Address: ${this.customer.address}`, 14, 54);
+    doc.text(`Payment Method: ${this.paymentMethod}`, 14, 62);
+
+    let y = 74;
+    doc.text('Items:', 14, y);
+
+    this.cartItems().forEach((item, i) => {
+      y += 8;
+      doc.text(
+        `${i + 1}. ${item.productName} - ${item.quantity} × ${item.price} = ${item.quantity * item.price} ৳`,
+        14,
+        y
+      );
+    });
+
+    y += 12;
+    doc.text(`Total: ${this.totalPrice()} ৳`, 14, y);
+
+    doc.save(`Invoice_${orderId}.pdf`);
   }
 }
