@@ -1,0 +1,43 @@
+<div class="order-page">
+
+  <h2>My Orders</h2>
+
+  <!-- LOADING -->
+  <div *ngIf="loading" class="loading">
+    Loading orders...
+  </div>
+
+  <!-- ERROR -->
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+
+  <!-- NO ORDERS -->
+  <div *ngIf="!loading && orders.length === 0" class="empty">
+    You have no orders yet.
+  </div>
+
+  <!-- ORDER LIST -->
+  <div *ngIf="orders.length > 0" class="order-list">
+    <div class="order-card" *ngFor="let order of orders; let i = index">
+
+      <div class="row">
+        <strong>#{{ i + 1 }}</strong>
+        <span class="status" [class.confirmed]="order.status === 'Confirmed'"
+              [class.pending]="order.status === 'Pending'">
+          {{ order.status }}
+        </span>
+      </div>
+
+      <div class="info">
+        <p><b>Order ID:</b> {{ order.id }}</p>
+        <p><b>Date:</b> {{ order.createdat | date:'medium' }}</p>
+        <p><b>Payment:</b> {{ order.paymentmethod }}</p>
+        <p><b>Total:</b> {{ order.totalprice }} ৳</p>
+        <p><b>Address:</b> {{ order.address }}</p>
+      </div>
+
+    </div>
+  </div>
+
+</div>

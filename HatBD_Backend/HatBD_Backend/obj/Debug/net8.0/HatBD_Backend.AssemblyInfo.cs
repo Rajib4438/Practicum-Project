@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HatBD_Backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+63cdc4cbf77afa163f360f6d6ab005e8fca49f19")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ec34f72b647b019ef1897f7130d7b53af65047e5")]
 [assembly: System.Reflection.AssemblyProductAttribute("HatBD_Backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HatBD_Backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -27,6 +27,7 @@ import { Userform } from './Admin/admin-user-form/admin-user-form.component';
 import { SellerLayoutComponent } from './Seller/seller-layout/seller-layout.component';
 import { SellerDashboardComponent } from './Seller/seller-dashboard/sell-dashboard.component';
 import { SellerMyProductComponent } from './Seller/seller-myproduct/sellrt-myproduct.component';
+import { OrderComponent } from '../pages/my-order/my-order.component';
 
 export const routes: Routes = [
 
@@ -41,7 +42,9 @@ export const routes: Routes = [
       { path: 'product-list', component: ProductListComponent },
       { path: 'cart', component: CartComponent },
       { path: 'checkout', component: CheckoutComponent },
-      { path: 'profile', component: ProfileComponent }
+      { path: 'profile', component: ProfileComponent },
+      { path: 'orders', component: OrderComponent },
+      
     ]
   },
 

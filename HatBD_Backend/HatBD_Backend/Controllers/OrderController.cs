@@ -152,5 +152,25 @@ namespace HatBD_Backend.Controllers
 
             return Ok("Order deleted");
         }
+
+        /* ========== GET ORDERS BY USER ID (USER PANEL) ========== */
+        [HttpGet("user/{userId:int}")]
+        public async Task<IActionResult> GetOrdersByUserId(int userId)
+        {
+            using var con = _context.CreateConnection();
+
+            var orders = await con.QueryAsync(
+                "SP_order",
+                new
+                {
+                    flag = 6,
+                    userid = userId
+                },
+                commandType: CommandType.StoredProcedure
+            );
+
+            return Ok(orders);
+        }
+
     }
 }

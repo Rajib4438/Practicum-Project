@@ -1,0 +1,66 @@
+.order-page {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 10px;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.loading {
+  text-align: center;
+  color: #666;
+}
+
+.error {
+  color: red;
+  text-align: center;
+}
+
+.empty {
+  text-align: center;
+  color: #777;
+  font-size: 16px;
+}
+
+.order-list {
+  display: grid;
+  gap: 15px;
+}
+
+.order-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 15px 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.status {
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: #fff;
+}
+
+.status.confirmed {
+  background: #28a745;
+}
+
+.status.pending {
+  background: #ffc107;
+  color: #000;
+}
+
+.info p {
+  margin: 4px 0;
+  font-size: 14px;
+}
