@@ -2,23 +2,34 @@
 
   <h2>Checkout</h2>
 
+  <!-- CUSTOMER INFO -->
   <div class="box">
     <h3>Customer Information</h3>
+
     <label>Full Name *</label>
     <input type="text" [(ngModel)]="customer.fullName" placeholder="Enter your name" />
+
     <label>Phone Number *</label>
     <input type="text" [(ngModel)]="customer.phone" placeholder="01XXXXXXXXX" />
+
     <label>Address *</label>
     <textarea [(ngModel)]="customer.address" placeholder="Enter delivery address"></textarea>
   </div>
 
+  <!-- ORDER SUMMARY -->
   <div class="box">
     <h3>Order Summary</h3>
+
     <div *ngFor="let item of cartItems(); let i = index" class="item-row">
-      <span>{{ i + 1 }}. {{ item.name }}</span>
-      <span>{{ item.price }} ৳</span>
+      <span>
+        {{ i + 1 }}. {{ item.productName }}
+        ({{ item.quantity }} × {{ item.price }} ৳)
+      </span>
+      <strong>{{ item.quantity * item.price }} ৳</strong>
     </div>
+
     <hr />
+
     <div class="total">
       Total: <strong>{{ totalPrice() }} ৳</strong>
     </div>
@@ -28,7 +39,7 @@
     Place Order
   </button>
 
-  <!-- ================= PAYMENT SECTION ================= -->
+  <!-- PAYMENT SECTION -->
   <div class="row justify-content-center mt-5" *ngIf="showPayment">
     <div class="col-md-6">
       <div class="card shadow border-0 rounded-4">
@@ -39,23 +50,41 @@
             Pay <strong>৳ {{ totalPrice() }}</strong> to confirm order
           </p>
 
-          <select class="form-select mb-3" [(ngModel)]="paymentMethod" (change)="resetPaymentStep()">
+          <select class="form-select mb-3"
+                  [(ngModel)]="paymentMethod"
+                  (change)="resetPaymentStep()">
             <option value>-- Select Payment Method --</option>
             <option value="Bkash">bKash</option>
             <option value="Nagad">Nagad</option>
             <option value="Card">Debit / Credit Card</option>
           </select>
 
-          <input *ngIf="paymentMethod" type="text" class="form-control mb-3" placeholder="Mobile Number" maxlength="11" [(ngModel)]="mobileNumber" />
+          <input *ngIf="paymentMethod"
+                 type="text"
+                 class="form-control mb-3"
+                 placeholder="Mobile Number"
+                 maxlength="11"
+                 [(ngModel)]="mobileNumber" />
 
-          <input *ngIf="askForCode" type="text" class="form-control mb-3" placeholder="Enter Code" [(ngModel)]="paymentCode" [attr.maxlength]="paymentMethod==='Bkash'?5:paymentMethod==='Nagad'?4:16" />
+          <input *ngIf="askForCode"
+                 type="text"
+                 class="form-control mb-3"
+                 placeholder="Enter Code"
+                 [(ngModel)]="paymentCode" />
 
-          <button class="btn btn-success btn-lg px-5 rounded-pill" (click)="onSendPayment()" [disabled]="!paymentMethod || processingPayment">
+          <button class="btn btn-success btn-lg px-5 rounded-pill"
+                  (click)="onSendPayment()"
+                  [disabled]="!paymentMethod || processingPayment">
             Send Payment
           </button>
 
-          <div *ngIf="processingPayment" class="mt-3 text-muted">Processing payment...</div>
-          <div *ngIf="paymentSuccess" class="mt-3 text-success fw-semibold">✔ Payment Successful</div>
+          <div *ngIf="processingPayment" class="mt-3 text-muted">
+            Processing payment...
+          </div>
+
+          <div *ngIf="paymentSuccess" class="mt-3 text-success fw-semibold">
+            ✔ Payment Successful
+          </div>
 
         </div>
       </div>

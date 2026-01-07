@@ -70,25 +70,53 @@ namespace HatBD_Backend.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateOrder([FromBody] OrderCreateDto dto)
         {
-            using var con = _context.CreateConnection();
+            try
+            {
+                using var con = _context.CreateConnection();
 
-            var result = await con.QueryFirstAsync(
-                "SP_order",
-                new
+                var result = await con.QueryFirstAsync(
+                    "SP_order",
+                    new
+                    {
+                        flag = 2,
+                        userid = dto.UserId,
+                        name = dto.Name,
+                        phonenumber = dto.PhoneNumber,
+                        address = dto.Address,
+                        paymentmethod = dto.PaymentMethod,
+                        totalprice = dto.TotalPrice,
+                        totaldiscount = dto.TotalDiscount
+                    },
+                    commandType: CommandType.StoredProcedure
+                );
+
+
+                if (result != null)
                 {
-                    flag = 2,
-                    userid = dto.UserId,
-                    name = dto.Name,
-                    phonenumber = dto.PhoneNumber,
-                    address = dto.Address,
-                    paymentmethod = dto.PaymentMethod,
-                    totalprice = dto.TotalPrice,
-                    totaldiscount = dto.TotalDiscount
-                },
-                commandType: CommandType.StoredProcedure
-            );
+                    foreach (var item in dto.cartIds)
+                    {
+                        var orderItems = await con.QueryFirstAsync(
+                  "SP_order_item",
+                  new
+                  {
+                      flag = 1,
+                      orderid = result.OrderId,
+                      cartId = item
+                  },
+                  commandType: CommandType.StoredProcedure
+              );
 
-            return Ok(result);
+                    }
+                }
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+          
         }
 
         /* ========== UPDATE ORDER STATUS (ADMIN) ========== */

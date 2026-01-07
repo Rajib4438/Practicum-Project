@@ -1,53 +1,66 @@
 import { Injectable, signal, computed } from '@angular/core';
-import { HttpClientConnectionService } from '../../services/HttpClientConnectionService';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-
+latestQty:number =0;
   // 🔑 LocalStorage key
   private storageKey = 'cart';
 
-  // ✅ Initial cart load from LocalStorage
+  // 🛒 Cart items (Signal)
   private cartItems = signal<any[]>(
     JSON.parse(localStorage.getItem(this.storageKey) || '[]')
   );
 
-  // ✅ Live cart count
+  // 🔢 Live cart count
   cartCount = computed(() => this.cartItems().length);
 
-  constructor( private http: HttpClient,) {}
+  constructor(private http: HttpClient) {}
 
-  // ➕ Add product
+  // ➕ Add product to cart (FIXED)
   addToCart(product: any): void {
-    var user = Number(localStorage.getItem('userId'));
-    if(!user){
+    const userId = Number(localStorage.getItem('userId'));
+
+    if (!userId) {
       alert('Please login to add products to cart.');
       return;
     }
-
-
-    var data = {
-      cartId :0,
-      userId:user,
-      productId:product.id,
-      quantity:1
-    }
-    this.http.post('https://localhost:7290/api/Cart',data).subscribe((res:any)=>{
-      console.log('Product added to cart on server:', res);
-    });
-
+debugger;
    
+
+
+if(product.stockquantity <= 0) {
+      alert("Product is out of stock.");
+      return;
+    }
+    if(product.stockquantity <= this.latestQty) {
+      alert("You have reached the maximum available stock for this product in your cart.");
+      return;
+    }
+    // 🌐 Save to server
+this.http.post('https://localhost:7290/api/Cart', {
+  cartId: 0,
+  userId: userId,
+  productId: product.id,
+  quantity:  1
+}).subscribe({
+  next: (res:any) => {
+    if(res.data.ProductId == product.id) {
+     
+    this.latestQty = res.data.Quantity;}
+  },
+  error: err => console.error('Server error:', err)
+});
   }
 
-  // 📦 Get cart items
+  // 📦 Get cart items (Signal)
   getCartItems() {
     return this.cartItems;
   }
 
-  // ❌ Remove single item
+  // ❌ Remove item by index
   removeFromCart(index: number): void {
     const updatedCart = this.cartItems().filter((_, i) => i !== index);
     this.cartItems.set(updatedCart);

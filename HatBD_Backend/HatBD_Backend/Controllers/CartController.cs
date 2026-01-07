@@ -27,7 +27,7 @@ namespace HatBD_Backend.Controllers
             {
                 using var connection = _context.CreateConnection();
 
-                connection.Execute(
+             var data= await  connection.QueryFirstOrDefaultAsync(
                     "sp_Cart_Create",
                     new
                     {
@@ -38,7 +38,7 @@ namespace HatBD_Backend.Controllers
                     commandType: CommandType.StoredProcedure
                 );
 
-                return Ok(new { message = "Added to cart successfully" });
+                return Ok(new { message = "Added to cart successfully" ,data=data });
             }
             catch (Exception ex)
             {

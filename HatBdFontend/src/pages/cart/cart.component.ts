@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { CartService } from '../../app/Services/app.service';
 
 @Component({
   selector: 'app-cart',
@@ -17,7 +18,8 @@ export class CartComponent {
   constructor(
     private router: Router,
     private http: HttpClient,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private cartService: CartService
   ) {
     this.loadCartItems();
   }
@@ -29,7 +31,7 @@ export class CartComponent {
 
     this.http.get(`https://localhost:7290/api/cart/${userId}`).subscribe({
       next: (res: any) => {
-        debugger;
+       
         // SP theke asha data mapping
         this.cartItems = res.map((item: any) => ({
           cartId: item.cartId,
@@ -37,7 +39,8 @@ export class CartComponent {
           imageLocation: item.ImageLocation,
           productName: item.productName,
           price: item.price,
-          quantity: item.quantity
+          quantity: item.quantity,
+          stockQty : item.stockQuantity
         }));
         this.calculateTotal();
         this.cdr.detectChanges();
@@ -54,6 +57,7 @@ export class CartComponent {
       next: () => {
         this.cartItems.splice(index, 1);
         this.calculateTotal();
+        this.cartService.latestQty =0;
       },
       error: (err) => console.error('Error removing item:', err)
     });
@@ -103,13 +107,14 @@ export class CartComponent {
     this.router.navigate(['/checkout']);
   }
   onQtyAdd(item:any){
+    if(item.quantity >= item.stockQty){
+      alert('No more stock available');
+      return;
+    }
+     debugger;
     this.http.get(`https://localhost:7290/api/cart/increment/${item.cartId}`).subscribe({
       next: (res: any) => {
-        if(item.quantity < res.availableQuantity){
-          alert('Quantity increased');  
-        } else {
-          alert('No more stock available');
-        }
+       debugger;
     this.loadCartItems();
 
       }})
@@ -117,11 +122,7 @@ export class CartComponent {
   onQtyMinus(item:any){
     this.http.get(`https://localhost:7290/api/cart/decrement/${item.cartId}`).subscribe({
       next: (res: any) => {
-        if(item.quantity < res.availableQuantity){
-          alert('Quantity increased');  
-        } else {
-          alert('No more stock available');
-        }
+      
     this.loadCartItems();
 
       }})
