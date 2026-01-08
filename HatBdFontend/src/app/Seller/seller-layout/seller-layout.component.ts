@@ -18,4 +18,14 @@ import {
   templateUrl: './seller-layout.component.html',
   styleUrls: ['./seller-layout.component.css']
 })
-export class SellerLayoutComponent {}
+export class SellerLayoutComponent {
+  showProfileMenu = false;
+
+  toggleProfile() {
+    this.showProfileMenu = !this.showProfileMenu;
+  }
+
+  logout() {
+    console.log("logout seller");
+  }
+}

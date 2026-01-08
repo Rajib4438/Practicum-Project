@@ -1,0 +1,35 @@
+.profile-container {
+  max-width: 600px;
+  margin: 40px auto;
+}
+
+.profile-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.profile-card p {
+  margin: 8px 0;
+  font-size: 15px;
+}
+
+.text-center {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.btn-light {
+  background: #10b981;
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-light:hover {
+  background: #059669;
+}

@@ -127,5 +127,44 @@ namespace HatBD_Backend.Controllers
 
             return Ok(user);
         }
+
+
+        // ================= GET ADMIN PROFILE =================
+        [HttpGet("admin-profile/{id}")]
+        public async Task<IActionResult> GetAdminProfile(int id)
+        {
+            using var con = _context.CreateConnection();
+
+            var admin = await con.QuerySingleOrDefaultAsync<UserRegistration>(
+                @"SELECT Id, RegisterAs, FullName, Email, Phone, UserName, Gender, CreatedAT, IsApproved
+          FROM UserRegistration
+          WHERE Id = @Id AND RegisterAs = 'Admin'",
+                new { Id = id });
+
+            if (admin == null)
+                return NotFound("Admin not found");
+
+            return Ok(admin);
+        }
+
+        // ================= GET SELLER PROFILE =================
+        [HttpGet("seller-profile/{id}")]
+        public async Task<IActionResult> GetSellerProfile(int id)
+        {
+            using var con = _context.CreateConnection();
+
+            var seller = await con.QuerySingleOrDefaultAsync<UserRegistration>(
+                @"SELECT Id, RegisterAs, FullName, Email, Phone, UserName, Gender, CreatedAT, IsApproved
+          FROM UserRegistration
+          WHERE Id = @Id AND RegisterAs = 'Seller'",
+                new { Id = id });
+
+            if (seller == null)
+                return NotFound("Seller not found");
+
+            return Ok(seller);
+        }
+
+
     }
 }

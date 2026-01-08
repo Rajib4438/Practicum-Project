@@ -808,6 +808,22 @@
   },
   {
     "ContainingType": "HatBD_Backend.Controllers.UserRegistrationController",
+    "Method": "GetAdminProfile",
+    "RelativePath": "api/UserRegistration/admin-profile/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HatBD_Backend.Controllers.UserRegistrationController",
     "Method": "GetAllUsers",
     "RelativePath": "api/UserRegistration/all",
     "HttpMethod": "GET",
@@ -875,6 +891,22 @@
       {
         "Name": "user",
         "Type": "UserRegistration",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HatBD_Backend.Controllers.UserRegistrationController",
+    "Method": "GetSellerProfile",
+    "RelativePath": "api/UserRegistration/seller-profile/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
         "IsRequired": true
       }
     ],

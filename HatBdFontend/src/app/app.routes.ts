@@ -28,6 +28,8 @@ import { SellerLayoutComponent } from './Seller/seller-layout/seller-layout.comp
 import { SellerDashboardComponent } from './Seller/seller-dashboard/sell-dashboard.component';
 import { SellerMyProductComponent } from './Seller/seller-myproduct/sellrt-myproduct.component';
 import { OrderComponent } from '../pages/my-order/my-order.component';
+import { AdminProfileComponent } from './Admin/adminprifile/adminprifile.component';
+import { SellerProfileComponent } from './Seller/sellerprofile/sellerprofile.component';
 
 export const routes: Routes = [
 
@@ -65,7 +67,8 @@ export const routes: Routes = [
       { path: 'category', component: AdminCategoryComponent },
       { path: 'subcategory', component: AdminSubCategoryComponent },
       { path: 'product', component: AdminProductComponent },
-      { path: 'order', component: AdminOrderComponent } // ✅ ORDER MANAGE
+      { path: 'order', component: AdminOrderComponent }, // ✅ ORDER MANAGE
+      { path: 'profile', component: AdminProfileComponent }
     ]
   },
 
@@ -75,7 +78,8 @@ export const routes: Routes = [
     component: SellerLayoutComponent,
     children: [
       { path: 'dashboard', component: SellerDashboardComponent },
-      { path: 'products', component: SellerMyProductComponent }
+      { path: 'products', component: SellerMyProductComponent },
+      { path: 'profile', component: SellerProfileComponent }
     ]
   },
 

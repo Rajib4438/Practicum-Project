@@ -8,39 +8,19 @@
     </div>
 
     <nav class="menu">
-      <a
-        routerLink="/seller/dashboard"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
+      <a routerLink="/seller/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
         Dashboard
       </a>
 
-      <a
-        routerLink="/seller/products"
-        routerLinkActive="active"
-      >
+      <a routerLink="/seller/products" routerLinkActive="active">
         My Products
       </a>
-<!-- 
-      <a
-        routerLink="/seller/add-product"
-        routerLinkActive="active"
-      >
-        Add / Select Product
-      </a> -->
 
-      <a
-        routerLink="/seller/orders"
-        routerLinkActive="active"
-      >
+      <a routerLink="/seller/orders" routerLinkActive="active">
         Orders
       </a>
 
-      <a
-        routerLink="/seller/payments"
-        routerLinkActive="active"
-      >
+      <a routerLink="/seller/payments" routerLinkActive="active">
         Payments
       </a>
     </nav>
@@ -57,11 +37,19 @@
 
       <div class="navbar-right">
         <span class="seller-name">Seller</span>
-        <button
-          type="button"
-          class="logout-btn"
-          aria-label="Logout"
-        >
+
+        <!-- Profile Icon -->
+        <div class="profile-container" (click)="toggleProfile()">
+          <img src="https://i.pravatar.cc/32" alt="profile" class="profile-img">
+          
+          <div class="profile-dropdown" *ngIf="showProfileMenu">
+            <a routerLink="/seller/profile" >Profile</a>
+            <a>Settings</a>
+            <a (click)="logout()">Logout</a>
+          </div>
+        </div>
+
+        <button type="button" class="logout-btn" aria-label="Logout" (click)="logout()">
           Logout
         </button>
       </div>
