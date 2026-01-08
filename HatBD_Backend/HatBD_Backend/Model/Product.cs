@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.AspNetCore.Http;
 
 namespace HatBD.Models
 {
@@ -22,7 +23,7 @@ namespace HatBD.Models
 
         public string? status { get; set; }
 
-        public string? ImageName {  get; set; }
+        public string? ImageName { get; set; }
         public IFormFile? Image { get; set; }
 
         public string? createdby { get; set; }
@@ -40,12 +41,17 @@ namespace HatBD.Models
         public int categoryid { get; set; }
 
         public int subcategoryid { get; set; }
+
         public string? ImageLocation { get; set; }
+
+        // ===== NEW (Seller Reference) =====
+        public int SellerId { get; set; }
 
         // ===== Extra (JOIN result) =====
         public string? categoryName { get; set; }
 
         public string? subCategoryName { get; set; }
+
         public bool isApprove { get; set; }
     }
 }

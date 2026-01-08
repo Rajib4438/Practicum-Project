@@ -580,6 +580,17 @@
         "tags": [
           "Product"
         ],
+        "parameters": [
+          {
+            "name": "sellerId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "default": 0
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -662,6 +673,10 @@
                   "ImageLocation": {
                     "type": "string"
                   },
+                  "SellerId": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
                   "categoryName": {
                     "type": "string"
                   },
@@ -731,6 +746,9 @@
                 "ImageLocation": {
                   "style": "form"
                 },
+                "SellerId": {
+                  "style": "form"
+                },
                 "categoryName": {
                   "style": "form"
                 },
@@ -779,159 +797,12 @@
         ],
         "parameters": [
           {
-            "name": "flag",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
             "name": "id",
             "in": "path",
             "required": true,
             "schema": {
               "type": "integer",
               "format": "int32"
-            }
-          },
-          {
-            "name": "name",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "brand",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "description",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "price",
-            "in": "query",
-            "schema": {
-              "type": "number",
-              "format": "double"
-            }
-          },
-          {
-            "name": "stockquantity",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "status",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "ImageName",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "createdby",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "createdat",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "updatedby",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "updatedat",
-            "in": "query",
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          },
-          {
-            "name": "isactive",
-            "in": "query",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "isdelete",
-            "in": "query",
-            "schema": {
-              "type": "boolean"
-            }
-          },
-          {
-            "name": "categoryid",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "subcategoryid",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          },
-          {
-            "name": "ImageLocation",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "categoryName",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "subCategoryName",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "isApprove",
-            "in": "query",
-            "schema": {
-              "type": "boolean"
             }
           }
         ],
@@ -941,14 +812,155 @@
               "schema": {
                 "type": "object",
                 "properties": {
+                  "flag": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "name": {
+                    "type": "string"
+                  },
+                  "brand": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "stockquantity": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "status": {
+                    "type": "string"
+                  },
+                  "ImageName": {
+                    "type": "string"
+                  },
                   "Image": {
                     "type": "string",
                     "format": "binary"
+                  },
+                  "createdby": {
+                    "type": "string"
+                  },
+                  "createdat": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "updatedby": {
+                    "type": "string"
+                  },
+                  "updatedat": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "isactive": {
+                    "type": "boolean"
+                  },
+                  "isdelete": {
+                    "type": "boolean"
+                  },
+                  "categoryid": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "subcategoryid": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "ImageLocation": {
+                    "type": "string"
+                  },
+                  "SellerId": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "categoryName": {
+                    "type": "string"
+                  },
+                  "subCategoryName": {
+                    "type": "string"
+                  },
+                  "isApprove": {
+                    "type": "boolean"
                   }
                 }
               },
               "encoding": {
+                "flag": {
+                  "style": "form"
+                },
+                "id": {
+                  "style": "form"
+                },
+                "name": {
+                  "style": "form"
+                },
+                "brand": {
+                  "style": "form"
+                },
+                "description": {
+                  "style": "form"
+                },
+                "price": {
+                  "style": "form"
+                },
+                "stockquantity": {
+                  "style": "form"
+                },
+                "status": {
+                  "style": "form"
+                },
+                "ImageName": {
+                  "style": "form"
+                },
                 "Image": {
+                  "style": "form"
+                },
+                "createdby": {
+                  "style": "form"
+                },
+                "createdat": {
+                  "style": "form"
+                },
+                "updatedby": {
+                  "style": "form"
+                },
+                "updatedat": {
+                  "style": "form"
+                },
+                "isactive": {
+                  "style": "form"
+                },
+                "isdelete": {
+                  "style": "form"
+                },
+                "categoryid": {
+                  "style": "form"
+                },
+                "subcategoryid": {
+                  "style": "form"
+                },
+                "ImageLocation": {
+                  "style": "form"
+                },
+                "SellerId": {
+                  "style": "form"
+                },
+                "categoryName": {
+                  "style": "form"
+                },
+                "subCategoryName": {
+                  "style": "form"
+                },
+                "isApprove": {
                   "style": "form"
                 }
               }

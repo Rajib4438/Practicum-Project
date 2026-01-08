@@ -48,11 +48,14 @@ export class SellerMyProductComponent implements OnInit {
   // LOAD
   // =========================
   loadProducts() {
-    this.http.get<any[]>(this.productApi).subscribe(res => {
-      this.products = res;
-      this.filteredProducts = res;
-    });
-  }
+  const sellerId = Number(localStorage.getItem('userId'));
+
+  this.http.get<any[]>(`${this.productApi}?sellerId=${sellerId}`).subscribe(res => {
+    this.products = res;
+    this.filteredProducts = res;
+  });
+}
+
 
   loadCategories() {
     this.http.get<any[]>(this.categoryApi).subscribe(res => {
@@ -108,19 +111,28 @@ export class SellerMyProductComponent implements OnInit {
       alert('Fill required fields');
       return;
     }
-debugger;
-    const formData = new FormData();
-    formData.append('name', this.name);
-    formData.append('brand', this.brand); // ✅ BRAND
-    formData.append('description', this.description);
-    formData.append('price', this.price.toString());
-    formData.append('stockquantity', this.stockquantity?.toString() || '0');
-    formData.append('status', 'Pending');
-    formData.append('categoryid', this.categoryid.toString());
-    formData.append('subcategoryid', this.subcategoryid.toString());
-    if (this.selectedFile) {
-      formData.append('image', this.selectedFile);
-    }
+
+    const sellerId = Number(localStorage.getItem('userId')); 
+    // example after login
+
+
+
+     const formData = new FormData();
+  formData.append('name', this.name);
+  formData.append('brand', this.brand);
+  formData.append('description', this.description);
+  formData.append('price', this.price!.toString());
+  formData.append('stockquantity', this.stockquantity!.toString());
+  formData.append('status', this.status);
+  formData.append('categoryid', this.categoryid!.toString());
+  formData.append('subcategoryid', this.subcategoryid!.toString());
+  formData.append('SellerId', sellerId.toString());  // 👈 important
+  formData.append('Image', this.selectedFile);
+
+  this.http.post(this.productApi, formData).subscribe(() => {
+    this.loadProducts();
+    alert('Product Added');
+  });
 
     // CREATE
     if (this.id === null) {

@@ -37,6 +37,10 @@ export class NavbarComponent {
   }
 
   logout(): void {
+    localStorage.removeItem('currentUser');
+  localStorage.removeItem('userId');
+  localStorage.removeItem('cart');
+  localStorage.removeItem('address'); 
     localStorage.removeItem('userToken');
     localStorage.removeItem('userName');
     this.router.navigate(['/']).then(() => {

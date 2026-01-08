@@ -360,7 +360,13 @@
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "sellerId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
     "ReturnTypes": []
   },
   {
@@ -467,6 +473,11 @@
         "IsRequired": false
       },
       {
+        "Name": "SellerId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
         "Name": "categoryName",
         "Type": "System.String",
         "IsRequired": false
@@ -509,6 +520,11 @@
     "Order": 0,
     "Parameters": [
       {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
         "Name": "flag",
         "Type": "System.Int32",
         "IsRequired": false
@@ -516,7 +532,7 @@
       {
         "Name": "id",
         "Type": "System.Int32",
-        "IsRequired": true
+        "IsRequired": false
       },
       {
         "Name": "name",
@@ -601,6 +617,11 @@
       {
         "Name": "ImageLocation",
         "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "SellerId",
+        "Type": "System.Int32",
         "IsRequired": false
       },
       {

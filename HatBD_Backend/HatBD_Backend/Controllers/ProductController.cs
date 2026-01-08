@@ -12,6 +12,7 @@ namespace HatBD.Controllers
     {
         private readonly IWebHostEnvironment _env;
         private readonly DapperContext _context;
+        private object connection;
 
         public ProductController(IWebHostEnvironment env, DapperContext context)
         {
@@ -23,28 +24,21 @@ namespace HatBD.Controllers
         // 1️⃣ GET ALL PRODUCTS
         // =========================
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(int sellerId = 0)
         {
-            try
-            {
-                using var connection = _context.CreateConnection();
+            using var connection = _context.CreateConnection();
 
-                var param = new DynamicParameters();
-                param.Add("@flag", 1);
+            var param = new DynamicParameters();
+            param.Add("@flag", 1);
+            param.Add("@SellerId", sellerId);
 
-                var data = await connection.QueryAsync<Product>(
-                    "SP_Product",
-                    param,
-                    commandType: CommandType.StoredProcedure
-                );
+            var data = await connection.QueryAsync<Product>(
+                "SP_Product", param, commandType: CommandType.StoredProcedure
+            );
 
-                return Ok(data);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500, ex.Message);
-            }
+            return Ok(data);
         }
+
 
         // =========================
         // 2️⃣ GET PRODUCT BY ID
@@ -114,6 +108,9 @@ namespace HatBD.Controllers
                 param.Add("@subcategoryid", model.subcategoryid);
                 param.Add("@ImageLocation", saveloc);
 
+                // 👇 SellerId added
+                param.Add("@SellerId", model.SellerId);
+
                 var id = await connection.ExecuteScalarAsync<int>(
                     "SP_Product",
                     param,
@@ -132,7 +129,7 @@ namespace HatBD.Controllers
         // 4️⃣ UPDATE PRODUCT
         // =========================
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, Product model)
+        public async Task<IActionResult> Update(int id, [FromForm] Product model)
         {
             try
             {
@@ -169,6 +166,9 @@ namespace HatBD.Controllers
                 param.Add("@subcategoryid", model.subcategoryid);
                 param.Add("@ImageLocation", filePath);
 
+                // 👇 SellerId added
+                param.Add("@SellerId", model.SellerId);
+
                 var result = await connection.QueryFirstOrDefaultAsync(
                     "SP_Product",
                     param,
@@ -192,7 +192,6 @@ namespace HatBD.Controllers
             try
             {
                 using var connection = _context.CreateConnection();
-
                 var param = new DynamicParameters();
                 param.Add("@flag", 5);
                 param.Add("@id", id);
@@ -270,9 +269,6 @@ namespace HatBD.Controllers
         {
             try
             {
-                if (dto == null || dto.id == 0)
-                    return BadRequest("Invalid payload");
-
                 using var connection = _context.CreateConnection();
 
                 var param = new DynamicParameters();
