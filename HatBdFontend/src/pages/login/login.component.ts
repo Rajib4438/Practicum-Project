@@ -66,6 +66,14 @@ export class Login {
             return;
           }
 
+          // seller redirect
+          if (response.registerAs === 'Seller') {
+            this.router.navigate(['/seller']).then(() => {
+              window.location.reload();
+            });
+            return;
+          }
+
           // ================================
           // 🔀 NORMAL USER REDIRECT (UNCHANGED)
           // ================================

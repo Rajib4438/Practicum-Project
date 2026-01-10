@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterModule } from '@angular/router';
@@ -32,13 +32,32 @@ export class HomeComponent implements OnInit, OnDestroy {
   isModalOpen = false;
   isSignup = false;
 
+  searchText: string = '';
+  allProducts: any[] = [];
   products: any[] = [];
+
   private productApi = 'https://localhost:7290/api/Product/approved';
 
   constructor(
     private http: HttpClient,
     private cartService: CartService
-  ) {}
+  ) {
+    // ✅ CORRECT PLACE FOR EFFECT
+    effect(() => {
+      const text = this.cartService.searchText().toLowerCase().trim();
+
+      if (!text) {
+        this.products = this.allProducts;
+        return;
+      }
+
+      this.products = this.allProducts.filter(p =>
+        (p.name && p.name.toLowerCase().includes(text)) ||
+        (p.brand && p.brand.toLowerCase().includes(text)) ||
+        (p.categoryName && p.categoryName.toLowerCase().includes(text))
+      );
+    });
+  }
 
   ngOnInit(): void {
     this.startSlider();
@@ -66,28 +85,12 @@ export class HomeComponent implements OnInit, OnDestroy {
         : this.slideIndex - 1;
   }
 
-  openModal(mode: 'login' | 'signup'): void {
-    this.isSignup = mode === 'signup';
-    this.isModalOpen = true;
-  }
-
-  closeModal(): void {
-    this.isModalOpen = false;
-  }
-
-  toggleAuthMode(): void {
-    this.isSignup = !this.isSignup;
-  }
-
-  handleAuth(e: Event): void {
-    e.preventDefault();
-    alert('Action Successful!');
-    this.closeModal();
-  }
-
   loadProducts(): void {
     this.http.get<any[]>(this.productApi).subscribe({
-      next: res => (this.products = res),
+      next: res => {
+        this.allProducts = res;
+        this.products = res;
+      },
       error: err => console.error('Error loading products', err)
     });
   }
@@ -98,18 +101,30 @@ export class HomeComponent implements OnInit, OnDestroy {
     return 'https://localhost:7290/' + imageLocation;
   }
 
-  // ✅ LOGIN CHECK
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('userToken'); 
-    // token এর নাম তোমার project অনুযায়ী ঠিক করো
+    return !!localStorage.getItem('userToken');
   }
 
-  // ✅ ADD TO CART FIXED
   addToCart(product: any): void {
     if (!this.isLoggedIn()) {
       alert('Please login to add product to cart');
       return;
     }
     this.cartService.addToCart(product);
+  }
+
+  // 🔒 kept for safety (not breaking old logic)
+  onSearch(): void {
+    const text = this.searchText.toLowerCase().trim();
+
+    if (!text) {
+      this.products = this.allProducts;
+      return;
+    }
+
+    this.products = this.allProducts.filter(p =>
+      (p.name && p.name.toLowerCase().includes(text)) ||
+      (p.brand && p.brand.toLowerCase().includes(text))
+    );
   }
 }

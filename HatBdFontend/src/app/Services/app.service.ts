@@ -5,6 +5,20 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CartService {
+
+  // CART
+  count = signal<number>(0);
+
+  // 🔍 GLOBAL SEARCH TEXT
+  searchText = signal<string>('');
+
+  setSearch(text: string) {
+    this.searchText.set(text);
+  }
+
+  setSearchText(searchText: string) {
+    throw new Error('Method not implemented.');
+  }
 latestQty:number =0;
   // 🔑 LocalStorage key
   private storageKey = 'cart';
@@ -28,7 +42,6 @@ latestQty:number =0;
       return;
     }
 debugger;
-   
 
 
 if(product.stockquantity <= 0) {
