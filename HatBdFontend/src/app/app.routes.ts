@@ -30,6 +30,7 @@ import { SellerMyProductComponent } from './Seller/seller-myproduct/sellrt-mypro
 import { OrderComponent } from '../pages/my-order/my-order.component';
 import { AdminProfileComponent } from './Admin/adminprifile/adminprifile.component';
 import { SellerProfileComponent } from './Seller/sellerprofile/sellerprofile.component';
+import { ShowOrderComponent } from './Seller/seller-show-order/seller-show-order.component';
 
 export const routes: Routes = [
 
@@ -79,7 +80,8 @@ export const routes: Routes = [
     children: [
       { path: 'dashboard', component: SellerDashboardComponent },
       { path: 'products', component: SellerMyProductComponent },
-      { path: 'profile', component: SellerProfileComponent }
+      { path: 'profile', component: SellerProfileComponent },
+      { path: 'orders', component: ShowOrderComponent }
     ]
   },
 

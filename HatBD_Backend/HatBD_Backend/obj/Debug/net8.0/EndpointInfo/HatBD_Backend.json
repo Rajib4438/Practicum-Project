@@ -437,6 +437,29 @@
         }
       }
     },
+    "/api/Order/seller/{sellerId}": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "parameters": [
+          {
+            "name": "sellerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/OrderItem/order/{orderId}": {
       "get": {
         "tags": [
@@ -1613,6 +1636,11 @@
           "phoneNumber": {
             "type": "string",
             "nullable": true
+          },
+          "sellerId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -1654,6 +1682,11 @@
               "type": "integer",
               "format": "int32"
             },
+            "nullable": true
+          },
+          "sellerId": {
+            "type": "integer",
+            "format": "int32",
             "nullable": true
           }
         },

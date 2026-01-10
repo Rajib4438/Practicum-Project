@@ -172,5 +172,24 @@ namespace HatBD_Backend.Controllers
             return Ok(orders);
         }
 
+        /* ========== GET SELLER'S SOLD PRODUCTS ========== */
+        [HttpGet("seller/{sellerId:int}")]
+        public async Task<IActionResult> GetSellerSoldProducts(int sellerId)
+        {
+            using var con = _context.CreateConnection();
+
+            var soldProducts = await con.QueryAsync(
+                "SP_order",
+                new
+                {
+                    flag = 7,
+                    sellerId
+                },
+                commandType: CommandType.StoredProcedure
+            );
+
+            return Ok(soldProducts);
+        }
+
     }
 }

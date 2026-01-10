@@ -254,6 +254,22 @@
   },
   {
     "ContainingType": "HatBD_Backend.Controllers.OrderController",
+    "Method": "GetSellerSoldProducts",
+    "RelativePath": "api/Order/seller/{sellerId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sellerId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HatBD_Backend.Controllers.OrderController",
     "Method": "GetOrdersByUserId",
     "RelativePath": "api/Order/user/{userId}",
     "HttpMethod": "GET",

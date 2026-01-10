@@ -15,6 +15,8 @@
         public decimal TotalPrice { get; set; }
 
         public decimal TotalDiscount { get; set; }
-        public List<int>? cartIds { get; set; }  
+        public List<int>? cartIds { get; set; }
+
+        public int? SellerId { get; set; }
     }
 }
