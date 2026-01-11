@@ -1,0 +1,18 @@
+<div class="container">
+  <h2>Thanas</h2>
+
+  <label>District</label>
+  <select class="form-control" [(ngModel)]="selectedDistrictId" (change)="onDistrictChange()">
+    <option value="" disabled>Select District</option>
+    <option *ngFor="let d of districts" [value]="d.districtId">{{ d.districtName }}</option>
+  </select>
+
+  <ul>
+    <li *ngFor="let t of thanas">{{ t.thanaName }}</li>
+  </ul>
+
+  <div class="input-group mt-2">
+    <input type="text" class="form-control" placeholder="New Thana Name" [(ngModel)]="newThanaName">
+    <button class="btn btn-primary" (click)="addThana()">Add Thana</button>
+  </div>
+</div>

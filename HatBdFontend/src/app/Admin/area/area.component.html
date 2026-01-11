@@ -1,0 +1,24 @@
+<div class="container">
+  <h2>Areas</h2>
+
+  <label>District</label>
+  <select class="form-control" [(ngModel)]="selectedDistrictId" (change)="onDistrictChange()">
+    <option value="" disabled>Select District</option>
+    <option *ngFor="let d of districts" [value]="d.districtId">{{ d.districtName }}</option>
+  </select>
+
+  <label *ngIf="thanas.length > 0">Thana</label>
+  <select class="form-control" *ngIf="thanas.length > 0" [(ngModel)]="selectedThanaId" (change)="onThanaChange()">
+    <option value="" disabled>Select Thana</option>
+    <option *ngFor="let t of thanas" [value]="t.thanaId">{{ t.thanaName }}</option>
+  </select>
+
+  <ul>
+    <li *ngFor="let a of areas">{{ a.areaName }}</li>
+  </ul>
+
+  <div class="input-group mt-2" *ngIf="selectedThanaId">
+    <input type="text" class="form-control" placeholder="New Area Name" [(ngModel)]="newAreaName">
+    <button class="btn btn-primary" (click)="addArea()">Add Area</button>
+  </div>
+</div>

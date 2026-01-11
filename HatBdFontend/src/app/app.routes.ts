@@ -31,6 +31,9 @@ import { OrderComponent } from '../pages/my-order/my-order.component';
 import { AdminProfileComponent } from './Admin/adminprifile/adminprifile.component';
 import { SellerProfileComponent } from './Seller/sellerprofile/sellerprofile.component';
 import { ShowOrderComponent } from './Seller/seller-show-order/seller-show-order.component';
+import { DistrictComponent } from './Admin/district/district.component';
+import { ThanaComponent } from './Admin/thana/thana.component';
+import { AreaComponent } from './Admin/area/area.component';
 
 export const routes: Routes = [
 
@@ -69,7 +72,10 @@ export const routes: Routes = [
       { path: 'subcategory', component: AdminSubCategoryComponent },
       { path: 'product', component: AdminProductComponent },
       { path: 'order', component: AdminOrderComponent }, // ✅ ORDER MANAGE
-      { path: 'profile', component: AdminProfileComponent }
+      { path: 'profile', component: AdminProfileComponent },
+      { path: 'district', component: DistrictComponent },
+      { path: 'thana', component: ThanaComponent },
+      {path: 'area', component: AreaComponent }
     ]
   },
 

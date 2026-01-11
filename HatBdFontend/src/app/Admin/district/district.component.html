@@ -1,0 +1,12 @@
+<div class="container">
+  <h2>Districts</h2>
+
+  <ul>
+    <li *ngFor="let d of districts">{{ d.districtName }}</li>
+  </ul>
+
+  <div class="input-group mt-2">
+    <input type="text" class="form-control" placeholder="New District Name" [(ngModel)]="newDistrictName">
+    <button class="btn btn-primary" (click)="addDistrict()">Add District</button>
+  </div>
+</div>

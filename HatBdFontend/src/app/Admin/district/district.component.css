@@ -1,0 +1,17 @@
+.container {
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+.input-group {
+  display: flex;
+}
+
+.input-group input {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.input-group button {
+  width: 120px;
+}
