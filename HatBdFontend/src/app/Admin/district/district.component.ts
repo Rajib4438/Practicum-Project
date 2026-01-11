@@ -17,7 +17,7 @@ export class DistrictComponent implements OnInit {
 
   // API URL
   private apiUrlGet = 'https://localhost:7290/api/District/Get';
-  private apiUrlInsert = 'https://localhost:7290/api/District/Insert';
+  private apiUrlInsert = 'https://localhost:7290/api/District/Add';
 
   constructor(private http: HttpClient) { }
 

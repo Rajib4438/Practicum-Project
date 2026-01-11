@@ -49,8 +49,9 @@ export class AreaComponent implements OnInit {
     if (this.selectedDistrictId) {
       this.http.get<any[]>(this.apiUrlThanaGetAll).subscribe({
         next: res => {
+          debugger;
           // [ngValue] ব্যবহার করায় এখন টাইপ ঠিক থাকবে (Number === Number)
-          this.thanas = res.filter(t => t.districtId === this.selectedDistrictId);
+          this.thanas = res.filter(t => t.districtId === Number(this.selectedDistrictId));
         },
         error: err => console.error('Error loading thanas', err)
       });
