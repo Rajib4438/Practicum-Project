@@ -1,30 +1,20 @@
-<div class="profile-container" *ngIf="!loading && admin">
+<div class="profile-container" *ngIf="!loading && user">
 
-  <h2>Admin Profile</h2>
+  <h2>User Profile</h2>
 
-  <!-- Profile Image -->
-  <div class="profile-image-wrapper">
-    <img src="/assets/img/WhatsApp Image 2025-10-27 at 3.49.06 PM.jpeg" alt="Profile Image">
-  </div>
-
-  <!-- Profile Info -->
-  <div class="profile-card mb-4 py-4 px-3">
-    <p><strong>Full Name:</strong> {{ admin.fullName }}</p>
-    <p><strong>Username:</strong> {{ admin.userName }}</p>
-    <p><strong>Email:</strong> {{ admin.email }}</p>
-    <p><strong>Phone:</strong> {{ admin.phone }}</p>
-    <p><strong>Role:</strong> Administrator</p>
-    <p><strong>Joined:</strong> {{ admin.createdAt | date:'mediumDate' }}</p>
-  </div>
-
-  <!-- Logout Button -->
-  <div class="text-center">
-    <button class="btn btn-light" (click)="logout()">Logout</button>
+  <div class="profile-card mb-4 py-4 px-3 ">
+    <p><strong>Full Name:</strong> {{ user.fullName }}</p>
+    <p><strong>Username:</strong> {{ user.userName }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Phone:</strong> {{ user.phone }}</p>
+    <p><strong>Gender:</strong> {{ user.gender }}</p>
+    <p><strong>Register As:</strong> {{ user.registerAs }}</p>
+    <p><strong>Joined:</strong> {{ user.createdAT | date:'mediumDate' }}</p>
   </div>
 
 </div>
 
 <!-- Loading -->
-<div *ngIf="loading" class="loading-text">
+<div *ngIf="loading">
   <p>Loading profile...</p>
 </div>

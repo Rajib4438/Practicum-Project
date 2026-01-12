@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
@@ -12,25 +12,24 @@ import { RouterLink } from '@angular/router';
 })
 export class SellerProfileComponent implements OnInit {
 
-  seller: any = null;
+  user: any = null;
   loading = true;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    const sellerId = localStorage.getItem('userId'); // Assuming sellerId is stored
+    const userId = localStorage.getItem('userId');
 
-    if (!sellerId) {
-      console.error('Seller not logged in');
-      this.loading = false;
+    if (!userId) {
+      console.error('User not logged in');
       return;
     }
 
-    // Replace with your actual API endpoint
-    this.http.get(`https://localhost:7290/api/UserRegistration/seller-profile/${sellerId}`)
+    this.http.get(`https://localhost:7290/api/UserRegistration/profile/${userId}`)
       .subscribe({
         next: (res) => {
-          this.seller = res;
+          this.user = res;
+          this.cdr.detectChanges();
           this.loading = false;
         },
         error: (err) => {
@@ -38,11 +37,5 @@ export class SellerProfileComponent implements OnInit {
           this.loading = false;
         }
       });
-  }
-
-  logout(): void {
-    localStorage.removeItem('sellerToken');
-    localStorage.removeItem('sellerId');
-    window.location.href = '/seller/login'; // Redirect to seller login
   }
 }

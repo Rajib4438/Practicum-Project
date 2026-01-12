@@ -14,14 +14,16 @@
     <input type="number" placeholder="Stock Quantity" [(ngModel)]="stockquantity" />
 
     <select [(ngModel)]="categoryid" (change)="loadSubCategories(categoryid!)">
-      <option value="">Select Category</option>
+      <option [ngValue]="null" disabled selected>
+        Select Category
+      </option>
       <option *ngFor="let c of categories" [value]="c.id">
         {{ c.name }}
       </option>
     </select>
 
     <select [(ngModel)]="subcategoryid">
-      <option value="">Select Sub Category</option>
+      <option [ngValue]="null" disabled selected>Select Sub Category</option>
       <option *ngFor="let sc of subCategories" [value]="sc.id">
         {{ sc.name }}
       </option>
@@ -36,12 +38,8 @@
 
   <!-- SEARCH -->
   <div class="search-bar">
-    <input
-      type="text"
-      placeholder="Search by name / brand / category..."
-      [(ngModel)]="searchText"
-      (input)="searchProduct()"
-    />
+    <input type="text" placeholder="Search by name / brand / category..." [(ngModel)]="searchText"
+      (input)="searchProduct()" />
   </div>
 
   <!-- TABLE -->

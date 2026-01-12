@@ -38,12 +38,11 @@
               "Title": "RiderDto.cs",
               "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\DTOS\\RiderDto.cs",
               "RelativeDocumentMoniker": "HatBD_Backend\\DTOS\\RiderDto.cs",
-              "ToolTip": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\DTOS\\RiderDto.cs*",
-              "RelativeToolTip": "HatBD_Backend\\DTOS\\RiderDto.cs*",
+              "ToolTip": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\DTOS\\RiderDto.cs",
+              "RelativeToolTip": "HatBD_Backend\\DTOS\\RiderDto.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-12T13:04:26.704Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-12T13:04:26.704Z"
             },
             {
               "$type": "Document",
@@ -55,8 +54,7 @@
               "RelativeToolTip": "HatBD_Backend\\Model\\UsersRegistration.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-12T11:12:13.657Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-12T11:12:13.657Z"
             },
             {
               "$type": "Document",
@@ -64,9 +62,9 @@
               "Title": "UsersRegistrationController.cs",
               "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Controllers\\UsersRegistrationController.cs",
               "RelativeDocumentMoniker": "HatBD_Backend\\Controllers\\UsersRegistrationController.cs",
-              "ToolTip": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Controllers\\UsersRegistrationController.cs*",
-              "RelativeToolTip": "HatBD_Backend\\Controllers\\UsersRegistrationController.cs*",
-              "ViewState": "AgIAAIEAAAAAAAAAAAAuwJUAAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Controllers\\UsersRegistrationController.cs",
+              "RelativeToolTip": "HatBD_Backend\\Controllers\\UsersRegistrationController.cs",
+              "ViewState": "AgIAAIEAAAAAAAAAAAAuwIoAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-12T11:08:43.038Z",
               "EditorCaption": ""
@@ -81,8 +79,7 @@
               "RelativeToolTip": "HatBD_Backend\\Controllers\\DistrictController.cs",
               "ViewState": "AgIAACAAAAAAAAAAAAAwwE8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-11T11:04:12.445Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-11T11:04:12.445Z"
             }
           ]
         }

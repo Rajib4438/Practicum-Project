@@ -66,7 +66,7 @@ export class Login {
               break;
 
             case 'Seller':
-              this.router.navigate(['/seller']).then(() => window.location.reload());
+              this.router.navigate(['/seller/dashboard']).then(() => window.location.reload());
               break;
 
             case 'Rider':

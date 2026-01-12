@@ -12,25 +12,23 @@ import { RouterLink } from '@angular/router';
 })
 export class AdminProfileComponent implements OnInit {
 
-  admin: any = null;
+   user: any = null;
   loading = true;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    const adminId = localStorage.getItem('userId'); // assuming you store adminId in localStorage
+    const userId = localStorage.getItem('userId');
 
-    if (!adminId) {
-      console.error('Admin not logged in');
-      this.loading = false;
+    if (!userId) {
+      console.error('User not logged in');
       return;
     }
 
-    // Replace with your actual API endpoint if needed
-    this.http.get(`https://localhost:7290/api/UserRegistration/admin-profile/${adminId}`)
+    this.http.get(`https://localhost:7290/api/UserRegistration/profile/${userId}`)
       .subscribe({
         next: (res) => {
-          this.admin = res;
+          this.user = res;
           this.loading = false;
         },
         error: (err) => {
@@ -38,11 +36,5 @@ export class AdminProfileComponent implements OnInit {
           this.loading = false;
         }
       });
-  }
-
-  logout(): void {
-    localStorage.removeItem('adminToken');
-    localStorage.removeItem('adminId');
-    window.location.href = '/admin/login'; // redirect to admin login
   }
 }

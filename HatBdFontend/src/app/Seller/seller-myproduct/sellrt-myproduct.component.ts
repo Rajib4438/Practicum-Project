@@ -131,7 +131,6 @@ export class SellerMyProductComponent implements OnInit {
 
   this.http.post(this.productApi, formData).subscribe(() => {
     this.loadProducts();
-    alert('Product Added');
   });
 
     // CREATE
@@ -139,9 +138,9 @@ export class SellerMyProductComponent implements OnInit {
       formData.append('createdby', 'seller');
 
       this.http.post(this.productApi, formData).subscribe(() => {
-        alert('Product added');
         this.resetForm();
         this.loadProducts();
+        alert('Product added');
       });
     }
     // UPDATE

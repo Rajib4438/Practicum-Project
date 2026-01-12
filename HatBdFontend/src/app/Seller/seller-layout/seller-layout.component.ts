@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import {
   RouterOutlet,
   RouterLink,
@@ -18,7 +20,10 @@ import {
   templateUrl: './seller-layout.component.html',
   styleUrls: ['./seller-layout.component.css']
 })
+
 export class SellerLayoutComponent {
+
+  constructor(private http: HttpClient, private router: Router) {}
   showProfileMenu = false;
 
   toggleProfile() {
@@ -26,6 +31,6 @@ export class SellerLayoutComponent {
   }
 
   logout() {
-    console.log("logout seller");
+    this.router.navigate(['/login']);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 
@@ -20,10 +20,14 @@ export class SellerDashboardComponent implements OnInit {
 
   sellerId!: number;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.sellerId = Number(localStorage.getItem('sellerId'));
+    // 🔧 FIX: sellerId safe read (ager code remove kori nai)
+    this.sellerId = Number(
+      localStorage.getItem('sellerId') || localStorage.getItem('userId')
+    ) || 0;
+
     this.loadProducts();
   }
 
@@ -34,10 +38,22 @@ export class SellerDashboardComponent implements OnInit {
         next: (res) => {
           console.log('Seller products', res);
 
-          this.products = res;               // ✅ array assign
-          this.totalOrders = 0;              // later API
-          this.pendingOrders = res.filter(p => p.status === 'Pending').length; // ✅
-          this.totalEarnings = 0;             // later API
+          this.products = res;             
+          this.cdr.detectChanges();
+
+          // 🔹 total orders
+          this.totalOrders = res.length;
+
+          // 🔹 pending orders (ager logic unchanged)
+          this.pendingOrders = res.filter(p => p.status === 'Pending').length;
+
+          // 🔹 FIX: total earnings calculation (NEW)
+          this.totalEarnings = res
+            .reduce((sum, p) => {
+              const price = Number(p.price) || 0;
+              const qty = Number(p.stockquantity) || 1;
+              return sum + (price * qty);
+            }, 0);
         },
         error: (err) => {
           console.error('Dashboard API error', err);
