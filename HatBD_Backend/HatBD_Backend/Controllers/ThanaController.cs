@@ -78,7 +78,7 @@ namespace HatBD_Backend.Controllers
 
             using (var connection = _context.CreateConnection())
             {
-                var result = connection.Query<Thana>(query, parameters, commandType: CommandType.StoredProcedure);
+                var result = connection.Query<dynamic>(query, parameters, commandType: CommandType.StoredProcedure);
                 return Ok(result);
             }
         }

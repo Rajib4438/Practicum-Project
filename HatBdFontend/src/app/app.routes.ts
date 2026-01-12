@@ -34,6 +34,7 @@ import { ShowOrderComponent } from './Seller/seller-show-order/seller-show-order
 import { DistrictComponent } from './Admin/district/district.component';
 import { ThanaComponent } from './Admin/thana/thana.component';
 import { AreaComponent } from './Admin/area/area.component';
+import { RiderComponent } from './Seller/rider/rider.component';
 
 export const routes: Routes = [
 
@@ -87,7 +88,8 @@ export const routes: Routes = [
       { path: 'dashboard', component: SellerDashboardComponent },
       { path: 'products', component: SellerMyProductComponent },
       { path: 'profile', component: SellerProfileComponent },
-      { path: 'orders', component: ShowOrderComponent }
+      { path: 'orders', component: ShowOrderComponent },
+      { path: 'rider', component: RiderComponent }
     ]
   },
 

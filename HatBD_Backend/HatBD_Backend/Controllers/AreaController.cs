@@ -68,7 +68,6 @@ namespace HatBD_Backend.Controllers
             }
         }
 
-        // Select All
         [HttpGet("GetAll")]
         public IActionResult GetAll()
         {
@@ -78,10 +77,15 @@ namespace HatBD_Backend.Controllers
 
             using (var connection = _context.CreateConnection())
             {
-                var result = connection.Query<Area>(query, parameters, commandType: CommandType.StoredProcedure);
+                var result = connection.Query<Area>(
+                    query,
+                    parameters,
+                    commandType: CommandType.StoredProcedure
+                );
                 return Ok(result);
             }
         }
+
 
         // Select By Id
         [HttpGet("GetById/{id}")]

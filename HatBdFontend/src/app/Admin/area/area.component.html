@@ -1,16 +1,26 @@
 <div class="container">
-  <h2>Areas</h2>
+  <h2>Area Management</h2>
 
+  <!-- Existing UI (unchanged) -->
   <label>District</label>
-  <select class="form-control" [(ngModel)]="selectedDistrictId" (change)="onDistrictChange()">
+  <select class="form-control"
+          [(ngModel)]="selectedDistrictId"
+          (change)="onDistrictChange()">
     <option value="" disabled>Select District</option>
-    <option *ngFor="let d of districts" [value]="d.districtId">{{ d.districtName }}</option>
+    <option *ngFor="let d of districts" [value]="d.districtId">
+      {{ d.districtName }}
+    </option>
   </select>
 
-  <label *ngIf="thanas.length > 0">Thana</label>
-  <select class="form-control" *ngIf="thanas.length > 0" [(ngModel)]="selectedThanaId" (change)="onThanaChange()">
+  <label *ngIf="thanas.length">Thana</label>
+  <select class="form-control"
+          *ngIf="thanas.length"
+          [(ngModel)]="selectedThanaId"
+          (change)="onThanaChange()">
     <option value="" disabled>Select Thana</option>
-    <option *ngFor="let t of thanas" [value]="t.thanaId">{{ t.thanaName }}</option>
+    <option *ngFor="let t of thanas" [value]="t.ThanaId">
+      {{ t.ThanaName }}
+    </option>
   </select>
 
   <ul>
@@ -18,7 +28,70 @@
   </ul>
 
   <div class="input-group mt-2" *ngIf="selectedThanaId">
-    <input type="text" class="form-control" placeholder="New Area Name" [(ngModel)]="newAreaName">
+    <input type="text"
+           class="form-control"
+           placeholder="New Area Name"
+           [(ngModel)]="newAreaName">
     <button class="btn btn-primary" (click)="addArea()">Add Area</button>
   </div>
+
+  <hr />
+
+  <!-- 🔹 TABLE WITH ACTIONS -->
+  <h3>All Areas</h3>
+  <table class="table table-bordered table-sm">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Area</th>
+        <th>Thana</th>
+        <th>District</th>
+        <th style="width:160px">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let a of allAreas; let i = index">
+        <td>{{ i + 1 }}</td>
+
+        <!-- Area Name / Edit -->
+        <td>
+          <span *ngIf="editingAreaId !== a.areaId">
+            {{ a.areaName }}
+          </span>
+          <input *ngIf="editingAreaId === a.areaId"
+                 class="form-control form-control-sm"
+                 [(ngModel)]="editAreaName">
+        </td>
+
+        <td>{{ a.thanaName }}</td>
+        <td>{{ a.districtName }}</td>
+
+        <!-- Actions -->
+        <td>
+          <button *ngIf="editingAreaId !== a.areaId"
+                  class="btn btn-sm btn-warning me-1"
+                  (click)="startEdit(a)">
+            Edit
+          </button>
+
+          <button *ngIf="editingAreaId === a.areaId"
+                  class="btn btn-sm btn-success me-1"
+                  (click)="updateArea(a)">
+            Save
+          </button>
+
+          <button *ngIf="editingAreaId === a.areaId"
+                  class="btn btn-sm btn-secondary me-1"
+                  (click)="cancelEdit()">
+            Cancel
+          </button>
+
+          <button class="btn btn-sm btn-danger"
+                  (click)="deleteArea(a.areaId)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

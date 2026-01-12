@@ -1,17 +1,13 @@
 .container {
-  max-width: 500px;
-  margin: 20px auto;
+  max-width: 600px;
+  margin: 30px auto;
 }
 
 .input-group {
   display: flex;
+  gap: 10px;
 }
 
-.input-group input {
-  flex: 1;
-  margin-right: 10px;
-}
-
-.input-group button {
-  width: 120px;
+.table {
+  text-align: center;
 }

@@ -36,10 +36,10 @@ namespace HatBD_Backend.Controllers
 
             var sql = @"
                 INSERT INTO UserRegistration
-                (RegisterAs, FullName, Email, Phone, UserName, Password, Gender, IsApproved)
+                (RegisterAs, FullName, Email, Phone, UserName, Password, Gender, IsApproved, Address)
                 VALUES
                 (@RegisterAs, @FullName, @Email, @Phone, @UserName, @Password, @Gender,
-                 CASE WHEN @RegisterAs = 'Seller' THEN 0 ELSE 1 END)";
+                 CASE WHEN @RegisterAs = 'Seller' OR @RegisterAs = 'Rider' THEN 0 ELSE 1 END, @Address)";
 
             await con.ExecuteAsync(sql, user);
 
@@ -70,17 +70,17 @@ namespace HatBD_Backend.Controllers
             if (!user.IsApproved)
                 return Unauthorized("Account not approved");
 
-            // 🔥 ONLY FIX IS HERE (Phone added)
             return Ok(new
             {
                 user.Id,
                 user.FullName,
-                user.Phone,        // ✅ added (REQUIRED for checkout auto-fill)
-                user.RegisterAs
+                user.Phone,
+                user.RegisterAs,
+                user.Address // ✅ Include Address in login response
             });
         }
 
-        // ================= SELLER APPROVAL (ADMIN) =================
+        // ================= SELLER & RIDER APPROVAL (ADMIN) =================
         [HttpPut("approve-seller/{id}")]
         public async Task<IActionResult> ApproveSeller(int id)
         {
@@ -89,16 +89,16 @@ namespace HatBD_Backend.Controllers
             var rows = await con.ExecuteAsync(
                 @"UPDATE UserRegistration
                   SET IsApproved = 1
-                  WHERE Id = @Id AND RegisterAs = 'Seller'",
+                  WHERE Id = @Id AND (RegisterAs = 'Seller' OR RegisterAs = 'Rider')",
                 new { Id = id });
 
             if (rows == 0)
-                return NotFound("Seller not found");
+                return NotFound("User not found or already approved");
 
-            return Ok("Seller Approved");
+            return Ok("User Approved");
         }
 
-        // ================= GET ALL USERS (ADMIN) =================
+        // ================= GET ALL USERS =================
         [HttpGet("all")]
         public async Task<IActionResult> GetAllUsers()
         {
@@ -110,14 +110,14 @@ namespace HatBD_Backend.Controllers
             return Ok(users);
         }
 
-        // ================= GET USER BY ID =================
+        // ================= GET USER PROFILE =================
         [HttpGet("profile/{id}")]
         public async Task<IActionResult> GetUserProfile(int id)
         {
             using var con = _context.CreateConnection();
 
             var user = await con.QuerySingleOrDefaultAsync<UserRegistration>(
-                @"SELECT Id, RegisterAs, FullName, Email, Phone, UserName, Gender, CreatedAT
+                @"SELECT Id, RegisterAs, FullName, Email, Phone, UserName, Gender, Address, CreatedAT
                   FROM UserRegistration
                   WHERE Id = @Id",
                 new { Id = id });
@@ -129,40 +129,23 @@ namespace HatBD_Backend.Controllers
         }
 
 
-        // ================= GET ADMIN PROFILE =================
-        [HttpGet("admin-profile/{id}")]
-        public async Task<IActionResult> GetAdminProfile(int id)
+        [HttpGet("riders")]
+        public async Task<IActionResult> GetRiders()
         {
             using var con = _context.CreateConnection();
 
-            var admin = await con.QuerySingleOrDefaultAsync<UserRegistration>(
-                @"SELECT Id, RegisterAs, FullName, Email, Phone, UserName, Gender, CreatedAT, IsApproved
+            var riders = await con.QueryAsync(
+                @"SELECT 
+            Id,
+            FullName,
+            Phone,
+            Email,
+            Address
           FROM UserRegistration
-          WHERE Id = @Id AND RegisterAs = 'Admin'",
-                new { Id = id });
+          WHERE RegisterAs = 'Rider'
+            AND IsApproved = 1");
 
-            if (admin == null)
-                return NotFound("Admin not found");
-
-            return Ok(admin);
-        }
-
-        // ================= GET SELLER PROFILE =================
-        [HttpGet("seller-profile/{id}")]
-        public async Task<IActionResult> GetSellerProfile(int id)
-        {
-            using var con = _context.CreateConnection();
-
-            var seller = await con.QuerySingleOrDefaultAsync<UserRegistration>(
-                @"SELECT Id, RegisterAs, FullName, Email, Phone, UserName, Gender, CreatedAT, IsApproved
-          FROM UserRegistration
-          WHERE Id = @Id AND RegisterAs = 'Seller'",
-                new { Id = id });
-
-            if (seller == null)
-                return NotFound("Seller not found");
-
-            return Ok(seller);
+            return Ok(riders);
         }
 
 

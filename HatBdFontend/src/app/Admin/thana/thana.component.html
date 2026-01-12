@@ -1,18 +1,71 @@
 <div class="container">
-  <h2>Thanas</h2>
+  <h3>District wise Thana Entry</h3>
 
-  <label>District</label>
-  <select class="form-control" [(ngModel)]="selectedDistrictId" (change)="onDistrictChange()">
-    <option value="" disabled>Select District</option>
-    <option *ngFor="let d of districts" [value]="d.districtId">{{ d.districtName }}</option>
+  <!-- District Select -->
+  <label class="form-label">Select District</label>
+  <select
+    class="form-control"
+    [(ngModel)]="selectedDistrictId"
+    (change)="onDistrictChange()">
+
+    <option value="" disabled selected>Select District</option>
+    <option *ngFor="let d of districts" [ngValue]="d.districtId">
+      {{ d.districtName }}
+    </option>
   </select>
 
-  <ul>
-    <li *ngFor="let t of thanas">{{ t.thanaName }}</li>
-  </ul>
+  <!-- Add Thana -->
+  <div class="input-group mt-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Enter Thana Name"
+      [(ngModel)]="newThanaName">
 
-  <div class="input-group mt-2">
-    <input type="text" class="form-control" placeholder="New Thana Name" [(ngModel)]="newThanaName">
-    <button class="btn btn-primary" (click)="addThana()">Add Thana</button>
+    <button class="btn btn-success" (click)="addThana()">
+      Add
+    </button>
   </div>
+
+  <!-- Show ONLY Added Thanas (Table) -->
+  <table
+    class="table table-bordered table-hover mt-4"
+    *ngIf="allThanas.length > 0">
+
+    <thead class="table-dark">
+      <tr>
+        <th>#</th>
+        <th>Thana Name</th>
+        <th>District</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let t of allThanas; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ t.ThanaName }}</td>
+        <td>{{ t.DistrictName }}</td>
+        <td>
+          <button
+            class="btn btn-danger btn-sm"
+            (click)="editThana(t)">
+            Edit
+          </button>
+          <button
+            class="btn btn-danger btn-sm"
+            (click)="deleteThana(t.ThanaId)">
+            Delete
+          </button>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- No Data -->
+  <p class="text-muted mt-3"
+     *ngIf="selectedDistrictId && thanas.length === 0">
+    No thana added for this district yet.
+  </p>
 </div>

@@ -40,7 +40,8 @@ export class Login {
           localStorage.setItem(
             'currentUser',
             JSON.stringify({
-              id: response.id
+              id: response.id,
+              registerAs: response.registerAs
             })
           );
 
@@ -57,30 +58,26 @@ export class Login {
           console.log('Login Success:', response);
 
           // ================================
-          // 🔀 ADMIN REDIRECT (UNCHANGED)
+          // 🔀 REDIRECT BASED ON ROLE
           // ================================
-          if (response.registerAs === 'Admin') {
-            this.router.navigate(['/layout']).then(() => {
-              window.location.reload();
-            });
-            return;
+          switch(response.registerAs) {
+            case 'Admin':
+              this.router.navigate(['/layout']).then(() => window.location.reload());
+              break;
+
+            case 'Seller':
+              this.router.navigate(['/seller']).then(() => window.location.reload());
+              break;
+
+            case 'Rider':
+              // Rider redirect page (example: /rider-dashboard)
+              this.router.navigate(['/rider-dashboard']).then(() => window.location.reload());
+              break;
+
+            default:
+              // Buyer / Normal User
+              this.router.navigate(['/']).then(() => window.location.reload());
           }
-
-          // seller redirect
-          if (response.registerAs === 'Seller') {
-            this.router.navigate(['/seller']).then(() => {
-              window.location.reload();
-            });
-            return;
-          }
-
-          // ================================
-          // 🔀 NORMAL USER REDIRECT (UNCHANGED)
-          // ================================
-          this.router.navigate(['/']).then(() => {
-            window.location.reload();
-          });
-
         },
         (err: HttpErrorResponse) => {
           alert('Login Failed! Invalid credentials.');

@@ -1,0 +1,12 @@
+.container {
+  max-width: 1000px;
+  margin: auto;
+}
+
+table th, table td {
+  vertical-align: middle !important;
+}
+
+button {
+  min-width: 100px;
+}

@@ -4,6 +4,9 @@
     {
         public int AreaId { get; set; }
         public string AreaName { get; set; }
-        public int ThanaId { get; set; }
+
+        public string ThanaName { get; set; }
+        public string DistrictName { get; set; }
+        public object? ThanaId { get; internal set; }
     }
 }

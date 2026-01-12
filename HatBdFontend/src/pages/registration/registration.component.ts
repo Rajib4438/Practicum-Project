@@ -8,26 +8,29 @@ import { Router, RouterLink } from '@angular/router';
   standalone: true,
   imports: [FormsModule,HttpClientModule,RouterLink],
   templateUrl: './registration.component.html',
-  styleUrl: './registration.component.css',
+  styleUrls: ['./registration.component.css'],
 })
 export class Registration {
 
-registerData = {
-    registerAs: '',
-    fullName: '',
-    email: '',
-    phone: '',
-    userName: '',
-    password: '',
-    gender: '',
-    isApproved: false
+  registerData = {
+      registerAs: '',
+      fullName: '',
+      email: '',
+      phone: '',
+      userName: '',
+      password: '',
+      gender: '',
+      address: '', // ✅ Address field
+      isApproved: false
   };
+
   constructor(private http:HttpClient,private router:Router) {}
-submit(){
-    this.http.post('https://localhost:7290/api/UserRegistration/register',this.registerData).subscribe((data:any)=>{
-       this.router.navigate(['login']);
-    },(error:HttpErrorResponse)=>{
-      console.log(error);
-    })
-}
+
+  submit(){
+      this.http.post('https://localhost:7290/api/UserRegistration/register',this.registerData).subscribe((data:any)=>{
+         this.router.navigate(['login']);
+      },(error:HttpErrorResponse)=>{
+        console.log(error);
+      })
+  }
 }
