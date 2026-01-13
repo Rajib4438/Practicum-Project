@@ -3,7 +3,11 @@ using HatBD_Backend.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add services to the Bkashhhh.
+builder.Services.AddHttpClient<HatBD_Backend.Services.BKashService>(client =>
+{
+    client.Timeout = TimeSpan.FromSeconds(30);
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -13,6 +17,10 @@ builder.Services.AddSingleton<DapperContext>();
 builder.Services.AddScoped<EmailService>();
 builder.Services.AddScoped<DapperContext>();
 builder.Services.AddScoped<EmailService>();
+
+//Bkashshsss
+builder.Services.AddScoped<HatBD_Backend.Services.IBKashService,
+    HatBD_Backend.Services.BKashService>();
 
 
 builder.Services.AddCors(option =>

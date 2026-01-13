@@ -31,6 +31,7 @@ export class SellerLayoutComponent {
   }
 
   logout() {
+    localStorage.clear();
     this.router.navigate(['/login']);
   }
 }

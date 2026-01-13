@@ -3,6 +3,50 @@
   "WorkspaceRootPath": "C:\\Practicum-Project\\HatBD_Backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|c:\\practicum-project\\hatbd_backend\\hatbd_backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|solutionrelative:hatbd_backend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|c:\\practicum-project\\hatbd_backend\\hatbd_backend\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|solutionrelative:hatbd_backend\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|c:\\practicum-project\\hatbd_backend\\hatbd_backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|solutionrelative:hatbd_backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|c:\\practicum-project\\hatbd_backend\\hatbd_backend\\services\\bkashservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|solutionrelative:hatbd_backend\\services\\bkashservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|c:\\practicum-project\\hatbd_backend\\hatbd_backend\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|solutionrelative:hatbd_backend\\models\\payment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|c:\\practicum-project\\hatbd_backend\\hatbd_backend\\services\\ibkash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|solutionrelative:hatbd_backend\\services\\ibkash.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|c:\\practicum-project\\hatbd_backend\\hatbd_backend\\model\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|solutionrelative:hatbd_backend\\model\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|c:\\practicum-project\\hatbd_backend\\hatbd_backend\\controllers\\areacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|solutionrelative:hatbd_backend\\controllers\\areacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|c:\\practicum-project\\hatbd_backend\\hatbd_backend\\model\\area.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|solutionrelative:hatbd_backend\\model\\area.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|c:\\practicum-project\\hatbd_backend\\hatbd_backend\\model\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|solutionrelative:hatbd_backend\\model\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|c:\\practicum-project\\hatbd_backend\\hatbd_backend\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|solutionrelative:hatbd_backend\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|c:\\practicum-project\\hatbd_backend\\hatbd_backend\\controllers\\usersregistrationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|solutionrelative:hatbd_backend\\controllers\\usersregistrationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -26,15 +70,153 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 9,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{56df62a4-05a3-4e5b-aa1a-99371ccfb997}"
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Program.cs",
+              "RelativeDocumentMoniker": "HatBD_Backend\\Program.cs",
+              "ToolTip": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Program.cs",
+              "RelativeToolTip": "HatBD_Backend\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-13T10:24:16.115Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Order.cs",
+              "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Model\\Order.cs",
+              "RelativeDocumentMoniker": "HatBD_Backend\\Model\\Order.cs",
+              "ToolTip": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Model\\Order.cs",
+              "RelativeToolTip": "HatBD_Backend\\Model\\Order.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAzwAkAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-13T10:11:35.876Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "OrderController.cs",
+              "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Controllers\\OrderController.cs",
+              "RelativeDocumentMoniker": "HatBD_Backend\\Controllers\\OrderController.cs",
+              "ToolTip": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Controllers\\OrderController.cs",
+              "RelativeToolTip": "HatBD_Backend\\Controllers\\OrderController.cs",
+              "ViewState": "AgIAAGcAAAAAAAAAAAAAAHIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-13T09:51:02.937Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "bKashService.cs",
+              "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Services\\bKashService.cs",
+              "RelativeDocumentMoniker": "HatBD_Backend\\Services\\bKashService.cs",
+              "ToolTip": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Services\\bKashService.cs*",
+              "RelativeToolTip": "HatBD_Backend\\Services\\bKashService.cs*",
+              "ViewState": "AgIAAC8AAAAAAAAAAAApwE0AAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-13T09:47:36.541Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IbKash.cs",
+              "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Services\\IbKash.cs",
+              "RelativeDocumentMoniker": "HatBD_Backend\\Services\\IbKash.cs",
+              "ToolTip": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Services\\IbKash.cs",
+              "RelativeToolTip": "HatBD_Backend\\Services\\IbKash.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-13T09:47:22.141Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Payment.cs",
+              "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Models\\Payment.cs",
+              "RelativeDocumentMoniker": "HatBD_Backend\\Models\\Payment.cs",
+              "ToolTip": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Models\\Payment.cs",
+              "RelativeToolTip": "HatBD_Backend\\Models\\Payment.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAIA8wCoAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-13T09:44:06.651Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Area.cs",
+              "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Model\\Area.cs",
+              "RelativeDocumentMoniker": "HatBD_Backend\\Model\\Area.cs",
+              "ToolTip": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Model\\Area.cs",
+              "RelativeToolTip": "HatBD_Backend\\Model\\Area.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAkAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-13T08:20:14.762Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "AreaController.cs",
+              "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Controllers\\AreaController.cs",
+              "RelativeDocumentMoniker": "HatBD_Backend\\Controllers\\AreaController.cs",
+              "ToolTip": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Controllers\\AreaController.cs",
+              "RelativeToolTip": "HatBD_Backend\\Controllers\\AreaController.cs",
+              "ViewState": "AgIAAEYAAAAAAAAAAAAkwEkAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-13T07:59:26.253Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Enums.cs",
+              "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Model\\Enums.cs",
+              "RelativeDocumentMoniker": "HatBD_Backend\\Model\\Enums.cs",
+              "ToolTip": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Model\\Enums.cs",
+              "RelativeToolTip": "HatBD_Backend\\Model\\Enums.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-12T18:36:08.38Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\appsettings.json",
+              "RelativeDocumentMoniker": "HatBD_Backend\\appsettings.json",
+              "ToolTip": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\appsettings.json*",
+              "RelativeToolTip": "HatBD_Backend\\appsettings.json*",
+              "ViewState": "AgIAAAUAAABANDMzM7MuwBcAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-01-12T18:29:25.158Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "HatBD_Backend\\Controllers\\ProductController.cs",
+              "ToolTip": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "HatBD_Backend\\Controllers\\ProductController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBYAAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-12T17:02:46.825Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "RiderDto.cs",
               "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\DTOS\\RiderDto.cs",
               "RelativeDocumentMoniker": "HatBD_Backend\\DTOS\\RiderDto.cs",
@@ -46,7 +228,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 13,
               "Title": "UsersRegistration.cs",
               "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Model\\UsersRegistration.cs",
               "RelativeDocumentMoniker": "HatBD_Backend\\Model\\UsersRegistration.cs",
@@ -58,20 +240,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 11,
               "Title": "UsersRegistrationController.cs",
               "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Controllers\\UsersRegistrationController.cs",
               "RelativeDocumentMoniker": "HatBD_Backend\\Controllers\\UsersRegistrationController.cs",
               "ToolTip": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Controllers\\UsersRegistrationController.cs",
               "RelativeToolTip": "HatBD_Backend\\Controllers\\UsersRegistrationController.cs",
-              "ViewState": "AgIAAIEAAAAAAAAAAAAuwJUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAIEAAAAAAAAAAAAuwIoAAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-12T11:08:43.038Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-12T11:08:43.038Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 14,
               "Title": "DistrictController.cs",
               "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Controllers\\DistrictController.cs",
               "RelativeDocumentMoniker": "HatBD_Backend\\Controllers\\DistrictController.cs",

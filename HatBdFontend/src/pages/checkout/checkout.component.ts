@@ -144,7 +144,9 @@ export class CheckoutComponent implements OnInit {
 
       this.http.post<any>(this.ORDER_API, orderPayload).subscribe({
         next: res => {
-
+        
+              // this.router.navigate([res.paymentUrl])
+             window.open(res.data.paymentUrl, '_blank');
           const orderId = res?.orderId || res?.OrderId;
           if (!orderId) {
             alert('Order ID error');
@@ -164,6 +166,7 @@ export class CheckoutComponent implements OnInit {
 
           this.http.post(this.ORDER_ITEM_API, items).subscribe({
             next: () => {
+             
               alert(`Payment via ${this.paymentMethod} successful`);
             },
             error: () => alert('Payment Successful')

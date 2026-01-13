@@ -1,24 +1,88 @@
-<div class="container mt-4">
+<div style="border:1px solid #ddd; padding:15px; margin-bottom:20px; border-radius:5px;">
+
+  <h3>Add Rider</h3>
+
+  <div style="display:flex; gap:10px; flex-wrap:wrap;">
+
+    <input type="text"
+      placeholder="Rider Name"
+      [(ngModel)]="riderName"
+      style="padding:6px; width:200px;">
+
+    <input type="text"
+      placeholder="Phone"
+      [(ngModel)]="riderPhone"
+      style="padding:6px; width:200px;">
+
+    <input type="text"
+      placeholder="Email"
+      [(ngModel)]="riderEmail"
+      style="padding:6px; width:200px;">
+
+    <select [(ngModel)]="selectedDistrict"
+      (change)="onDistrictChange()"
+      style="padding:6px; width:200px;">
+      <option value="">Select District</option>
+      <option *ngFor="let d of districts" [value]="d.districtId">{{ d.districtName }}</option>
+    </select>
+
+    <select [(ngModel)]="selectedThana"
+      (change)="onThanaChange()"
+      style="padding:6px; width:200px;">
+      <option value="">Select Thana</option>
+      <option *ngFor="let t of thanas" [value]="t.ThanaId">{{ t.ThanaName }}</option>
+    </select>
+
+    <select [(ngModel)]="selectedArea"
+      style="padding:6px; width:200px;">
+      <option value="">Select Area</option>
+      <option *ngFor="let a of areas" [value]="a.areaId">{{ a.areaName }}</option>
+    </select>
+
+    <button (click)="addRider()"
+      style="padding:6px 12px; background:#007bff; border:none; color:#fff; border-radius:4px;">
+      Add Rider
+    </button>
+
+  </div>
+
+</div>
+
+
+<div style="border:1px solid #ddd; padding:15px; border-radius:5px;">
   <h3>Rider List</h3>
 
-  <table class="table table-bordered">
+  <table style="width:100%; border-collapse:collapse;">
     <thead>
-      <tr>
-        <th>Rider ID</th>
-        <th>Name</th>
-        <th>Phone</th>
-        <th>Email</th>
-        <th>Address</th>
+      <tr style="background:#f7f7f7; text-align:left;">
+        <th style="border:1px solid #ddd; padding:8px;">#</th>
+        <th style="border:1px solid #ddd; padding:8px;">Name</th>
+        <th style="border:1px solid #ddd; padding:8px;">Phone</th>
+        <th style="border:1px solid #ddd; padding:8px;">Email</th>
+        <th style="border:1px solid #ddd; padding:8px;">District</th>
+        <th style="border:1px solid #ddd; padding:8px;">Thana</th>
+        <th style="border:1px solid #ddd; padding:8px;">Area</th>
+        <th style="border:1px solid #ddd; padding:8px;">Action</th>
       </tr>
     </thead>
+
     <tbody>
-      <tr *ngFor="let r of riders">
-        <td>{{ r.Id }}</td>
-        <td>{{ r.FullName }}</td>
-        <td>{{ r.Phone }}</td>
-        <td>{{ r.Email }}</td>
-        <td>{{ r.Address }}</td>
+      <tr *ngFor="let r of riderList; let i = index;">
+        <td style="border:1px solid #ddd; padding:8px;">{{ i+1 }}</td>
+        <td style="border:1px solid #ddd; padding:8px;">{{ r.name }}</td>
+        <td style="border:1px solid #ddd; padding:8px;">{{ r.phone }}</td>
+        <td style="border:1px solid #ddd; padding:8px;">{{ r.email }}</td>
+        <td style="border:1px solid #ddd; padding:8px;">{{ r.district }}</td>
+        <td style="border:1px solid #ddd; padding:8px;">{{ r.thana }}</td>
+        <td style="border:1px solid #ddd; padding:8px;">{{ r.area }}</td>
+        <td style="border:1px solid #ddd; padding:8px;">
+          <button (click)="deleteRider(r.id)"
+            style="padding:4px 10px; background:red; color:white; border:none; border-radius:3px;">
+            Delete
+          </button>
+        </td>
       </tr>
     </tbody>
+
   </table>
 </div>

@@ -2,6 +2,8 @@
 using HatBD_Backend.Context;
 using HatBD_Backend.DTOs;
 using HatBD_Backend.Model;
+using HatBD_Backend.Models;
+using HatBD_Backend.Services;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 
@@ -12,10 +14,12 @@ namespace HatBD_Backend.Controllers
     public class OrderController : ControllerBase
     {
         private readonly DapperContext _context;
+        private IBKashService _bKashService;
 
-        public OrderController(DapperContext context)
+        public OrderController(DapperContext context, IBKashService bKashService)
         {
             _context = context;
+            _bKashService = bKashService;
         }
 
         /* ========== GET ALL ORDERS ========== */
@@ -109,7 +113,15 @@ namespace HatBD_Backend.Controllers
                     }
                 }
 
-                return Ok(result);
+                var bkash = await _bKashService.InitiatePaymentAsync(new PaymentRequest
+                {
+                    Amount = dto.TotalPrice,
+                    Currency = "BDT",
+                    MerchantInvoiceNumber = $"INV-{result.OrderId}-{DateTime.UtcNow.Ticks}",
+                    SuccessUrl = "https://localhost:7290/api/Order/Success_URL"
+                });
+
+                return Ok(new {data= bkash , orderId = result.OrderId });
             }
             catch (Exception ex)
             {
@@ -118,6 +130,24 @@ namespace HatBD_Backend.Controllers
             }
           
         }
+
+        [HttpGet("Success_URL")]
+        public IActionResult SuccessUrl([FromQuery] PaymentCallback callback)
+        {
+           
+            return Ok(new
+            {
+                Message = "Payment was successful!",    
+                //PaymentId = callback.PaymentId,
+                //Status = callback.Status,
+                //TransactionStatus = callback.TransactionStatus,
+                //Amount = callback.Amount,
+                //Currency = callback.Currency,
+                //MerchantInvoiceNumber = callback.MerchantInvoiceNumber,
+                //TrxId = callback.TrxId
+            });
+        }
+
 
         /* ========== UPDATE ORDER STATUS (ADMIN) ========== */
         [HttpPut("{id:int}/status")]

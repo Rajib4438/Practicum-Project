@@ -1,12 +1,17 @@
-.container {
-  max-width: 1000px;
-  margin: auto;
+.rider-select {
+  padding: 6px;
+  width: 150px;
 }
 
-table th, table td {
-  vertical-align: middle !important;
+.btn-assign {
+  background: #2e7d32;
+  color: #fff;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  border-radius: 4px;
 }
 
-button {
-  min-width: 100px;
+.btn-assign:hover {
+  background: #1b5e20;
 }
