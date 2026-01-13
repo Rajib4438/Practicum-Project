@@ -1,0 +1,19 @@
+<div class="rider-container">
+
+  <h2 class="title">Assigned Orders</h2>
+
+  <div class="order-list">
+    <div class="order-card" *ngFor="let o of assignedOrders">
+      <div>
+        <h3>{{ o.orderId }}</h3>
+        <p>Customer: {{ o.customer }}</p>
+        <p>Area: {{ o.area }}</p>
+      </div>
+
+      <div>
+        <span class="order-status" [ngClass]="o.status.toLowerCase()">{{ o.status }}</span>
+      </div>
+    </div>
+  </div>
+
+</div>

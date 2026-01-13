@@ -85,7 +85,7 @@ export class RiderComponent implements OnInit {
       areaId: this.selectedArea
     };
 
-    this.http.post(this.baseUrl + "Rider/Add", data)
+    this.http.post(this.baseUrl + "Rider/Create", data)
       .subscribe(() => {
         this.loadRiders();
         this.resetForm();

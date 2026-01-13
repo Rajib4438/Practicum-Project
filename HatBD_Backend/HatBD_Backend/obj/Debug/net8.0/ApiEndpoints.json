@@ -900,6 +900,64 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "HatBD_Backend.Controllers.RiderController",
+    "Method": "Create",
+    "RelativePath": "api/Rider/Create",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "HatBD_Backend.Model.Rider",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HatBD_Backend.Controllers.RiderController",
+    "Method": "Delete",
+    "RelativePath": "api/Rider/Delete/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HatBD_Backend.Controllers.RiderController",
+    "Method": "Get",
+    "RelativePath": "api/Rider/Get",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HatBD_Backend.Controllers.RiderController",
+    "Method": "Update",
+    "RelativePath": "api/Rider/Update",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "model",
+        "Type": "HatBD_Backend.Model.Rider",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "HatBD.Controllers.SubCategoryController",
     "Method": "GetAll",
     "RelativePath": "api/SubCategory",

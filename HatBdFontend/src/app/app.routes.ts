@@ -92,7 +92,12 @@ export const routes: Routes = [
       { path: 'rider', component: RiderComponent }
     ]
   },
-
+{ path: 'rider', component: RiderComponent },
   // ================= FALLBACK =================
   { path: '**', redirectTo: '' }
+
+  //-------------Rider------------
+
 ];
+
+

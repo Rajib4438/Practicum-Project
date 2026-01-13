@@ -56,7 +56,7 @@ export class Login {
           );
 
           console.log('Login Success:', response);
-
+debugger;
           // ================================
           // 🔀 REDIRECT BASED ON ROLE
           // ================================
@@ -71,7 +71,7 @@ export class Login {
 
             case 'Rider':
               // Rider redirect page (example: /rider-dashboard)
-              this.router.navigate(['/rider-dashboard']).then(() => window.location.reload());
+              this.router.navigate(['/rider']).then(() => window.location.reload());
               break;
 
             default:
