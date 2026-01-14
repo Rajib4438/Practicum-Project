@@ -39,6 +39,15 @@ export class CheckoutComponent implements OnInit {
   private ORDER_ITEM_API = 'https://localhost:7290/api/OrderItem';
   private USER_API = 'https://localhost:7290/api/UserRegistration/all';
 
+  // ================== District → Thana → Area ==================
+  districts: any[] = [];
+  thanas: any[] = [];
+  areas: any[] = [];
+
+  selectedDistrict: any = '';
+  selectedThana: any = '';
+  selectedArea: any = '';
+
   constructor(
     private router: Router,
     private http: HttpClient,
@@ -76,6 +85,9 @@ export class CheckoutComponent implements OnInit {
         }
       }
     });
+
+    // 🔹 Load Districts for cascading select
+    this.loadDistrict();
   }
 
   getCurrentUser(): any {
@@ -83,6 +95,38 @@ export class CheckoutComponent implements OnInit {
       return JSON.parse(localStorage.getItem('currentUser') || '');
     } catch {
       return null;
+    }
+  }
+
+  // ================== District → Thana → Area ==================
+  loadDistrict() {
+    this.http.get("https://localhost:7290/api/District/Get")
+      .subscribe((res: any) => {
+        debugger;
+        this.districts = res;
+      });
+  }
+
+  onDistrictChange() {
+    if (!this.selectedDistrict) {
+      this.thanas = [];
+      this.areas = [];
+      return;
+    }
+
+    this.http.get("https://localhost:7290/api/Thana/GetAll").subscribe((res: any) => {
+      this.thanas = res.filter((t: any) => t.DistrictId === Number(this.selectedDistrict));
+      this.areas = [];
+    });
+  }
+
+  onThanaChange() {
+    this.areas = [];
+    if (this.selectedThana) {
+      this.http.get<any[]>("https://localhost:7290/api/Area/GetAll").subscribe(res => {
+        debugger;
+        this.areas = res.filter(a => a.thanaId === Number(this.selectedThana));
+      });
     }
   }
 
@@ -107,16 +151,6 @@ export class CheckoutComponent implements OnInit {
   }
 
   onSendPayment() {
-    // if (!this.paymentMethod || !this.mobileNumber) {
-    //   alert('Enter payment details');
-    //   return;
-    // }
-
-    // if (!this.askForCode) {
-    //   this.askForCode = true;
-    //   return;
-    // }
-
     this.makePayment();
   }
 
@@ -135,25 +169,26 @@ export class CheckoutComponent implements OnInit {
         name: this.customer.fullName,
         phoneNumber: this.customer.phone,
         address: this.customer.address,
+        districtId: Number(this.selectedDistrict),
+        thanaId: Number(this.selectedThana),
+        areaId: Number(this.selectedArea),
         paymentMethod: this.paymentMethod,
         status: 'Paid',
         totalPrice: this.totalPrice(),
         totalDiscount: 0,
-        cartIds: this.cartItems().map(item => item.cartId)
+        cartIds: this.cartItems().map(item => item.cartId),
+
       };
 
       this.http.post<any>(this.ORDER_API, orderPayload).subscribe({
         next: res => {
-        
-              // this.router.navigate([res.paymentUrl])
-             window.open(res.data.paymentUrl, '_blank');
+          window.open(res.data.paymentUrl, '_blank');
           const orderId = res?.orderId || res?.OrderId;
           if (!orderId) {
             alert('Order ID error');
             return;
           }
 
-          // ✅ FIX: invoiceOrderId SET করা হলো
           this.invoiceOrderId = orderId;
 
           const items = this.cartItems().map(item => ({
@@ -165,10 +200,7 @@ export class CheckoutComponent implements OnInit {
           }));
 
           this.http.post(this.ORDER_ITEM_API, items).subscribe({
-            next: () => {
-             
-              alert(`Payment via ${this.paymentMethod} successful`);
-            },
+            next: () => alert(`Payment via ${this.paymentMethod} successful`),
             error: () => alert('Payment Successful')
           });
         },

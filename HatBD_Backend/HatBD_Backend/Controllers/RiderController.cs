@@ -1,7 +1,6 @@
 ﻿using Dapper;
 using HatBD_Backend.Context;
 using HatBD_Backend.Model;
-using HatBD_Backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 
@@ -18,7 +17,7 @@ namespace HatBD_Backend.Controllers
             _context = context;
         }
 
-        // GET - Select (Top 1000)
+        // ================= GET =================
         [HttpGet("Get")]
         public async Task<IActionResult> Get()
         {
@@ -30,22 +29,33 @@ namespace HatBD_Backend.Controllers
 
             return Ok(result);
         }
+        [HttpGet("GetRiderBySellerId")]
+        public async Task<IActionResult> GetRiderBySellerId(int id)
+        {
+            using var con = _context.CreateConnection();
+            var result = await con.QueryAsync<dynamic>(
+                "SP_Rider",
+                new { flag = 5, SellerId = id },
+                commandType: CommandType.StoredProcedure);
 
-        // POST - Create
+            return Ok(result);
+        }
+
+        // ================= CREATE =================
         [HttpPost("Create")]
         public async Task<IActionResult> Create([FromBody] Rider model)
         {
             using var con = _context.CreateConnection();
+
             var exists = await con.ExecuteScalarAsync<int>(
-               @$"SELECT COUNT(*) FROM UserRegistration
-                  WHERE Email = '{model.Email}'");
+                $"SELECT COUNT(*) FROM UserRegistration WHERE Email = '{model.Email}'");
 
             if (exists > 0)
                 return BadRequest("Duplicate Email / Phone / Username");
 
             var pass = BCrypt.Net.BCrypt.HashPassword(model.Email);
 
-            var sql = @$"
+            var sql = $@"
 INSERT INTO UserRegistration
 (RegisterAs, FullName, Email, Phone, UserName, Password, Gender, IsApproved)
 VALUES
@@ -55,36 +65,36 @@ SELECT SCOPE_IDENTITY();
 ";
 
             var newUserId = await con.ExecuteScalarAsync<int>(sql);
+
             var result = await con.QueryAsync(
                 "SP_Rider",
                 new
                 {
                     flag = 2,
                     UserId = newUserId,
+                    SellerId = model.SellerId,   // 🔥 LOGIN SELLER ID
                     DistrictId = model.DistrictId,
                     ThanaId = model.ThanaId,
                     AreaId = model.AreaId
                 },
                 commandType: CommandType.StoredProcedure);
 
-           
-
-
             return Ok(result);
         }
 
-        // PUT - Update
+        // ================= UPDATE =================
         [HttpPut("Update")]
         public async Task<IActionResult> Update([FromBody] Rider model)
         {
             using var con = _context.CreateConnection();
+
             var result = await con.QueryAsync(
                 "SP_Rider",
                 new
                 {
                     flag = 3,
                     RiderId = model.RiderId,
-                    
+                    SellerId = model.SellerId,   // 🔥 allow re-assign
                     DistrictId = model.DistrictId,
                     ThanaId = model.ThanaId,
                     AreaId = model.AreaId
@@ -94,11 +104,12 @@ SELECT SCOPE_IDENTITY();
             return Ok(result);
         }
 
-        // DELETE
+        // ================= DELETE =================
         [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             using var con = _context.CreateConnection();
+
             var result = await con.QueryAsync(
                 "SP_Rider",
                 new

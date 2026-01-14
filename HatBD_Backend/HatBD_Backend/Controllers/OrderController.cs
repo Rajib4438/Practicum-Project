@@ -69,67 +69,62 @@ namespace HatBD_Backend.Controllers
 
             return Ok(order);
         }
+        /* ========== assigen order ========== */
 
-        /* ========== CREATE ORDER ========== */
         [HttpPost]
         public async Task<IActionResult> CreateOrder([FromBody] OrderCreateDto dto)
         {
-            try
-            {
-                using var con = _context.CreateConnection();
+            using var con = _context.CreateConnection();
 
-                var result = await con.QueryFirstAsync(
-                    "SP_order",
-                    new
-                    {
-                        flag = 2,
-                        userid = dto.UserId,
-                        name = dto.Name,
-                        phonenumber = dto.PhoneNumber,
-                        address = dto.Address,
-                        paymentmethod = dto.PaymentMethod,
-                        totalprice = dto.TotalPrice,
-                        totaldiscount = dto.TotalDiscount
-                    },
-                    commandType: CommandType.StoredProcedure
-                );
-
-
-                if (result != null)
+            var result = await con.QueryFirstAsync(
+                "SP_order",
+                new
                 {
-                    foreach (var item in dto.cartIds)
-                    {
-                        var orderItems = await con.QueryFirstAsync(
-                  "SP_order_item",
-                  new
-                  {
-                      flag = 1,
-                      orderid = result.OrderId,
-                      cartId = item
-                  },
-                  commandType: CommandType.StoredProcedure
-              );
+                    flag = 2,
+                    userid = dto.UserId,
+                    name = dto.Name,
+                    phonenumber = dto.PhoneNumber,
+                    address = dto.Address,
+                    paymentmethod = dto.PaymentMethod,
+                    totalprice = dto.TotalPrice,
+                    totaldiscount = dto.TotalDiscount,
 
-                    }
+                    // ✅ NEW (SP requires these)
+                    DistrictId = dto.DistrictId,
+                    ThanaId = dto.ThanaId,
+                    AreaId = dto.AreaId
+                },
+                commandType: CommandType.StoredProcedure
+            );
+
+            if (result != null && dto.cartIds != null)
+            {
+                foreach (var item in dto.cartIds)
+                {
+                    await con.QueryFirstAsync(
+                        "SP_order_item",
+                        new
+                        {
+                            flag = 1,
+                            orderid = result.OrderId,
+                            cartId = item
+                        },
+                        commandType: CommandType.StoredProcedure
+                    );
                 }
-
-                var bkash = await _bKashService.InitiatePaymentAsync(new PaymentRequest
-                {
-                    Amount = dto.TotalPrice,
-                    Currency = "BDT",
-                    MerchantInvoiceNumber = $"INV-{result.OrderId}-{DateTime.UtcNow.Ticks}",
-                    SuccessUrl = "https://localhost:7290/api/Order/Success_URL"
-                });
-
-                return Ok(new {data= bkash , orderId = result.OrderId });
             }
-            catch (Exception ex)
+
+            var bkash = await _bKashService.InitiatePaymentAsync(new PaymentRequest
             {
+                Amount = dto.TotalPrice,
+                Currency = "BDT",
+                MerchantInvoiceNumber = $"INV-{result.OrderId}-{DateTime.UtcNow.Ticks}",
+                SuccessUrl = "https://localhost:7290/api/Order/Success_URL"
+            });
 
-                throw;
-            }
-          
+            return Ok(new { data = bkash, orderId = result.OrderId });
         }
+
 
         [HttpGet("Success_URL")]
         public IActionResult SuccessUrl([FromQuery] PaymentCallback callback)

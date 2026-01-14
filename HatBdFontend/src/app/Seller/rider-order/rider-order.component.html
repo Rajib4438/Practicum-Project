@@ -1,0 +1,26 @@
+<div class="content">
+  <h2 class="title">My Assigned Orders</h2>
+
+  <div class="order-list">
+    <div class="order-card" *ngFor="let o of assignedOrders">
+      <div>
+        <h3>{{ o.orderId }}</h3>
+        <p>Seller: {{ o.seller }}</p>
+        <p>Customer: {{ o.customer }}</p>
+        <p>Area: {{ o.area }}</p>
+      </div>
+
+      <div class="order-actions">
+        <span class="order-status" [ngClass]="o.status.toLowerCase().replace(' ', '-')">
+          {{ o.status }}
+        </span>
+
+        <select [(ngModel)]="o.status" (change)="updateStatus(o, o.status)">
+          <option value="Pending">Pending</option>
+          <option value="On Delivery">On Delivery</option>
+          <option value="Delivered">Delivered</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>

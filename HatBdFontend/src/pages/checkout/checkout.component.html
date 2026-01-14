@@ -12,9 +12,36 @@
     <label>Phone Number *</label>
     <input type="text" [(ngModel)]="customer.phone" placeholder="01XXXXXXXXX" />
 
-    <label>Address *</label>
+    <!-- Phone Number Field
+<label>Phone Number *</label>
+<input type="text" [(ngModel)]="customer.phone" placeholder="01XXXXXXXXX" /> -->
+
+<!-- 🔹 Cascading Selects: District / Thana / Area -->
+<div class="cascade-selects">
+  <select [(ngModel)]="selectedDistrict" (change)="onDistrictChange()">
+    <option value="">Select District</option>
+    <option *ngFor="let d of districts" [value]="d.districtId">{{ d.districtName }}</option>
+  </select>
+
+  <select [(ngModel)]="selectedThana" (change)="onThanaChange()">
+    <option value="">Select Thana</option>
+    <option *ngFor="let t of thanas" [value]="t.ThanaId">{{ t.ThanaName }}</option>
+  </select>
+
+  <select [(ngModel)]="selectedArea">
+    <option value="">Select Area</option>
+    <option *ngFor="let a of areas" [value]="a.areaId">{{ a.areaName }}</option>
+  </select>
+</div>
+
+<!-- Address Field -->
+<label>Address *</label>
+<textarea [(ngModel)]="customer.address" placeholder="Enter delivery address"></textarea>
+
+
+    <!-- <label>Address *</label>
     <textarea [(ngModel)]="customer.address" placeholder="Enter delivery address"></textarea>
-  </div>
+  </div> -->
 
   <!-- ORDER SUMMARY -->
   <div class="box">

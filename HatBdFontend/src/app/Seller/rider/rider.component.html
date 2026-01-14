@@ -69,12 +69,12 @@
     <tbody>
       <tr *ngFor="let r of riderList; let i = index;">
         <td style="border:1px solid #ddd; padding:8px;">{{ i+1 }}</td>
-        <td style="border:1px solid #ddd; padding:8px;">{{ r.name }}</td>
-        <td style="border:1px solid #ddd; padding:8px;">{{ r.phone }}</td>
-        <td style="border:1px solid #ddd; padding:8px;">{{ r.email }}</td>
-        <td style="border:1px solid #ddd; padding:8px;">{{ r.district }}</td>
-        <td style="border:1px solid #ddd; padding:8px;">{{ r.thana }}</td>
-        <td style="border:1px solid #ddd; padding:8px;">{{ r.area }}</td>
+        <td style="border:1px solid #ddd; padding:8px;">{{ r.FullName }}</td>
+        <td style="border:1px solid #ddd; padding:8px;">{{ r.Phone }}</td>
+        <td style="border:1px solid #ddd; padding:8px;">{{ r.Email }}</td>
+        <td style="border:1px solid #ddd; padding:8px;">{{ r.DistrictName }}</td>
+        <td style="border:1px solid #ddd; padding:8px;">{{ r.ThanaName }}</td>
+        <td style="border:1px solid #ddd; padding:8px;">{{ r.AreaName }}</td>
         <td style="border:1px solid #ddd; padding:8px;">
           <button (click)="deleteRider(r.id)"
             style="padding:4px 10px; background:red; color:white; border:none; border-radius:3px;">

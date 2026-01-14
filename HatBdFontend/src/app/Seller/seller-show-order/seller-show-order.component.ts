@@ -12,21 +12,18 @@ import { RouterLink, RouterModule } from '@angular/router';
 })
 export class ShowOrderComponent implements OnInit {
 
-
-
-  sellerId: number = 0; // seller Id load from localStorage or auth
+  sellerId: number = 0;
   orders: any[] = [];
   loading: boolean = false;
   errorMessage: string = '';
 
-  private apiUrl = 'https://localhost:7290/api/Order/seller'; // তোমার API URL
+  private apiUrl = 'https://localhost:7290/api/Order/seller';
+  private updateStatusUrl = 'https://localhost:7290/api/Order'; // same admin API
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    // ধরছি sellerId localStorage এ আছে
     const storedSellerId = localStorage.getItem('userId');
-    debugger
     if (storedSellerId) this.sellerId = +storedSellerId;
 
     if (this.sellerId > 0) {
@@ -43,12 +40,21 @@ export class ShowOrderComponent implements OnInit {
         this.orders = res;
         this.loading = false;
       },
-      error: (err) => {
-        console.error('Error loading seller orders:', err);
+      error: () => {
         this.errorMessage = 'Failed to load orders';
         this.loading = false;
       }
     });
   }
 
+  // ================= UPDATE STATUS =================
+  updateStatus(orderId: number, status: string): void {
+    this.http.put(`${this.updateStatusUrl}/${orderId}/status`, { status }).subscribe({
+      next: () => {
+        alert('Order status updated');
+        this.loadSellerOrders();
+      },
+      error: () => alert('Failed to update status')
+    });
+  }
 }

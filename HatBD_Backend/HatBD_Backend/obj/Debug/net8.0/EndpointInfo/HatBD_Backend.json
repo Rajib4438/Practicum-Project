@@ -1388,6 +1388,28 @@
         }
       }
     },
+    "/api/Rider/GetRiderBySellerId": {
+      "get": {
+        "tags": [
+          "Rider"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Rider/Create": {
       "post": {
         "tags": [
@@ -2158,6 +2180,21 @@
             "type": "integer",
             "format": "int32",
             "nullable": true
+          },
+          "districtId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "thanaId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "areaId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -2202,6 +2239,21 @@
             "nullable": true
           },
           "sellerId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "districtId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "thanaId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "areaId": {
             "type": "integer",
             "format": "int32",
             "nullable": true
@@ -2270,6 +2322,14 @@
             "type": "integer",
             "format": "int32"
           },
+          "userId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sellerId": {
+            "type": "integer",
+            "format": "int32"
+          },
           "districtId": {
             "type": "integer",
             "format": "int32"
@@ -2288,7 +2348,8 @@
           },
           "updatedAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "name": {
             "type": "string",

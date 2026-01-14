@@ -12,7 +12,11 @@
         public string? Address { get; set; }
         public string? TotalDiscount { get; set; }
         public string? PhoneNumber { get; set; }
-
         public int? SellerId { get; set; }
+
+        // ✅ NEW (DB + SP support)
+        public int? DistrictId { get; set; }
+        public int? ThanaId { get; set; }
+        public int? AreaId { get; set; }
     }
 }

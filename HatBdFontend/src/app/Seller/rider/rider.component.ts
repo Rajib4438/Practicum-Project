@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -28,9 +28,15 @@ export class RiderComponent implements OnInit {
 
   baseUrl = "https://localhost:7290/api/";
 
-  constructor(private http: HttpClient) {}
+  // 🔥 NEW (login seller id)
+  sellerId: number = 0;
+
+  constructor(private http: HttpClient,private cdr:ChangeDetectorRef) {}
 
   ngOnInit() {
+    // 🔥 SellerId auto load
+    this.sellerId = Number(localStorage.getItem('userId')) || 0;
+
     this.loadDistrict();
     this.loadRiders();
   }
@@ -39,39 +45,44 @@ export class RiderComponent implements OnInit {
     this.http.get(this.baseUrl + "District/Get")
       .subscribe((res: any) => {
         this.districts = res;
+       
       });
   }
 
   onDistrictChange() {
-    debugger
     if(!this.selectedDistrict) return;
+
     this.http.get(this.baseUrl + "Thana/GetAll")
       .subscribe((res: any) => {
-        this.thanas = res.filter((t:any) => t.DistrictId === Number(this.selectedDistrict));
-        debugger
+        this.thanas = res.filter((t:any) =>
+          t.DistrictId === Number(this.selectedDistrict)
+        );
         this.areas = [];
       });
-
-
-      
-    }
-  
+  }
 
   onThanaChange() {
-          this.areas = [];
+    this.areas = [];
 
     if (this.selectedThana) {
-      this.http.get<any[]>(this.baseUrl + "Area/GetAll").subscribe({
-        next: res => {
-          debugger;
-          this.areas = res.filter(a => a.thanaId === Number(this.selectedThana));
-        }
-      });
+      this.http.get<any[]>(this.baseUrl + "Area/GetAll")
+        .subscribe(res => {
+          this.areas = res.filter(a =>
+            a.thanaId === Number(this.selectedThana)
+          );
+        });
     }
   }
 
+  // ================= ADD RIDER =================
   addRider() {
-    if(!this.riderName || !this.riderPhone || !this.selectedDistrict || !this.selectedThana || !this.selectedArea) {
+    if(
+      !this.riderName ||
+      !this.riderPhone ||
+      !this.selectedDistrict ||
+      !this.selectedThana ||
+      !this.selectedArea
+    ) {
       alert("All fields are required!");
       return;
     }
@@ -80,11 +91,11 @@ export class RiderComponent implements OnInit {
       name: this.riderName,
       phone: this.riderPhone,
       email: this.riderEmail,
+      sellerId: this.sellerId,       // 🔥 AUTO ASSIGN SELLER
       districtId: this.selectedDistrict,
       thanaId: this.selectedThana,
       areaId: this.selectedArea
     };
-
     this.http.post(this.baseUrl + "Rider/Create", data)
       .subscribe(() => {
         this.loadRiders();
@@ -93,9 +104,11 @@ export class RiderComponent implements OnInit {
   }
 
   loadRiders() {
-    this.http.get(this.baseUrl + "Rider/List")
+
+    this.http.get(this.baseUrl + "Rider/GetRiderBySellerId?id=" + this.sellerId)
       .subscribe((res: any) => {
         this.riderList = res;
+ this.cdr.detectChanges();
       });
   }
 
@@ -114,5 +127,4 @@ export class RiderComponent implements OnInit {
         this.loadRiders();
       });
   }
-
 }

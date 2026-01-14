@@ -35,6 +35,8 @@ import { DistrictComponent } from './Admin/district/district.component';
 import { ThanaComponent } from './Admin/thana/thana.component';
 import { AreaComponent } from './Admin/area/area.component';
 import { RiderComponent } from './Seller/rider/rider.component';
+import { RiderLayoutComponent, } from './Seller/rider/rider-layout/rider-layout.component';
+import { MyAssignedOrdersComponent } from './Seller/rider-order/rider-order.component';
 
 export const routes: Routes = [
 
@@ -92,9 +94,13 @@ export const routes: Routes = [
       { path: 'rider', component: RiderComponent }
     ]
   },
-{ path: 'rider', component: RiderComponent },
+{ path: 'riderlay',
+   component: RiderLayoutComponent,
+  children: [
+    { path: 'riderorder', component: MyAssignedOrdersComponent }
+  ]},
   // ================= FALLBACK =================
-  { path: '**', redirectTo: '' }
+ ///
 
   //-------------Rider------------
 

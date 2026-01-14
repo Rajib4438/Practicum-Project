@@ -16,6 +16,7 @@
           <th>#</th>
           <th>Product</th>
           <th>Price</th>
+          <th>Quantity</th>
           <th>Customer</th>
           <th>Phone</th>
           <th>Address</th>
@@ -29,12 +30,25 @@
           <td>{{ i + 1 }}</td>
           <td>{{ o.ProductName }}</td>
           <td>৳ {{ o.price }}</td>
+          <td>{{ o.quantity || 1 }}</td>
           <td>{{ o.CustomerName }}</td>
           <td>{{ o.CustomerPhone }}</td>
           <td>{{ o.CustomerAddress }}</td>
+
+          <!-- ✅ STATUS DROPDOWN (ADMIN STYLE) -->
           <td>
-            <span class="status">{{ o.OrderStatus }}</span>
+            <select
+              class="status-select"
+              [value]="o.OrderStatus"
+              (change)="updateStatus(o.OrderId, $any($event.target).value)">
+
+              <option value="Pending">Pending</option>
+              <option value="Confirmed">Confirmed</option>
+              <option value="Cancelled">Cancelled</option>
+
+            </select>
           </td>
+
           <td>{{ o.OrderDate | date:'medium' }}</td>
         </tr>
       </tbody>
