@@ -54,17 +54,17 @@
           <select class="form-select mb-3" [(ngModel)]="paymentMethod" (change)="resetPaymentStep()">
             <option value>-- Select Payment Method --</option>
             <option value="Bkash">bKash</option>
-            <option value="Nagad">Nagad</option>
-            <option value="Card">Debit / Credit Card</option>
+            <!-- <option value="Nagad">Nagad</option>
+            <option value="Card">Debit / Credit Card</option> -->
           </select>
 
           <!-- MOBILE NUMBER -->
-          <input *ngIf="paymentMethod" type="text" class="form-control mb-3" placeholder="Mobile Number" maxlength="11"
-            [(ngModel)]="mobileNumber" />
+          <!-- <input *ngIf="paymentMethod" type="text" class="form-control mb-3" placeholder="Mobile Number" maxlength="11"
+            [(ngModel)]="mobileNumber" /> -->
 
           <!-- PAYMENT CODE -->
-          <input *ngIf="askForCode" type="text" class="form-control mb-3" placeholder="Enter Code"
-            [(ngModel)]="paymentCode" />
+          <!-- <input *ngIf="askForCode" type="text" class="form-control mb-3" placeholder="Enter Code"
+            [(ngModel)]="paymentCode" /> -->
 
           <!-- SEND PAYMENT -->
           <button class="btn btn-success btn-lg px-5 rounded-pill" (click)="onSendPayment()"
@@ -78,9 +78,9 @@
           </div>
 
           <!-- SUCCESS -->
-          <div *ngIf="paymentSuccess" class="mt-3 text-success fw-semibold">
+          <!-- <div *ngIf="paymentSuccess" class="mt-3 text-success fw-semibold">
             ✔ Payment Successful
-          </div>
+          </div> -->
 
           <!-- ✅ DOWNLOAD INVOICE BUTTON -->
           <button *ngIf="paymentSuccess && invoiceOrderId" class="btn btn-outline-primary mt-3"

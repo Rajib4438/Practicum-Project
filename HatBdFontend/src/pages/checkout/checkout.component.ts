@@ -107,15 +107,15 @@ export class CheckoutComponent implements OnInit {
   }
 
   onSendPayment() {
-    if (!this.paymentMethod || !this.mobileNumber) {
-      alert('Enter payment details');
-      return;
-    }
+    // if (!this.paymentMethod || !this.mobileNumber) {
+    //   alert('Enter payment details');
+    //   return;
+    // }
 
-    if (!this.askForCode) {
-      this.askForCode = true;
-      return;
-    }
+    // if (!this.askForCode) {
+    //   this.askForCode = true;
+    //   return;
+    // }
 
     this.makePayment();
   }

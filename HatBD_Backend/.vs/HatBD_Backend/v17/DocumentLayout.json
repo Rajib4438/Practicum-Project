@@ -94,8 +94,7 @@
               "RelativeToolTip": "HatBD_Backend\\Controllers\\UserController.cs",
               "ViewState": "AgIAACcAAAAAAAAAAAAYwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-13T13:31:33.629Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-13T13:31:33.629Z"
             },
             {
               "$type": "Document",
@@ -120,8 +119,7 @@
               "RelativeToolTip": "HatBD_Backend\\Model\\rider.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAQAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-13T13:08:03.933Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-13T13:08:03.933Z"
             },
             {
               "$type": "Document",
@@ -133,8 +131,7 @@
               "RelativeToolTip": "HatBD_Backend\\Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-13T10:24:16.115Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-13T10:24:16.115Z"
             },
             {
               "$type": "Document",
@@ -146,8 +143,7 @@
               "RelativeToolTip": "HatBD_Backend\\Model\\Order.cs",
               "ViewState": "AgIAAAQAAAAAAAAAAAAzwAkAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-13T10:11:35.876Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-13T10:11:35.876Z"
             },
             {
               "$type": "Document",
@@ -159,8 +155,7 @@
               "RelativeToolTip": "HatBD_Backend\\Controllers\\OrderController.cs",
               "ViewState": "AgIAAGgAAAAAAAAAAAAQwHoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-13T09:51:02.937Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-13T09:51:02.937Z"
             },
             {
               "$type": "Document",
@@ -172,8 +167,7 @@
               "RelativeToolTip": "HatBD_Backend\\Services\\bKashService.cs",
               "ViewState": "AgIAABEAAAAAAAAAAAAlwBgAAAAMAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-13T09:47:36.541Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-13T09:47:36.541Z"
             },
             {
               "$type": "Document",
@@ -185,8 +179,7 @@
               "RelativeToolTip": "HatBD_Backend\\Services\\IbKash.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-13T09:47:22.141Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-13T09:47:22.141Z"
             },
             {
               "$type": "Document",
@@ -198,8 +191,7 @@
               "RelativeToolTip": "HatBD_Backend\\Models\\Payment.cs",
               "ViewState": "AgIAACAAAAAAAAAAAIA8wCoAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-13T09:44:06.651Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-13T09:44:06.651Z"
             },
             {
               "$type": "Document",
@@ -211,8 +203,7 @@
               "RelativeToolTip": "HatBD_Backend\\Model\\Area.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwAkAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-13T08:20:14.762Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-13T08:20:14.762Z"
             },
             {
               "$type": "Document",
@@ -224,8 +215,7 @@
               "RelativeToolTip": "HatBD_Backend\\Controllers\\AreaController.cs",
               "ViewState": "AgIAAEYAAAAAAAAAAAAkwEkAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-13T07:59:26.253Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-13T07:59:26.253Z"
             },
             {
               "$type": "Document",
@@ -237,8 +227,7 @@
               "RelativeToolTip": "HatBD_Backend\\Model\\Enums.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-12T18:36:08.38Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-12T18:36:08.38Z"
             },
             {
               "$type": "Document",
@@ -250,8 +239,7 @@
               "RelativeToolTip": "HatBD_Backend\\appsettings.json",
               "ViewState": "AgIAAAUAAABANDMzM7MuwBcAAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-01-12T18:29:25.158Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-12T18:29:25.158Z"
             },
             {
               "$type": "Document",
@@ -299,8 +287,7 @@
               "RelativeToolTip": "HatBD_Backend\\Controllers\\UsersRegistrationController.cs",
               "ViewState": "AgIAABwAAAAAAAAAAAAcwCsAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-12T11:08:43.038Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-12T11:08:43.038Z"
             },
             {
               "$type": "Document",
