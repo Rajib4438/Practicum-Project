@@ -1,11 +1,15 @@
-import { Injectable, signal, computed } from '@angular/core';
+import { Injectable, signal, computed, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+  private addCartQtySubject = new BehaviorSubject<number>(0);
 
+  // Expose as Observable (read-only)
+  addCartQty$ = this.addCartQtySubject.asObservable();
   // CART
   count = signal<number>(0);
 
@@ -41,7 +45,6 @@ latestQty:number =0;
       alert('Please login to add products to cart.');
       return;
     }
-debugger;
 
 
 if(product.stockquantity <= 0) {
@@ -62,7 +65,10 @@ this.http.post('https://localhost:7290/api/Cart', {
   next: (res:any) => {
     if(res.data.ProductId == product.id) {
      
-    this.latestQty = res.data.Quantity;}
+    this.latestQty = res.data.Quantity;
+        this.addCartQtySubject.next(this.addCartQtySubject.value + 1);
+    
+  }
   },
   error: err => console.error('Server error:', err)
 });

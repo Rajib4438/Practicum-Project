@@ -45,9 +45,9 @@
         <div class="cart-icon-wrapper" style="position: relative; display: inline-block;">
           <a><i (click)="goToCart()" class="fas fa-shopping-cart" style="font-size: 1.5rem; color: #333;"></i></a>
 
-          <!-- <span class="cart-badge">
-            {{ cartCount() }}
-          </span> -->
+          <span class="cart-badge">
+             {{ cartQty$ | async }}
+          </span>
         </div>
       </div>
       <button class="login-btn-header" (click)="logout()" style="margin-left: 10px;">Log Out</button>

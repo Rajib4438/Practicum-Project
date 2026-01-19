@@ -73,74 +73,111 @@ namespace HatBD_Backend.Controllers
 
         [HttpPost]
         public async Task<IActionResult> CreateOrder([FromBody] OrderCreateDto dto)
-        {
-            using var con = _context.CreateConnection();
-
-            var result = await con.QueryFirstAsync(
-                "SP_order",
-                new
-                {
-                    flag = 2,
-                    userid = dto.UserId,
-                    name = dto.Name,
-                    phonenumber = dto.PhoneNumber,
-                    address = dto.Address,
-                    paymentmethod = dto.PaymentMethod,
-                    totalprice = dto.TotalPrice,
-                    totaldiscount = dto.TotalDiscount,
-
-                    // ✅ NEW (SP requires these)
-                    DistrictId = dto.DistrictId,
-                    ThanaId = dto.ThanaId,
-                    AreaId = dto.AreaId
-                },
-                commandType: CommandType.StoredProcedure
-            );
-
-            if (result != null && dto.cartIds != null)
+         {
+            try
             {
-                foreach (var item in dto.cartIds)
+                using var con = _context.CreateConnection();
+
+                var result = await con.QueryFirstOrDefaultAsync(
+                    "SP_order",
+                    new
+                    {
+                        flag = 2,
+                        userid = dto.UserId,
+                        name = dto.Name,
+                        phonenumber = dto.PhoneNumber,
+                        address = dto.Address,
+                        paymentmethod = dto.PaymentMethod,
+                        totalprice = dto.TotalPrice,
+                        totaldiscount = dto.TotalDiscount,
+
+                        // ✅ NEW (SP requires these)
+                        DistrictId = dto.DistrictId,
+                        ThanaId = dto.ThanaId,
+                        AreaId = dto.AreaId
+                    },
+                    commandType: CommandType.StoredProcedure
+                );
+
+                if (result != null && dto.cartIds != null)
                 {
-                    await con.QueryFirstAsync(
-                        "SP_order_item",
-                        new
+                    foreach (var item in dto.cartIds)
+                    {
+                        await con.QueryFirstOrDefaultAsync(
+                            "SP_order_item",
+                            new
+                            {
+                                flag = 1,
+                                orderid = result.OrderId,
+                                cartId = item
+                            },
+                            commandType: CommandType.StoredProcedure
+                        );
+                    }
+                    if(dto.PaymentMethod == "Bkash")
+                    {
+                        var bkash = await _bKashService.InitiatePaymentAsync(new PaymentRequest
                         {
-                            flag = 1,
-                            orderid = result.OrderId,
-                            cartId = item
-                        },
-                        commandType: CommandType.StoredProcedure
-                    );
+                            Amount = dto.TotalPrice,
+                            Currency = "BDT",
+                            MerchantInvoiceNumber = $"INV-{result.OrderId}-{DateTime.UtcNow.Ticks}",
+                            SuccessUrl = "http://localhost:4200/payment-confirmation"
+                        });
+                        await con.QueryFirstOrDefaultAsync(
+               "SP_order",
+               new
+               {
+                   flag = 8,
+                   id = result.OrderId,
+                   bkashTrans = bkash.PaymentId
+               },
+               commandType: CommandType.StoredProcedure
+           );
+                        return Ok(new { data = bkash, orderId = result.OrderId });
+                    } 
+                    return Ok(new { msg = "Order created successfully", orderId = result.OrderId });
+
                 }
+
+
+
+                return BadRequest(new { msg = "Error" });
+
             }
-
-            var bkash = await _bKashService.InitiatePaymentAsync(new PaymentRequest
+            catch (Exception ex)
             {
-                Amount = dto.TotalPrice,
-                Currency = "BDT",
-                MerchantInvoiceNumber = $"INV-{result.OrderId}-{DateTime.UtcNow.Ticks}",
-                SuccessUrl = "https://localhost:7290/api/Order/Success_URL"
-            });
-
-            return Ok(new { data = bkash, orderId = result.OrderId });
+                throw ex;
+            }
+            
         }
 
 
         [HttpGet("Success_URL")]
-        public IActionResult SuccessUrl([FromQuery] PaymentCallback callback)
+        public async Task<IActionResult> SuccessUrl(string paymemtId)
         {
-           
-            return Ok(new
+            try
             {
-                Message = "Payment was successful!",    
-                //PaymentId = callback.PaymentId,
-                //Status = callback.Status,
-                //TransactionStatus = callback.TransactionStatus,
-                //Amount = callback.Amount,
-                //Currency = callback.Currency,
-                //MerchantInvoiceNumber = callback.MerchantInvoiceNumber,
-                //TrxId = callback.TrxId
-            });
+                var bkash = await _bKashService.ExecutePaymentAsync(paymemtId);
+                using var con = _context.CreateConnection();
+                await con.QueryFirstOrDefaultAsync(
+                          "SP_order",
+                          new
+                          {
+                              flag = 9,
+                              bkashTrans = paymemtId
+                          },
+                          commandType: CommandType.StoredProcedure
+                      );
+
+
+                return Ok(bkash);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        
         }
 
 
@@ -158,7 +195,7 @@ namespace HatBD_Backend.Controllers
                 commandType: CommandType.StoredProcedure
             );
 
-            return Ok("Order status updated");
+            return Ok(new { msg= "Order status updated" });
         }
 
 

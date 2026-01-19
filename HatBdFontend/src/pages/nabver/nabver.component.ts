@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../footer/footer.component';
 import { CartService } from '../../app/Services/app.service';
 import { FormsModule } from '@angular/forms';
+import { Observable } from 'rxjs';
  
 
 @Component({
@@ -22,16 +23,18 @@ import { FormsModule } from '@angular/forms';
 })
 export class NavbarComponent {
 
-
+ cartQty$: Observable<number>;
   searchText = '';
 
   // ✅ DIRECTLY SERVICE SIGNAL USE
-   cartCount = computed(() => this.cartService.cartCount());
+  //  cartCount = computed(() => this.cartService.cartCount);
 
   constructor(
     private router: Router,
-    private cartService: CartService
-  ) {}
+    public cartService: CartService
+  ) {
+      this.cartQty$ = this.cartService.addCartQty$;
+  }
 
   onSearch(): void {
     this.cartService.setSearch(this.searchText);

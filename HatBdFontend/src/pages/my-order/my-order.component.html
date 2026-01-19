@@ -35,6 +35,12 @@
         <p><b>Payment:</b> {{ order.paymentmethod }}</p>
         <p><b>Total:</b> {{ order.totalprice }} ৳</p>
         <p><b>Address:</b> {{ order.address }}</p>
+        
+        <div style="margin-top: 15px;">
+          <button class="btn btn-outline-primary btn-sm" (click)="downloadInvoice(order)">
+             <i class="fa fa-download"></i> Download Invoice
+          </button>
+        </div>
       </div>
 
     </div>

@@ -129,9 +129,9 @@ export class SellerMyProductComponent implements OnInit {
   formData.append('SellerId', sellerId.toString());  // 👈 important
   formData.append('Image', this.selectedFile);
 
-  this.http.post(this.productApi, formData).subscribe(() => {
-    this.loadProducts();
-  });
+  // this.http.post(this.productApi, formData).subscribe(() => {
+  //   this.loadProducts();
+  // });
 
     // CREATE
     if (this.id === null) {

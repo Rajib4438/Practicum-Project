@@ -182,27 +182,37 @@ export class CheckoutComponent implements OnInit {
 
       this.http.post<any>(this.ORDER_API, orderPayload).subscribe({
         next: res => {
-          window.open(res.data.paymentUrl, '_blank');
+          debugger;
           const orderId = res?.orderId || res?.OrderId;
+           this.invoiceOrderId = orderId;
+          if(this.paymentMethod === 'CashOnDelivery'){
+            alert('Order placed successfully. Please prepare the payment upon delivery.');
+            this.invoiceOrderId = res?.orderId || res?.OrderId;
+            this.router.navigate(['/'])
+            return;
+          }
+window.location.href = res.data.paymentUrl;
+
+
           if (!orderId) {
             alert('Order ID error');
             return;
           }
 
-          this.invoiceOrderId = orderId;
+         
 
-          const items = this.cartItems().map(item => ({
-            orderId,
-            ProductId: item.productId,
-            ProductName: item.productName,
-            Price: item.price,
-            Quantity: item.quantity
-          }));
+          // const items = this.cartItems().map(item => ({
+          //   orderId,
+          //   ProductId: item.productId,
+          //   ProductName: item.productName,
+          //   Price: item.price,
+          //   Quantity: item.quantity
+          // }));
 
-          this.http.post(this.ORDER_ITEM_API, items).subscribe({
-            next: () => alert(`Payment via ${this.paymentMethod} successful`),
-            error: () => alert('Payment Successful')
-          });
+          // this.http.post(this.ORDER_ITEM_API, items).subscribe({
+          //   next: () => alert(`Payment via ${this.paymentMethod} successful`),
+          //   error: () => alert('Payment Successful')
+          // });
         },
         error: () => alert('Order save failed')
       });

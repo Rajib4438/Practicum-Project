@@ -37,6 +37,7 @@ import { AreaComponent } from './Admin/area/area.component';
 import { RiderComponent } from './Seller/rider/rider.component';
 import { RiderLayoutComponent, } from './Seller/rider/rider-layout/rider-layout.component';
 import { MyAssignedOrdersComponent } from './Seller/rider-order/rider-order.component';
+import { PaymentConfirmation } from './pages/payment-confirmation/payment-confirmation.component';
 
 export const routes: Routes = [
 
@@ -59,6 +60,7 @@ export const routes: Routes = [
 
   // ================= AUTH =================
   { path: 'login', component: Login },
+  { path: 'payment-confirmation', component: PaymentConfirmation },
   { path: 'registration', component: Registration },
   { path: 'forgotpass', component: Forgotpass },
   { path: 'resetpass', component: ResetPasswordComponent },
@@ -101,7 +103,7 @@ export const routes: Routes = [
   ]},
   // ================= FALLBACK =================
  ///
-
+{ path: '**', redirectTo: '', pathMatch: 'full' }
   //-------------Rider------------
 
 ];

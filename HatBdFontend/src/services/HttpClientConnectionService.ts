@@ -7,6 +7,7 @@ import { createUrl } from '../utility/config';
   providedIn: 'root',
 })
 export class HttpClientConnectionService {
+  addCartQty: number = 0;
   constructor(private http: HttpClient) {}
 
   GetData(_url: string) {
