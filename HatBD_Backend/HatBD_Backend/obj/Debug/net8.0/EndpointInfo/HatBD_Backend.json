@@ -709,6 +709,29 @@
         }
       }
     },
+    "/api/Order/rider/{riderId}": {
+      "get": {
+        "tags": [
+          "Order"
+        ],
+        "parameters": [
+          {
+            "name": "riderId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/OrderItem/order/{orderId}": {
       "get": {
         "tags": [
@@ -2149,6 +2172,11 @@
             "nullable": true
           },
           "areaId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "assignRiderUserId": {
             "type": "integer",
             "format": "int32",
             "nullable": true

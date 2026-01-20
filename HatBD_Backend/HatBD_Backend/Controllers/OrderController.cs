@@ -37,7 +37,6 @@ namespace HatBD_Backend.Controllers
             return Ok(orders);
         }
 
-        /* ========== ADMIN ORDER LIST ========== */
         [HttpGet("admin")]
         public async Task<IActionResult> GetOrdersForAdmin()
         {
@@ -251,6 +250,20 @@ namespace HatBD_Backend.Controllers
             );
 
             return Ok(soldProducts);
+        }
+
+        /* ========== GET RIDER ASSIGNED ORDERS ========== */
+        [HttpGet("rider/{riderId:int}")]
+        public async Task<IActionResult> GetOrdersByRiderId(int riderId)
+        {
+            using var con = _context.CreateConnection();
+
+            var orders = await con.QueryAsync(
+                "SELECT * FROM [Order] WHERE assignRiderUserId = @RiderId",
+                new { RiderId = riderId }
+            );
+
+            return Ok(orders);
         }
 
     }

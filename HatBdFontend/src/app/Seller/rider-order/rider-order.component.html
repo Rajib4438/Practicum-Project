@@ -4,15 +4,16 @@
   <div class="order-list">
     <div class="order-card" *ngFor="let o of assignedOrders">
       <div>
-        <h3>{{ o.orderId }}</h3>
-        <p>Seller: {{ o.seller }}</p>
-        <p>Customer: {{ o.customer }}</p>
-        <p>Area: {{ o.area }}</p>
+        <h3>Order #{{ o.id }}</h3>
+        <p><strong>Customer:</strong> {{ o.name }}</p>
+        <p><strong>Phone:</strong> {{ o.phonenumber || o.phoneNumber }}</p>
+        <p><strong>Address:</strong> {{ o.address }}</p>
+        <p><strong>Total:</strong> {{ o.totalprice || o.totalPrice }} ৳</p>
       </div>
 
       <div class="order-actions">
-        <span class="order-status" [ngClass]="o.status.toLowerCase().replace(' ', '-')">
-          {{ o.status }}
+        <span class="order-status" [ngClass]="(o.status || '').toLowerCase().replace(' ', '-')">
+          {{ o.status || 'Pending' }}
         </span>
 
         <select [(ngModel)]="o.status" (change)="updateStatus(o, o.status)">
@@ -21,6 +22,11 @@
           <option value="Delivered">Delivered</option>
         </select>
       </div>
+    </div>
+
+    <!-- No Data Fallback -->
+    <div *ngIf="assignedOrders.length === 0" style="text-align: center; padding: 20px; color: #666;">
+      <p>No orders assigned to you yet.</p>
     </div>
   </div>
 </div>

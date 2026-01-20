@@ -29,10 +29,11 @@ table {
   width: 100%;
   border-collapse: collapse;
   background: #fff;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
 }
 
-th, td {
+th,
+td {
   padding: 12px;
   text-align: center;
   border-bottom: 1px solid #e5e7eb;
@@ -86,4 +87,18 @@ tr:hover {
   border: none;
   padding: 6px 10px;
   border-radius: 5px;
+}
+
+.btn-approve-outline {
+  background: white;
+  color: #333;
+  border: 1px solid #333;
+  padding: 6px 10px;
+  border-radius: 5px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.btn-approve-outline:hover {
+  background: #f0f0f0;
 }

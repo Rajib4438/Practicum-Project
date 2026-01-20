@@ -71,7 +71,7 @@ debugger;
 
             case 'Rider':
               // Rider redirect page (example: /rider-dashboard)
-              this.router.navigate(['/rider']).then(() => window.location.reload());
+              this.router.navigate(['/riderlay']).then(() => window.location.reload());
               break;
 
             default:

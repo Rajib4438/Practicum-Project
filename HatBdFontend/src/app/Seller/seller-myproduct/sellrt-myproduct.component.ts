@@ -36,8 +36,9 @@ export class SellerMyProductComponent implements OnInit {
   categoryid: number | null = null;
   subcategoryid: number | null = null;
   selectedFile!: File;
+  currentImageLocation: string | null = null;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.loadProducts();
@@ -48,13 +49,13 @@ export class SellerMyProductComponent implements OnInit {
   // LOAD
   // =========================
   loadProducts() {
-  const sellerId = Number(localStorage.getItem('userId'));
+    const sellerId = Number(localStorage.getItem('userId'));
 
-  this.http.get<any[]>(`${this.productApi}?sellerId=${sellerId}`).subscribe(res => {
-    this.products = res;
-    this.filteredProducts = res;
-  });
-}
+    this.http.get<any[]>(`${this.productApi}?sellerId=${sellerId}`).subscribe(res => {
+      this.products = res;
+      this.filteredProducts = res;
+    });
+  }
 
 
   loadCategories() {
@@ -112,29 +113,35 @@ export class SellerMyProductComponent implements OnInit {
       return;
     }
 
-    const sellerId = Number(localStorage.getItem('userId')); 
+    const sellerId = Number(localStorage.getItem('userId'));
     // example after login
 
 
+    const formData = new FormData();
+    formData.append('name', this.name);
+    formData.append('brand', this.brand);
+    formData.append('description', this.description);
+    formData.append('price', this.price!.toString());
+    formData.append('stockquantity', this.stockquantity!.toString());
+    formData.append('status', this.status);
+    formData.append('categoryid', this.categoryid!.toString());
+    formData.append('subcategoryid', this.subcategoryid!.toString());
+    formData.append('SellerId', sellerId.toString());  // 👈 important
 
-     const formData = new FormData();
-  formData.append('name', this.name);
-  formData.append('brand', this.brand);
-  formData.append('description', this.description);
-  formData.append('price', this.price!.toString());
-  formData.append('stockquantity', this.stockquantity!.toString());
-  formData.append('status', this.status);
-  formData.append('categoryid', this.categoryid!.toString());
-  formData.append('subcategoryid', this.subcategoryid!.toString());
-  formData.append('SellerId', sellerId.toString());  // 👈 important
-  formData.append('Image', this.selectedFile);
+    if (this.selectedFile) {
+      formData.append('Image', this.selectedFile);
+    }
 
-  // this.http.post(this.productApi, formData).subscribe(() => {
-  //   this.loadProducts();
-  // });
+    // this.http.post(this.productApi, formData).subscribe(() => {
+    //   this.loadProducts();
+    // });
 
     // CREATE
     if (this.id === null) {
+      if (!this.selectedFile) {
+        alert("Image is required for new products");
+        return;
+      }
       formData.append('createdby', 'seller');
 
       this.http.post(this.productApi, formData).subscribe(() => {
@@ -168,6 +175,7 @@ export class SellerMyProductComponent implements OnInit {
     this.stockquantity = p.stockquantity;
     this.status = p.status;
     this.categoryid = p.categoryId;
+    this.currentImageLocation = p.imageLocation; // Save for preview
 
     this.loadSubCategories(p.categoryId);
     this.subcategoryid = p.subCategoryId;
@@ -197,5 +205,6 @@ export class SellerMyProductComponent implements OnInit {
     this.subcategoryid = null;
     this.subCategories = [];
     this.selectedFile = undefined as any;
+    this.currentImageLocation = null;
   }
 }

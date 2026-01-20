@@ -29,6 +29,11 @@
       </option>
     </select>
 
+    <div *ngIf="currentImageLocation && !selectedFile">
+      <label>Current Image:</label>
+      <img [src]="getImageUrl(currentImageLocation)"
+        style="height: 60px; width: 60px; object-fit: cover; margin: 10px 0;">
+    </div>
     <input type="file" (change)="onFileSelected($event)" accept="image/*" />
 
     <button class="btn-primary" (click)="saveProduct()">
@@ -77,9 +82,7 @@
           <td>{{ p.status }}</td>
 
           <td class="action-btns">
-            <ng-container *ngIf="p.status !== 'Active'">
-              <button class="btn-edit" (click)="editProduct(p)">Edit</button>
-            </ng-container>
+            <button class="btn-edit" (click)="editProduct(p)">Edit</button>
             <button class="btn-delete" (click)="deleteProduct(p.id)">Delete</button>
           </td>
         </tr>

@@ -4,12 +4,8 @@
 
   <!-- SEARCH BAR -->
   <div class="search-bar">
-    <input
-      type="text"
-      placeholder="Search by Order ID, Product ID or Product Name"
-      [(ngModel)]="searchQuery"
-      (input)="searchOrders()"
-    />
+    <input type="text" placeholder="Search by Order ID, Product ID or Product Name" [(ngModel)]="searchQuery"
+      (input)="searchOrders()" />
   </div>
 
   <div *ngIf="loading" class="loading">
@@ -25,7 +21,7 @@
         <th>Phone</th>
         <th>Payment</th>
         <th>Total</th>
-        <th>Status</th>
+        <!-- <th>Status</th> REMOVED -->
         <th>Created</th>
         <th>Products</th> <!-- NEW: Product IDs -->
         <th>Action</th>
@@ -41,13 +37,7 @@
         <td>{{ order.paymentmethod || 'N/A' }}</td>
         <td>{{ order.totalprice }} ৳</td>
 
-        <td>
-          <select #statusSelect [value]="order.status" (change)="updateStatus(order.id, statusSelect.value)">
-            <option value="Pending">Pending</option>
-            <option value="Confirmed">Confirmed</option>
-            <option value="Cancelled">Cancelled</option>
-          </select>
-        </td>
+        <!-- Status Column Removed -->
 
         <td>{{ order.createdat | date:'short' }}</td>
 

@@ -391,6 +391,22 @@
   },
   {
     "ContainingType": "HatBD_Backend.Controllers.OrderController",
+    "Method": "GetOrdersByRiderId",
+    "RelativePath": "api/Order/rider/{riderId}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "riderId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HatBD_Backend.Controllers.OrderController",
     "Method": "GetSellerSoldProducts",
     "RelativePath": "api/Order/seller/{sellerId}",
     "HttpMethod": "GET",

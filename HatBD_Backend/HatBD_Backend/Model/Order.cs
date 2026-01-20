@@ -14,9 +14,9 @@
         public string? PhoneNumber { get; set; }
         public int? SellerId { get; set; }
 
-        // ✅ NEW (DB + SP support)
         public int? DistrictId { get; set; }
         public int? ThanaId { get; set; }
         public int? AreaId { get; set; }
+        public int? AssignRiderUserId { get; set; }
     }
 }

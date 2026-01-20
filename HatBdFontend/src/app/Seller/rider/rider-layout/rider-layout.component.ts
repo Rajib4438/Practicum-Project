@@ -10,7 +10,7 @@ import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
   imports: [
     CommonModule,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,RouterOutlet
 ],
   templateUrl: './rider-layout.component.html',
   styleUrls: ['./rider-layout.component.css']

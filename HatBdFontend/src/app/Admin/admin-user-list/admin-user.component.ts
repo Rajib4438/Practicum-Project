@@ -22,7 +22,7 @@ export class AdminUserListComponent implements OnInit {
   constructor(
     private http: HttpClient,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.loadUsers();

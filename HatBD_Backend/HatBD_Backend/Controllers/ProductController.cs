@@ -133,20 +133,46 @@ namespace HatBD.Controllers
         {
             try
             {
-                if (model.Image == null || model.Image.Length == 0)
-                    return BadRequest("No image uploaded");
+                string filePath = "";
 
-                var uploadsFolder = Path.Combine(_env.WebRootPath, "uploads");
-
-                if (!Directory.Exists(uploadsFolder))
-                    Directory.CreateDirectory(uploadsFolder);
-
-                var fileName = $"{Guid.NewGuid()}{Path.GetExtension(model.Image.FileName)}";
-                var filePath = Path.Combine(uploadsFolder, fileName);
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                if (model.Image != null && model.Image.Length > 0)
                 {
-                    await model.Image.CopyToAsync(stream);
+                    var uploadsFolder = Path.Combine(_env.WebRootPath, "uploads");
+
+                    if (!Directory.Exists(uploadsFolder))
+                        Directory.CreateDirectory(uploadsFolder);
+
+                    var fileName = $"{Guid.NewGuid()}{Path.GetExtension(model.Image.FileName)}";
+                    var physicalPath = Path.Combine(uploadsFolder, fileName);
+                    
+                    // Save relative path for DB to match Create method
+                    filePath = "uploads/" + fileName;
+
+                   using (var stream = new FileStream(physicalPath, FileMode.Create))
+                   {
+                       await model.Image.CopyToAsync(stream);
+                   }
+                }
+                else
+                {
+                    // Fetch existing image
+                     using var connectionGet = _context.CreateConnection();
+                     var paramGet = new DynamicParameters();
+                     paramGet.Add("@flag", 2);
+                     paramGet.Add("@id", id);
+                     var existingProduct = await connectionGet.QueryFirstOrDefaultAsync<Product>("SP_Product", paramGet, commandType: CommandType.StoredProcedure);
+
+                     if(existingProduct != null)
+                     {
+                        filePath = existingProduct.ImageLocation;
+
+                        // FIX: If existing path is absolute/bad (contains backslashes), fix it to relative
+                        if (!string.IsNullOrEmpty(filePath) && (filePath.Contains("\\") || filePath.Contains("wwwroot")))
+                        {
+                            var nameOnly = Path.GetFileName(filePath);
+                            filePath = "uploads/" + nameOnly;
+                        }
+                     }
                 }
 
                 using var connection = _context.CreateConnection();
