@@ -117,7 +117,9 @@ namespace HatBD_Backend.Controllers
             using var con = _context.CreateConnection();
 
             var user = await con.QuerySingleOrDefaultAsync<UserRegistration>(
-                @"SELECT Id, RegisterAs, FullName, Email, Phone, UserName, Gender, Address, CreatedAT
+                @"SELECT Id, RegisterAs, FullName, Email, Phone, UserName, Gender, Address,
+                  NID, TradeLicense, ShopAddress, PermanentAddress,  -- 🔥 NEW
+                  CreatedAT
                   FROM UserRegistration
                   WHERE Id = @Id",
                 new { Id = id });
@@ -126,6 +128,35 @@ namespace HatBD_Backend.Controllers
                 return NotFound("User not found");
 
             return Ok(user);
+        }
+
+        // ================= UPDATE PROFILE =================
+        [HttpPut("update/{id}")]
+        public async Task<IActionResult> UpdateProfile(int id, [FromBody] UserRegistration model)
+        {
+            using var con = _context.CreateConnection();
+            
+            var sql = @"
+                UPDATE UserRegistration
+                SET FullName = @FullName,
+                    Phone = @Phone,
+                    Address = @Address,
+                    Gender = @Gender,
+                    NID = @NID,                             -- 🔥 NEW
+                    TradeLicense = @TradeLicense,           -- 🔥 NEW
+                    ShopAddress = @ShopAddress,             -- 🔥 NEW
+                    PermanentAddress = @PermanentAddress    -- 🔥 NEW
+                WHERE Id = @Id";
+
+            // Ensure Id matches route
+            model.Id = id;
+
+            var rows = await con.ExecuteAsync(sql, model);
+
+            if (rows == 0)
+                return NotFound("User not found");
+
+            return Ok(new { msg = "Profile Updated Successfully", status = 200 });
         }
 
 

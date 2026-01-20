@@ -108,18 +108,35 @@ SELECT SCOPE_IDENTITY();
         [HttpDelete("Delete/{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            using var con = _context.CreateConnection();
+            try
+            {
+                using var con = _context.CreateConnection();
 
-            var result = await con.QueryAsync(
-                "SP_Rider",
-                new
-                {
-                    flag = 4,
-                    RiderId = id
-                },
-                commandType: CommandType.StoredProcedure);
+                // 🔥 NEW: Nullify assigned orders first to prevent FK constraint error
+                // Assuming 'AssignRiderUserId' in Order table refers to the UserRegistration Id (UserId)
+                // and Rider table links RiderId to UserId.
+                string sqlUnassign = @"
+                    UPDATE [Order] 
+                    SET AssignRiderUserId = NULL 
+                    WHERE AssignRiderUserId = (SELECT UserId FROM Rider WHERE RiderId = @id)";
 
-            return Ok(result);
+                await con.ExecuteAsync(sqlUnassign, new { id });
+
+                var result = await con.QueryAsync(
+                    "SP_Rider",
+                    new
+                    {
+                        flag = 4,
+                        RiderId = id
+                    },
+                    commandType: CommandType.StoredProcedure);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
         }
     }
 }

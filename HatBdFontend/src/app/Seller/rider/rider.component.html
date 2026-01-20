@@ -4,37 +4,23 @@
 
   <div style="display:flex; gap:10px; flex-wrap:wrap;">
 
-    <input type="text"
-      placeholder="Rider Name"
-      [(ngModel)]="riderName"
-      style="padding:6px; width:200px;">
+    <input type="text" placeholder="Rider Name" [(ngModel)]="riderName" style="padding:6px; width:200px;">
 
-    <input type="text"
-      placeholder="Phone"
-      [(ngModel)]="riderPhone"
-      style="padding:6px; width:200px;">
+    <input type="text" placeholder="Phone" [(ngModel)]="riderPhone" style="padding:6px; width:200px;">
 
-    <input type="text"
-      placeholder="Email"
-      [(ngModel)]="riderEmail"
-      style="padding:6px; width:200px;">
+    <input type="text" placeholder="Email" [(ngModel)]="riderEmail" style="padding:6px; width:200px;">
 
-    <select [(ngModel)]="selectedDistrict"
-      (change)="onDistrictChange()"
-      style="padding:6px; width:200px;">
+    <select [(ngModel)]="selectedDistrict" (change)="onDistrictChange()" style="padding:6px; width:200px;">
       <option value="">Select District</option>
       <option *ngFor="let d of districts" [value]="d.districtId">{{ d.districtName }}</option>
     </select>
 
-    <select [(ngModel)]="selectedThana"
-      (change)="onThanaChange()"
-      style="padding:6px; width:200px;">
+    <select [(ngModel)]="selectedThana" (change)="onThanaChange()" style="padding:6px; width:200px;">
       <option value="">Select Thana</option>
       <option *ngFor="let t of thanas" [value]="t.ThanaId">{{ t.ThanaName }}</option>
     </select>
 
-    <select [(ngModel)]="selectedArea"
-      style="padding:6px; width:200px;">
+    <select [(ngModel)]="selectedArea" style="padding:6px; width:200px;">
       <option value="">Select Area</option>
       <option *ngFor="let a of areas" [value]="a.areaId">{{ a.areaName }}</option>
     </select>
@@ -76,7 +62,7 @@
         <td style="border:1px solid #ddd; padding:8px;">{{ r.ThanaName }}</td>
         <td style="border:1px solid #ddd; padding:8px;">{{ r.AreaName }}</td>
         <td style="border:1px solid #ddd; padding:8px;">
-          <button (click)="deleteRider(r.id)"
+          <button (click)="deleteRider(r.Id)"
             style="padding:4px 10px; background:red; color:white; border:none; border-radius:3px;">
             Delete
           </button>

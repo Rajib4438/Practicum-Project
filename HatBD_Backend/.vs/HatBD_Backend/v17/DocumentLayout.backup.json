@@ -3,12 +3,16 @@
   "WorkspaceRootPath": "C:\\Practicum-Project\\HatBD_Backend\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|c:\\practicum-project\\hatbd_backend\\hatbd_backend\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|solutionrelative:hatbd_backend\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|c:\\practicum-project\\hatbd_backend\\hatbd_backend\\controllers\\usersregistrationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|solutionrelative:hatbd_backend\\controllers\\usersregistrationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|c:\\practicum-project\\hatbd_backend\\hatbd_backend\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|solutionrelative:hatbd_backend\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|c:\\practicum-project\\hatbd_backend\\hatbd_backend\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|solutionrelative:hatbd_backend\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{3E381F0D-38C4-4951-BCC3-8072FEEDF39F}|HatBD_Backend\\HatBD_Backend.csproj|c:\\practicum-project\\hatbd_backend\\hatbd_backend\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -22,24 +26,36 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "UserController.cs",
+              "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Controllers\\UserController.cs",
+              "RelativeDocumentMoniker": "HatBD_Backend\\Controllers\\UserController.cs",
+              "ToolTip": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Controllers\\UserController.cs",
+              "RelativeToolTip": "HatBD_Backend\\Controllers\\UserController.cs",
+              "ViewState": "AgIAAFwAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-20T11:56:16.367Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "UsersRegistrationController.cs",
               "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Controllers\\UsersRegistrationController.cs",
               "RelativeDocumentMoniker": "HatBD_Backend\\Controllers\\UsersRegistrationController.cs",
               "ToolTip": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Controllers\\UsersRegistrationController.cs",
               "RelativeToolTip": "HatBD_Backend\\Controllers\\UsersRegistrationController.cs",
-              "ViewState": "AgIAADgAAAAAAAAAAAAgwBIAAAA3AAAAAAAAAA==",
+              "ViewState": "AgIAALIAAAAAAAAAAAAAAEQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-20T06:37:38.377Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "OrderController.cs",
               "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Controllers\\OrderController.cs",
               "RelativeDocumentMoniker": "HatBD_Backend\\Controllers\\OrderController.cs",
@@ -52,7 +68,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "ProductController.cs",
               "DocumentMoniker": "C:\\Practicum-Project\\HatBD_Backend\\HatBD_Backend\\Controllers\\ProductController.cs",
               "RelativeDocumentMoniker": "HatBD_Backend\\Controllers\\ProductController.cs",

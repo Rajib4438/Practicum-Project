@@ -31,7 +31,7 @@ export class RiderComponent implements OnInit {
   // 🔥 NEW (login seller id)
   sellerId: number = 0;
 
-  constructor(private http: HttpClient,private cdr:ChangeDetectorRef) {}
+  constructor(private http: HttpClient, private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
     // 🔥 SellerId auto load
@@ -45,16 +45,16 @@ export class RiderComponent implements OnInit {
     this.http.get(this.baseUrl + "District/Get")
       .subscribe((res: any) => {
         this.districts = res;
-       
+
       });
   }
 
   onDistrictChange() {
-    if(!this.selectedDistrict) return;
+    if (!this.selectedDistrict) return;
 
     this.http.get(this.baseUrl + "Thana/GetAll")
       .subscribe((res: any) => {
-        this.thanas = res.filter((t:any) =>
+        this.thanas = res.filter((t: any) =>
           t.DistrictId === Number(this.selectedDistrict)
         );
         this.areas = [];
@@ -76,7 +76,7 @@ export class RiderComponent implements OnInit {
 
   // ================= ADD RIDER =================
   addRider() {
-    if(
+    if (
       !this.riderName ||
       !this.riderPhone ||
       !this.selectedDistrict ||
@@ -108,7 +108,8 @@ export class RiderComponent implements OnInit {
     this.http.get(this.baseUrl + "Rider/GetRiderBySellerId?id=" + this.sellerId)
       .subscribe((res: any) => {
         this.riderList = res;
- this.cdr.detectChanges();
+        console.log('Rider List:', this.riderList);
+        this.cdr.detectChanges();
       });
   }
 
@@ -122,9 +123,18 @@ export class RiderComponent implements OnInit {
   }
 
   deleteRider(id: any) {
+    if (!confirm("Are you sure you want to delete this rider?")) return;
+
     this.http.delete(this.baseUrl + "Rider/Delete/" + id)
-      .subscribe(() => {
-        this.loadRiders();
+      .subscribe({
+        next: () => {
+          alert("Rider deleted successfully!");
+          this.loadRiders();
+        },
+        error: (err) => {
+          console.error(err);
+          alert("Failed to delete rider.");
+        }
       });
   }
 }

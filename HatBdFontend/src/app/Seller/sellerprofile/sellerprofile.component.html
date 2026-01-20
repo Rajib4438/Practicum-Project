@@ -1,15 +1,80 @@
 <div class="profile-container" *ngIf="!loading && user">
 
-  <h2>User Profile</h2>
+  <div class="header-actions" style="display:flex; justify-content:space-between; align-items:center;">
+    <h2>User Profile</h2>
+    <button (click)="toggleEdit()" style="padding:5px 15px; cursor:pointer;">
+      {{ isEditing ? 'Cancel' : 'Edit Profile' }}
+    </button>
+  </div>
 
-  <div class="profile-card mb-4 py-4 px-3 ">
+  <!-- VIEW MODE -->
+  <div class="profile-card mb-4 py-4 px-3" *ngIf="!isEditing">
     <p><strong>Full Name:</strong> {{ user.fullName }}</p>
     <p><strong>Username:</strong> {{ user.userName }}</p>
     <p><strong>Email:</strong> {{ user.email }}</p>
     <p><strong>Phone:</strong> {{ user.phone }}</p>
     <p><strong>Gender:</strong> {{ user.gender }}</p>
+    <p><strong>Address:</strong> {{ user.address }}</p>
+    <p><strong>Shop Address:</strong> {{ user.shopAddress }}</p> <!-- 🔥 NEW -->
+    <p><strong>Permanent Address:</strong> {{ user.permanentAddress }}</p> <!-- 🔥 NEW -->
+    <p><strong>NID:</strong> {{ user.nid }}</p> <!-- 🔥 NEW -->
+    <p><strong>Trade License:</strong> {{ user.tradeLicense }}</p> <!-- 🔥 NEW -->
     <p><strong>Register As:</strong> {{ user.registerAs }}</p>
     <p><strong>Joined:</strong> {{ user.createdAT | date:'mediumDate' }}</p>
+  </div>
+
+  <!-- EDIT MODE -->
+  <div class="edit-form mb-4 py-4 px-3" *ngIf="isEditing"
+    style="border:1px solid #ddd; padding:20px; border-radius:8px;">
+
+    <div style="margin-bottom:10px;">
+      <label>Full Name:</label>
+      <input type="text" [(ngModel)]="user.fullName" style="width:100%; padding:8px; margin-top:5px;">
+    </div>
+
+    <div style="margin-bottom:10px;">
+      <label>Phone:</label>
+      <input type="text" [(ngModel)]="user.phone" style="width:100%; padding:8px; margin-top:5px;">
+    </div>
+
+    <div style="margin-bottom:10px;">
+      <label>Address:</label>
+      <textarea [(ngModel)]="user.address" style="width:100%; padding:8px; margin-top:5px;"></textarea>
+    </div>
+
+    <div style="margin-bottom:10px;">
+      <label>Shop Address:</label>
+      <textarea [(ngModel)]="user.shopAddress" style="width:100%; padding:8px; margin-top:5px;"></textarea>
+    </div>
+
+    <div style="margin-bottom:10px;">
+      <label>Permanent Address:</label>
+      <textarea [(ngModel)]="user.permanentAddress" style="width:100%; padding:8px; margin-top:5px;"></textarea>
+    </div>
+
+    <div style="margin-bottom:10px;">
+      <label>NID:</label>
+      <input type="text" [(ngModel)]="user.nid" style="width:100%; padding:8px; margin-top:5px;">
+    </div>
+
+    <div style="margin-bottom:10px;">
+      <label>Trade License:</label>
+      <input type="text" [(ngModel)]="user.tradeLicense" style="width:100%; padding:8px; margin-top:5px;">
+    </div>
+
+    <div style="margin-bottom:10px;">
+      <label>Gender:</label>
+      <select [(ngModel)]="user.gender" style="width:100%; padding:8px; margin-top:5px;">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+    </div>
+
+    <button (click)="updateProfile()"
+      style="padding:8px 20px; background:#28a745; color:#fff; border:none; cursor:pointer;">
+      Save Changes
+    </button>
+
   </div>
 
 </div>

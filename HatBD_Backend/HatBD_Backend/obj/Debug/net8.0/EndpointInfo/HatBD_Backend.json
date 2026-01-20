@@ -1925,6 +1925,48 @@
         }
       }
     },
+    "/api/UserRegistration/update/{id}": {
+      "put": {
+        "tags": [
+          "UserRegistration"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegistration"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegistration"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserRegistration"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/UserRegistration/riders": {
       "get": {
         "tags": [
@@ -2460,6 +2502,22 @@
             "nullable": true
           },
           "address": {
+            "type": "string",
+            "nullable": true
+          },
+          "nid": {
+            "type": "string",
+            "nullable": true
+          },
+          "tradeLicense": {
+            "type": "string",
+            "nullable": true
+          },
+          "shopAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "permanentAddress": {
             "type": "string",
             "nullable": true
           },
